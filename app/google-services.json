@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "702014061678",
+    "firebase_url": "https://grocery-store-app-75a7a-default-rtdb.firebaseio.com",
+    "project_id": "grocery-store-app-75a7a",
+    "storage_bucket": "grocery-store-app-75a7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702014061678:android:9ee188dba01c80d5683a7f",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXlcrQwNtiBzCkao7Ur0r6gdlRSNfjFxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:702014061678:android:42ae3d8c8a557c33683a7f",
+        "android_client_info": {
+          "package_name": "com.example.mallapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXlcrQwNtiBzCkao7Ur0r6gdlRSNfjFxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
