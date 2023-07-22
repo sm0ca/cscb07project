@@ -100,8 +100,8 @@ public class StoreListModel {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()) {
                     String key = ds.getKey();
-                    String val = ds.getValue(String.class);
-                    Log.d("SLM.java", "key: " + key + " | value: " + val);
+//                    String val = ds.getValue(String.class);
+                    Log.d("SLM.java", "key: " + key + " | value: ");
                 }
             }
 
