@@ -2,11 +2,7 @@ package com.example.mallapp;
 
 import android.os.Bundle;
 
-import com.example.mallapp.StoreList.StoreListPresenter;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,14 +22,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // View Log.d output by clicking debug (green bug icon near 'run app')
-        // then open Logcat (View > Tool Windows > Logcat)
-        // then search SLM.java to see messages from StoreListModel.java
-        StoreListPresenter presenter = new StoreListPresenter(this);
-        Log.d("MA.java", "Made presenter in MainActivity");
-        presenter.startListener();
-        presenter.printAllData();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
