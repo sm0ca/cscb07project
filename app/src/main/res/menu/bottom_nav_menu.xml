@@ -2,24 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/baseline_storefront_24"
-        android:title="@string/title_home" />
+        android:id="@+id/navigation_shop"
+        android:icon="@drawable/round_local_mall_24"
+        android:title="@string/title_shop" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/baseline_shopping_cart_24"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/round_shopping_cart_24"
+        android:title="@string/title_cart" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/baseline_local_shipping_24"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_orders"
+        android:icon="@drawable/round_local_shipping_24"
+        android:title="@string/title_orders" />
 
     <item
-        android:id="@+id/navigation_sanchaai_is_amazing_and_I_love_him_uwu"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="@string/title_notifications" />
-
+        android:id="@+id/navigation_options"
+        android:icon="@drawable/round_settings_24"
+        android:title="@string/title_options" />
 
 </menu>

@@ -1,16 +1,16 @@
-package com.example.cscb07project.ui.notifications;
+package com.example.cscb07project.ui.options;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class OptionsViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public OptionsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is options fragment");
     }
 
     public LiveData<String> getText() {
