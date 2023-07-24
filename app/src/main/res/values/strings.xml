@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CSCB07Project</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_shop">Shop</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_options">Options</string>
 </resources>
