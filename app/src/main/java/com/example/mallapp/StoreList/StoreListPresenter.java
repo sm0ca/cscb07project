@@ -1,5 +1,7 @@
 package com.example.mallapp.StoreList;
 
+import com.example.mallapp.tools.IFNotifyAdapterService;
+
 public class StoreListPresenter {
 
     private final StoreListFragment fragment;
@@ -10,23 +12,18 @@ public class StoreListPresenter {
         this.fragment = fragment;
         model = new StoreListModel(this, "https://grocery-store-app-75a7a-default-rtdb.firebaseio.com/");
         adapter = new StoreList_RVAdapter(fragment.getContext(), model.getStores());
-        fragment.setAdapter(adapter);
+    }
+
+    public StoreList_RVAdapter getAdapter() {
+        return adapter;
+    }
+
+    public void createEventListener() {
         model.createEventListener();
     }
 
-    public void notifyAdapterItemInserted(int position) {
-        adapter.notifyItemInserted(position);
+    public void notifyAdapter(IFNotifyAdapterService notifier) {
+        notifier.notifyAdapter(adapter);
     }
 
-    public void notifyAdapterItemChanged(int position) {
-        adapter.notifyItemChanged(position);
-    }
-
-    public void notifyAdapterItemRemoved(int position) {
-        adapter.notifyItemRemoved(position);
-    }
-
-    public void notifyAdapterItemMoved(int from, int to) {
-        adapter.notifyItemMoved(from, to);
-    }
 }

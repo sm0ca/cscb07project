@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.mallapp.tools.NotifyAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,16 +45,13 @@ public class StoreListModel {
                 StoreListEntry newEntry = new StoreListEntry(storeName, logoURL);
                 if(previousChildName == null) {
                     stores.add(0, newEntry);
-                    presenter.notifyAdapterItemInserted(0);
+                    presenter.notifyAdapter(new NotifyAdapter.Inserted(0));
                 }
                 else {
                     int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                     stores.add(idxToInsert, newEntry);
-                    presenter.notifyAdapterItemInserted(idxToInsert);
+                    presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
                 }
-                //presenter.setAdapter(stores);
-                Log.d("SLM.java", "Prev: " + previousChildName);
-                Log.d("SLM.java", "Added: " + snapshot.getKey());
                 printCurrentList();
             }
 
@@ -64,18 +62,15 @@ public class StoreListModel {
                 if(previousChildName == null) {
                     stores.get(0).setStoreName(updatedStoreName);
                     stores.get(0).setLogo(updatedLogo);
-                    presenter.notifyAdapterItemChanged(0);
+                    presenter.notifyAdapter(new NotifyAdapter.Changed(0));
                 }
                 else {
                     StoreListEntry prev = new StoreListEntry(previousChildName);
                     int idxToUpdate = stores.indexOf(prev) + 1;
                     stores.get(idxToUpdate).setStoreName(updatedStoreName);
                     stores.get(idxToUpdate).setLogo(updatedLogo);
-                    presenter.notifyAdapterItemChanged(idxToUpdate);
+                    presenter.notifyAdapter(new NotifyAdapter.Changed(idxToUpdate));
                 }
-                //presenter.setAdapter(stores);
-                Log.d("SLM.java", "Prev: " + previousChildName);
-                Log.d("SLM.java", "Changed: " + updatedStoreName);
                 printCurrentList();
             }
 
@@ -84,9 +79,7 @@ public class StoreListModel {
                 String removedStoreName = snapshot.getKey();
                 int idxRemoved = stores.indexOf(new StoreListEntry(removedStoreName));
                 stores.remove(new StoreListEntry(removedStoreName));
-                //setAdapter(stores);
-                presenter.notifyAdapterItemRemoved(idxRemoved);
-                Log.d("SLM.java", "Removed: " + snapshot.getKey());
+                presenter.notifyAdapter(new NotifyAdapter.Removed(idxRemoved));
                 printCurrentList();
             }
 
@@ -99,17 +92,13 @@ public class StoreListModel {
                 stores.remove(movedEntry);
                 if(previousChildName == null) {
                     stores.add(0, movedEntry);
-                    presenter.notifyAdapterItemMoved(idxInitial, 0);
-                    //presenter.setAdapter(stores);
+                    presenter.notifyAdapter(new NotifyAdapter.Moved(idxInitial, 0));
                 }
                 else {
                     int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                     stores.add(idxToInsert, movedEntry);
-                    presenter.notifyAdapterItemMoved(idxInitial, idxToInsert);
-                    //presenter.setAdapter(stores);
+                    presenter.notifyAdapter(new NotifyAdapter.Moved(idxInitial, idxToInsert));
                 }
-                Log.d("SLM.java", "Prev: " + previousChildName);
-                Log.d("SLM.java", "Moved: " + snapshot.getKey());
                 printCurrentList();
             }
 

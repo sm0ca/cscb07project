@@ -37,13 +37,12 @@ public class StoreListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        presenter = new StoreListPresenter(this);
         recyclerView = view.findViewById(R.id.store_list_entry);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        presenter = new StoreListPresenter(this);
+        recyclerView.setAdapter(presenter.getAdapter());
+        presenter.createEventListener();
     }
 
-    public void setAdapter(StoreList_RVAdapter adapter) {
-        recyclerView.setAdapter(adapter);
-    }
 
 }
