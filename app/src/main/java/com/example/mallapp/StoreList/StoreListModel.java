@@ -21,6 +21,10 @@ public class StoreListModel {
     private final DatabaseReference queryNames;
     private ChildEventListener listener;
 
+    public List<StoreListEntry> getStores() {
+        return stores;
+    }
+
     private List<StoreListEntry> stores;
 
     public StoreListModel(StoreListPresenter presenter, String url) {
@@ -40,14 +44,14 @@ public class StoreListModel {
                 StoreListEntry newEntry = new StoreListEntry(storeName, logoURL);
                 if(previousChildName == null) {
                     stores.add(0, newEntry);
-                    //presenter.notifyAdapterItemInserted(0);
+                    presenter.notifyAdapterItemInserted(0);
                 }
                 else {
                     int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                     stores.add(idxToInsert, newEntry);
-                    //presenter.notifyAdapterItemInserted(idxToInsert);
+                    presenter.notifyAdapterItemInserted(idxToInsert);
                 }
-                presenter.setAdapter(stores);
+                //presenter.setAdapter(stores);
                 Log.d("SLM.java", "Prev: " + previousChildName);
                 Log.d("SLM.java", "Added: " + snapshot.getKey());
                 printCurrentList();
@@ -60,16 +64,16 @@ public class StoreListModel {
                 if(previousChildName == null) {
                     stores.get(0).setStoreName(updatedStoreName);
                     stores.get(0).setLogo(updatedLogo);
-                    //presenter.notifyAdapterItemChanged(0);
+                    presenter.notifyAdapterItemChanged(0);
                 }
                 else {
                     StoreListEntry prev = new StoreListEntry(previousChildName);
                     int idxToUpdate = stores.indexOf(prev) + 1;
                     stores.get(idxToUpdate).setStoreName(updatedStoreName);
                     stores.get(idxToUpdate).setLogo(updatedLogo);
-                    //presenter.notifyAdapterItemChanged(idxToUpdate);
+                    presenter.notifyAdapterItemChanged(idxToUpdate);
                 }
-                presenter.setAdapter(stores);
+                //presenter.setAdapter(stores);
                 Log.d("SLM.java", "Prev: " + previousChildName);
                 Log.d("SLM.java", "Changed: " + updatedStoreName);
                 printCurrentList();
@@ -78,9 +82,10 @@ public class StoreListModel {
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 String removedStoreName = snapshot.getKey();
+                int idxRemoved = stores.indexOf(new StoreListEntry(removedStoreName));
                 stores.remove(new StoreListEntry(removedStoreName));
-                presenter.setAdapter(stores);
-                //presenter.notifyAdapterItemRemoved(idxRemoved);
+                //setAdapter(stores);
+                presenter.notifyAdapterItemRemoved(idxRemoved);
                 Log.d("SLM.java", "Removed: " + snapshot.getKey());
                 printCurrentList();
             }
@@ -90,15 +95,18 @@ public class StoreListModel {
                 String movedName = snapshot.getKey();
                 String movedLogo = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
                 StoreListEntry movedEntry = new StoreListEntry(movedName, movedLogo);
+                int idxInitial = stores.indexOf(movedEntry);
                 stores.remove(movedEntry);
                 if(previousChildName == null) {
                     stores.add(0, movedEntry);
-                    presenter.setAdapter(stores);
+                    presenter.notifyAdapterItemMoved(idxInitial, 0);
+                    //presenter.setAdapter(stores);
                 }
                 else {
                     int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                     stores.add(idxToInsert, movedEntry);
-                    presenter.setAdapter(stores);
+                    presenter.notifyAdapterItemMoved(idxInitial, idxToInsert);
+                    //presenter.setAdapter(stores);
                 }
                 Log.d("SLM.java", "Prev: " + previousChildName);
                 Log.d("SLM.java", "Moved: " + snapshot.getKey());
