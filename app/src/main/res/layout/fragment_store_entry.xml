@@ -9,15 +9,15 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="5dp">
 
-<!--    TODO: Text is slightly off-center in each box -->
 <!--    TODO: Make each store clickable -->
 <!--    TODO: Make each store button look pretty -->
 
     <LinearLayout
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:paddingBottom="10dp">
 
         <ImageView
@@ -26,6 +26,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:contentDescription="Store Icon"
+            android:paddingBottom="10dp"
             app:srcCompat="@android:drawable/ic_menu_report_image"
             tools:srcCompat="@drawable/placeholder_store_icon" />
 
@@ -33,7 +34,7 @@
             android:id="@+id/store_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="8dp"
+            android:padding="10dp"
             android:text="[store name here]"
             android:textAlignment="center"
             android:textSize="20sp" />
