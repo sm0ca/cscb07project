@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="50dp"
     app:cardElevation="5dp">
 
 <!--    TODO: Text is slightly off-center in each box -->
@@ -14,7 +14,7 @@
 <!--    TODO: Make each store button look pretty -->
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="10dp"
@@ -25,6 +25,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
+            android:clickable="true"
             android:contentDescription="Store Icon"
             app:srcCompat="@android:drawable/ic_menu_report_image"
             tools:srcCompat="@drawable/placeholder_store_icon" />
@@ -35,6 +36,15 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="[store name here]"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/owner_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:text="[owner name here]"
             android:textAlignment="center"
             android:textSize="20sp" />
     </LinearLayout>

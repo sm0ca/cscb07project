@@ -18,6 +18,9 @@ import java.util.List;
 public class StoreListModel {
 
     private static final String LOGO_NODE_NAME = "logo";
+    private static final String OWNER = "owner";
+    private static final String NUMBER = "number";
+
     private final StoreListPresenter presenter;
     private final DatabaseReference queryNames;
     private ChildEventListener listener;
@@ -42,7 +45,9 @@ public class StoreListModel {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String storeName = snapshot.getKey();
                 String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                StoreListEntry newEntry = new StoreListEntry(storeName, logoURL);
+                String owner = snapshot.child(OWNER).getValue(String.class);
+                int number = snapshot.child(NUMBER).getValue(Integer.class);
+                StoreListEntry newEntry = new StoreListEntry(storeName, logoURL, owner);
                 if(previousChildName == null) {
                     stores.add(0, newEntry);
                     presenter.notifyAdapter(new NotifyAdapter.Inserted(0));
@@ -59,9 +64,11 @@ public class StoreListModel {
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String updatedStoreName = snapshot.getKey();
                 String updatedLogo = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
+                String updatedOwner = snapshot.child(OWNER).getValue(String.class);
                 if(previousChildName == null) {
                     stores.get(0).setStoreName(updatedStoreName);
                     stores.get(0).setLogo(updatedLogo);
+                    stores.get(0).setOwner(updatedOwner);
                     presenter.notifyAdapter(new NotifyAdapter.Changed(0));
                 }
                 else {
@@ -69,6 +76,7 @@ public class StoreListModel {
                     int idxToUpdate = stores.indexOf(prev) + 1;
                     stores.get(idxToUpdate).setStoreName(updatedStoreName);
                     stores.get(idxToUpdate).setLogo(updatedLogo);
+                    stores.get(idxToUpdate).setOwner(updatedOwner);
                     presenter.notifyAdapter(new NotifyAdapter.Changed(idxToUpdate));
                 }
                 printCurrentList();
@@ -87,7 +95,8 @@ public class StoreListModel {
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String movedName = snapshot.getKey();
                 String movedLogo = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                StoreListEntry movedEntry = new StoreListEntry(movedName, movedLogo);
+                String movedOwner = snapshot.child(OWNER).getValue(String.class);
+                StoreListEntry movedEntry = new StoreListEntry(movedName, movedLogo, movedOwner);
                 int idxInitial = stores.indexOf(movedEntry);
                 stores.remove(movedEntry);
                 if(previousChildName == null) {

@@ -17,6 +17,7 @@
         <action
             android:id="@+id/action_home_to_store_list"
             app:destination="@id/StoreList" />
+
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -37,5 +38,21 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_store_list_to_item_list"
+            app:destination="@+id/ItemList" />
     </fragment>
+
+        <fragment
+            android:id="@+id/ItemList"
+            android:name="com.example.mallapp.ItemList.ItemListFragment"
+            android:label="Item List"
+            tools:layout="@layout/fragment_item_list">
+
+            <action
+                android:id="@+id/action_SecondFragment_to_FirstFragment"
+                app:destination="@id/FirstFragment" />
+        </fragment>
+
+
 </navigation>

@@ -8,14 +8,16 @@ public class StoreListEntry implements Comparable<StoreListEntry> {
 
     private String storeName;
     private String logo;
+    private String owner;
 
     public StoreListEntry(String storeName) {
         this.storeName = storeName;
     }
 
-    public StoreListEntry(String storeName, String imageURL) {
+    public StoreListEntry(String storeName, String imageURL, String owner) {
         this.storeName = storeName;
         this.logo = imageURL;
+        this.owner = owner;
     }
 
     public String getStoreName() {
@@ -33,6 +35,11 @@ public class StoreListEntry implements Comparable<StoreListEntry> {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    public String getOwner(){return owner;}
+
+    public void setOwner(String owner) {this.owner = owner;}
+
 
     @Override
     public boolean equals(Object o) {
