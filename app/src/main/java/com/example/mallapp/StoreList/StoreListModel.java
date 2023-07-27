@@ -15,20 +15,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreListModel {
+public class StoreListModel implements IFStoreListModel {
 
     private static final String LOGO_NODE_NAME = "logo";
-    private final StoreListPresenter presenter;
+    private final IFStoreListPresenter presenter;
     private final DatabaseReference queryNames;
     private ChildEventListener listener;
+    private final List<StoreListEntry> stores;
 
-    public List<StoreListEntry> getStores() {
-        return stores;
-    }
-
-    private List<StoreListEntry> stores;
-
-    public StoreListModel(StoreListPresenter presenter, String url) {
+    public StoreListModel(IFStoreListPresenter presenter, String url) {
         this.presenter = presenter;
         stores = new ArrayList<>();
         FirebaseDatabase db = FirebaseDatabase.getInstance(url);
@@ -127,4 +122,13 @@ public class StoreListModel {
         }
     }
 
+    @Override
+    public List<StoreListEntry> getDataList() {
+        return stores;
+    }
+
+    @Override
+    public int getSizeOfDataList() {
+        return stores.size();
+    }
 }
