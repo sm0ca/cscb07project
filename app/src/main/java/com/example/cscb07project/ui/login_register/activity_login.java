@@ -94,6 +94,7 @@ public class activity_login extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.INVISIBLE);
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("TAG_LOGIN", "signInWithEmail:success");
@@ -107,7 +108,7 @@ public class activity_login extends AppCompatActivity {
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG_LOGIN", "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(activity_login.this, "Authentication failed.",
+                                    Toast.makeText(activity_login.this, "Incorrect Email/Password",
                                             Toast.LENGTH_SHORT).show();
                                     //updateUI(null);
                                 }

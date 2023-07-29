@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:702014061678:android:08a695e9e08d6991683a7f",
+        "android_client_info": {
+          "package_name": "com.example.cscb07project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXlcrQwNtiBzCkao7Ur0r6gdlRSNfjFxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "702014061678-ub98dd5ucm88c6fsdor4t857ceo1rptu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:702014061678:android:42ae3d8c8a557c33683a7f",
         "android_client_info": {
           "package_name": "com.example.mallapp"

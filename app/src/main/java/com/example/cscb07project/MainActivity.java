@@ -1,14 +1,7 @@
 package com.example.cscb07project;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
-import com.example.cscb07project.ui.login_register.activity_login;
-import com.example.cscb07project.ui.login_register.activity_register;
-import com.example.cscb07project.ui.login_register.login_test;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

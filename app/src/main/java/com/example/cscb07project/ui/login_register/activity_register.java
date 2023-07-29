@@ -49,9 +49,9 @@ public class activity_register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        mAuth = FirebaseAuth.getInstance();
         Log.d("TAG_REGISTER", "Here");
+        mAuth = FirebaseAuth.getInstance();
+        Log.d("TAG_REGISTER", "Here2");
 
 
         // Initialize
@@ -96,7 +96,7 @@ public class activity_register extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.INVISIBLE);
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d("TAG_REGISTER", "createUserWithEmail:success");
