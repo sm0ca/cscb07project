@@ -8,4 +8,10 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="register_text">Register</string>
+    <string name="logout_text">Logout</string>
+    <string name="i_am_a_customer">I am a customer</string>
+    <string name="i_am_an_store_owner">I am an store owner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="store_name_text">Store name</string>
 </resources>

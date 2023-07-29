@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,27 +33,14 @@ public class activity_register extends AppCompatActivity {
     private TextView redirect;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
-
-    // checking if user is logged in
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+    private RadioGroup isOwner_option;
+    private int isOwner_check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Log.d("TAG_REGISTER", "Here");
         mAuth = FirebaseAuth.getInstance();
-        Log.d("TAG_REGISTER", "Here2");
 
 
         // Initialize
@@ -98,10 +87,10 @@ public class activity_register extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 progressBar.setVisibility(View.INVISIBLE);
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
                                     Log.d("TAG_REGISTER", "createUserWithEmail:success");
-                                    // FirebaseUser user = mAuth.getCurrentUser(); DON'T FORGET
-                                    // updateUI(user);  DON'T FORGET
+                                    if(isOwner_check == 1) {
+
+                                    }
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Log.w("TAG_REGISTER", "createUserWithEmail:failure", task.getException());
@@ -123,6 +112,29 @@ public class activity_register extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), activity_login.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        // Checking if logged in
+        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if(currentUser != null){
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
+        // check if owner or customer
+        isOwner_option = findViewById(R.id.radioButton_register);
+        isOwner_option.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                isOwner_check = i;
+                // 0 is customer, 1 is owner
             }
         });
     }

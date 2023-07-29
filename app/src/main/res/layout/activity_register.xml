@@ -76,4 +76,23 @@
         android:textSize="15dp"
         android:layout_marginTop="15dp"/>
 
+    <RadioGroup
+        android:id="@+id/radioButton_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <RadioButton
+            android:id="@+id/radioButton_register1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/i_am_a_customer" />
+
+        <RadioButton
+            android:id="@+id/radioButton_register2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/i_am_an_store_owner" />
+    </RadioGroup>
+
 </LinearLayout>
