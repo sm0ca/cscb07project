@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,13 +20,15 @@ import com.example.mallapp.databinding.FragmentStoreListBinding;
 
 public class StoreListFragment extends Fragment implements IFStoreListView {
 
+    @IdRes
+    private static final int RECYCLER_VIEW_RESOURCE = R.id.store_list_entry;
+    @LayoutRes
+    private static final int RECYCLER_VIEW_LAYOUT = R.layout.fragment_store_entry;
+    @DrawableRes
+    private static final int PLACEHOLDER_STORE_ICON = R.drawable.placeholder_store_icon;
     private FragmentStoreListBinding binding;
     private IFStoreListPresenter presenter;
     private RecyclerView recyclerView;
-
-    public StoreListFragment() {
-        super(R.layout.fragment_store_list);
-    }
 
     @Override
     public View onCreateView(
@@ -38,14 +43,14 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter = new StoreListPresenter(this);
-        recyclerView = view.findViewById(R.id.store_list_entry);
+        recyclerView = view.findViewById(RECYCLER_VIEW_RESOURCE);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         presenter.onViewCreated();
     }
 
 
     @Override
-    public void setAdapter(RecyclerView.Adapter<?> adapter) {
+    public void setAdapter(RecyclerView.Adapter<StoreList_RVAdapter.StoreList_VH> adapter) {
         recyclerView.setAdapter(adapter);
     }
 
@@ -55,18 +60,18 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
     }
 
     @Override
-    public void displayStoreLogo(StoreList_ViewHolder holder) {
-        holder.getStoreLogo().setImageResource(R.drawable.placeholder_store_icon);
+    public void displayStoreLogo(StoreList_RVAdapter.StoreList_VH holder) {
+        holder.getStoreLogoIV().setImageResource(PLACEHOLDER_STORE_ICON);
     }
 
     @Override
-    public void displayStoreLogo(StoreList_ViewHolder holder, String imageURL) {
-        Glide.with(requireContext()).load(imageURL).into(holder.getStoreLogo());
+    public void displayStoreLogo(StoreList_RVAdapter.StoreList_VH holder, String imageURL) {
+        Glide.with(requireContext()).load(imageURL).into(holder.getStoreLogoIV());
     }
 
     @Override
     public int getRVLayoutResource() {
-        return R.layout.fragment_store_entry;
+        return RECYCLER_VIEW_LAYOUT;
     }
 
     @Override

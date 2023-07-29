@@ -7,12 +7,10 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/store_list_entry"
+        android:id="@+id/item_list_entry"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
-        android:clickable="true"
-        tools:listitem="@layout/fragment_store_entry"
-        android:focusable="true" />
+        tools:listitem="@layout/fragment_item_entry" />
 </RelativeLayout>

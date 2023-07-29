@@ -1,9 +1,8 @@
 package com.example.mallapp.StoreList;
 
 import com.example.mallapp.tools.IFNotifyAdapterService;
-import com.example.mallapp.tools.IFPresenterWithRV;
 
-public class StoreListPresenter implements IFStoreListPresenter, IFPresenterWithRV<StoreList_ViewHolder> {
+public class StoreListPresenter implements IFStoreListPresenter {
 
     private final IFStoreListView view;
     private final IFStoreListModel model;
@@ -15,6 +14,7 @@ public class StoreListPresenter implements IFStoreListPresenter, IFPresenterWith
         adapter = new StoreList_RVAdapter(this, view);
     }
 
+    @Override
     public void notifyAdapter(IFNotifyAdapterService notifier) {
         notifier.notifyAdapter(adapter);
     }
@@ -31,10 +31,19 @@ public class StoreListPresenter implements IFStoreListPresenter, IFPresenterWith
     }
 
     @Override
-    public void onBindViewHolderAtPos(StoreList_ViewHolder holder, int position) {
+    public void onBindViewHolderAtPos(StoreList_RVAdapter.StoreList_VH holder, int position) {
         String storeName = model.getDataList().get(position).getStoreName();
+        String ownerName = model.getDataList().get(position).getOwnerName();
         String storeLogo = model.getDataList().get(position).getLogo();
-        holder.getStoreName().setText(storeName);
+        holder.getStoreNameTV().setText(storeName);
+        String ownerLabel;
+        if(ownerName != null && !ownerName.isEmpty()) {
+            ownerLabel = "By: " + ownerName;
+        }
+        else {
+            ownerLabel = "By: N/A";
+        }
+        holder.getStoreOwnerTV().setText(ownerLabel);
         if(storeLogo != null && !storeLogo.isEmpty()) {
             view.displayStoreLogo(holder, storeLogo);
         }

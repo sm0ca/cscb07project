@@ -6,14 +6,11 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="5dp">
 
-<!--    TODO: Make each store clickable -->
-<!--    TODO: Make each store button look pretty -->
-
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
@@ -25,8 +22,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:contentDescription="Store Icon"
-            android:paddingBottom="10dp"
+            android:contentDescription="@string/store_icon_description"
+            android:paddingBottom="8dp"
             app:srcCompat="@android:drawable/ic_menu_report_image"
             tools:srcCompat="@drawable/placeholder_store_icon" />
 
@@ -34,10 +31,21 @@
             android:id="@+id/store_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="[store name here]"
+            android:padding="4dp"
+            android:text="@string/store_name_placeholder"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/owner_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/store_owner_placeholder"
+            android:textAlignment="center"
+            android:textSize="13sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
