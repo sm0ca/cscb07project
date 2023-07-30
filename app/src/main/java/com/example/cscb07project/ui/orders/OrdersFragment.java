@@ -22,11 +22,8 @@ public class OrdersFragment extends Fragment {
                 new ViewModelProvider(this).get(OrdersViewModel.class);
 
         binding = FragmentOrdersBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textOrders;
-        ordersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
 
     @Override
