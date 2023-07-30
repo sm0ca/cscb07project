@@ -41,9 +41,9 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // 'MainActivity.bundleStoreToItem.getString(MainActivity.BUNDLE_STORE_NAME_KEY)' gets name
+        // 'MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey())' gets name
         // of store that was tapped on in store list. Also it's static, so it's available everywhere
-        Log.d("ABC.java", "Clicked: " + MainActivity.bundleStoreToItem.getString(MainActivity.BUNDLE_STORE_NAME_KEY));
+        Log.d("ABC.java", "Clicked: " + MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey()));
 //        presenter = new ItemListPresenter(this);
 //        recyclerView = view.findViewById(R.id.item_list_entry);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

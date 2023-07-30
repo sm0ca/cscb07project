@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    public static Bundle bundleStoreToItem = new Bundle();
-    public static final String BUNDLE_STORE_NAME_KEY = "key";
+    private static final Bundle bundleStoreToItem = new Bundle();
+    private static final String BUNDLE_STORE_KEY = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +62,13 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static Bundle getStoreBundle() {
+        return bundleStoreToItem;
+    }
+
+    public static String getStoreBundleKey() {
+        return BUNDLE_STORE_KEY;
     }
 }

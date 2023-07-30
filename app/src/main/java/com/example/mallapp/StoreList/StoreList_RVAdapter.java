@@ -58,7 +58,7 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
             view.setOnClickListener(view1 -> {
                 int position = getBindingAdapterPosition();
                 String clickedStoreName = presenter.getStoreNameAtPos(position);
-                MainActivity.bundleStoreToItem.putString(MainActivity.BUNDLE_STORE_NAME_KEY, clickedStoreName);
+                MainActivity.getStoreBundle().putString(MainActivity.getStoreBundleKey(), clickedStoreName);
                 Navigation.findNavController(view1).navigate(R.id.action_store_list_to_item_list);
             });
         }
