@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallapp.MainActivity;
 import com.example.mallapp.R;
 
 public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapter.StoreList_VH> {
@@ -35,7 +36,7 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
     @Override
     public void onBindViewHolder(@NonNull StoreList_VH holder, int position) {
         presenter.onBindViewHolderAtPos(holder, position);
-        holder.itemView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_store_list_to_item_list));
+//        holder.itemView.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_store_list_to_item_list));
     }
 
     @Override
@@ -43,7 +44,7 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
         return presenter.getDataSize();
     }
 
-    public static class StoreList_VH extends RecyclerView.ViewHolder {
+    public class StoreList_VH extends RecyclerView.ViewHolder {
 
         private final TextView storeNameTV;
         private final TextView storeOwnerTV;
@@ -54,6 +55,12 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
             storeNameTV = view.findViewById(R.id.store_name);
             storeOwnerTV = view.findViewById(R.id.owner_name);
             storeLogoIV = view.findViewById(R.id.store_logo);
+            view.setOnClickListener(view1 -> {
+                int position = getBindingAdapterPosition();
+                String clickedStoreName = presenter.getStoreNameAtPos(position);
+                MainActivity.bundleStoreToItem.putString(MainActivity.BUNDLE_STORE_NAME_KEY, clickedStoreName);
+                Navigation.findNavController(view1).navigate(R.id.action_store_list_to_item_list);
+            });
         }
 
         public TextView getStoreNameTV() {

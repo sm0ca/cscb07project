@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    public static Bundle bundleStoreToItem = new Bundle();
+    public static final String BUNDLE_STORE_NAME_KEY = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

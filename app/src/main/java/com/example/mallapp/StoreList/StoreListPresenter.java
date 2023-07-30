@@ -22,12 +22,18 @@ public class StoreListPresenter implements IFStoreListPresenter {
     @Override
     public void onViewCreated() {
         view.setAdapter(adapter);
+        model.destroyEventListener();
         model.createEventListener();
     }
 
     @Override
     public void onDestroy() {
         model.destroyEventListener();
+    }
+
+    @Override
+    public String getStoreNameAtPos(int position) {
+        return model.getDataList().get(position).getStoreName();
     }
 
     @Override

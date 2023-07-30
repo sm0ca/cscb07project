@@ -2,6 +2,7 @@ package com.example.mallapp.ItemList;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mallapp.MainActivity;
 import com.example.mallapp.R;
 import com.example.mallapp.databinding.FragmentItemListBinding;
 
@@ -39,6 +41,9 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // 'MainActivity.bundleStoreToItem.getString(MainActivity.BUNDLE_STORE_NAME_KEY)' gets name
+        // of store that was tapped on in store list. Also it's static, so it's available everywhere
+        Log.d("ABC.java", "Clicked: " + MainActivity.bundleStoreToItem.getString(MainActivity.BUNDLE_STORE_NAME_KEY));
 //        presenter = new ItemListPresenter(this);
 //        recyclerView = view.findViewById(R.id.item_list_entry);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

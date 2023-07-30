@@ -50,7 +50,8 @@ public class StoreListModel implements IFStoreListModel {
                     stores.add(idxToInsert, newEntry);
                     presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
                 }
-                printCurrentList();
+//                Log.d("SLM.java", "Added");
+//                printCurrentList();
             }
 
             @Override
@@ -72,7 +73,8 @@ public class StoreListModel implements IFStoreListModel {
                     stores.get(idxToUpdate).setOwnerName(updatedOwner);
                     presenter.notifyAdapter(new NotifyAdapter.Changed(idxToUpdate));
                 }
-                printCurrentList();
+//                Log.d("SLM.java", "Changed");
+//                printCurrentList();
             }
 
             @Override
@@ -81,7 +83,8 @@ public class StoreListModel implements IFStoreListModel {
                 int idxRemoved = stores.indexOf(new StoreListEntry(removedStoreName));
                 stores.remove(new StoreListEntry(removedStoreName));
                 presenter.notifyAdapter(new NotifyAdapter.Removed(idxRemoved));
-                printCurrentList();
+//                Log.d("SLM.java", "Removed");
+//                printCurrentList();
             }
 
             @Override
@@ -101,7 +104,8 @@ public class StoreListModel implements IFStoreListModel {
                     stores.add(idxToInsert, movedEntry);
                     presenter.notifyAdapter(new NotifyAdapter.Moved(idxInitial, idxToInsert));
                 }
-                printCurrentList();
+//                Log.d("SLM.java", "Moved");
+//                printCurrentList();
             }
 
             @Override
@@ -112,16 +116,16 @@ public class StoreListModel implements IFStoreListModel {
         });
     }
 
-    private void printCurrentList() {
-        Log.d("SLM.java", "========= Printing List =========");
-
-        int i = 0;
-        for(StoreListEntry sle : stores) {
-            Log.d("SLM.java", "idx " + i + ": " + sle.getStoreName());
-            i++;
-        }
-        Log.d("SLM.java", "=================================");
-    }
+//    private void printCurrentList() {
+//        Log.d("SLM.java", "========= Printing List =========");
+//
+//        int i = 0;
+//        for(StoreListEntry sle : stores) {
+//            Log.d("SLM.java", "idx " + i + ": " + sle.getStoreName());
+//            i++;
+//        }
+//        Log.d("SLM.java", "=================================");
+//    }
 
     public void destroyEventListener() {
         if(listener != null) {
