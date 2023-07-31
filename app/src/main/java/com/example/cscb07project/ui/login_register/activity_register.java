@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +22,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class activity_register extends AppCompatActivity {
 
@@ -73,10 +75,12 @@ public class activity_register extends AppCompatActivity {
 //                }
                 if(TextUtils.isEmpty(email)) {
                     Toast.makeText(activity_register.this, "Enter your Email", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
                 if(TextUtils.isEmpty(password)) {
                     Toast.makeText(activity_register.this, "Enter your Password", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                     return;
                 }
 
@@ -88,15 +92,21 @@ public class activity_register extends AppCompatActivity {
                                 progressBar.setVisibility(View.INVISIBLE);
                                 if (task.isSuccessful()) {
                                     Log.d("TAG_REGISTER", "createUserWithEmail:success");
-                                    if(isOwner_check == 1) {
 
+                                    DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference().
+                                            child("users").child(mAuth.getCurrentUser().getUid());
+                                    if(isOwner_check == R.id.radioButton_register2) {
+                                        dbReference.child("isOwner").setValue(true);
+                                       dbReference.child("storeName").setValue(0);
+                                    }
+                                    else if(isOwner_check == R.id.radioButton_register1) {
+                                        dbReference.child("isOwner").setValue(false);
+                                        dbReference.child("cart").setValue(0);
                                     }
                                 } else {
-                                    // If sign in fails, display a message to the user.
                                     Log.w("TAG_REGISTER", "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(activity_register.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                   // updateUI(null);   DON'T FORGET
                                 }
                             }
                         });
@@ -105,7 +115,7 @@ public class activity_register extends AppCompatActivity {
             }
         });
 
-        // redirect's onclick listener
+        // redirect to login when clicking login
         redirect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +144,6 @@ public class activity_register extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 isOwner_check = i;
-                // 0 is customer, 1 is owner
             }
         });
     }
