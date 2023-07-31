@@ -2,7 +2,6 @@ package com.example.mallapp.ItemList;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,16 +40,9 @@ public class ItemListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // 'MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey())' gets name
-        // of store that was tapped on in store list. Also it's static, so it's available everywhere
-        Log.d("ABC.java", "Clicked: " + MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey()));
-//        presenter = new ItemListPresenter(this);
-//        recyclerView = view.findViewById(R.id.item_list_entry);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        // Create the adapter and set it for the RecyclerView
-//        ItemListRVAdapter adapter = new ItemListRVAdapter(requireContext(), new ArrayList<>());
-//        recyclerView.setAdapter(adapter);
+        presenter = new ItemListPresenter(this);
+        recyclerView = view.findViewById(R.id.item_list_entry);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     // Method to set the adapter for the RecyclerView

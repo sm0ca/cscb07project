@@ -1,5 +1,7 @@
 package com.example.mallapp.ItemList;
 
+import com.example.mallapp.MainActivity;
+
 import java.util.List;
 
 public class ItemListPresenter {
@@ -15,8 +17,12 @@ public class ItemListPresenter {
     }
 
     public void setAdapter(List<ItemListEntry> items) {
-        adapter = new ItemListRVAdapter(fragment.getContext(), items);
+        adapter = new ItemListRVAdapter(fragment.getContext(), items, this);
         fragment.setAdapter(adapter);
+    }
+
+    public String getItem(int index){
+        return model.getItemsList().get(index).getItemName();
     }
 
 }
