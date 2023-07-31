@@ -5,7 +5,7 @@ public class ItemListEntry {
     private String brand;
     private String imgURL;
     private double price;
-    private int modifierIcon;
+//    private int modifierIcon;
 
     public ItemListEntry() {}
 
@@ -14,7 +14,7 @@ public class ItemListEntry {
         this.brand = brand;
         this.imgURL = imgURL;
         this.price = price;
-        this.modifierIcon = modifierIcon;
+//        this.modifierIcon = modifierIcon;
     }
 
     public String getItemName() {
@@ -49,11 +49,11 @@ public class ItemListEntry {
         this.price = price;
     }
 
-    public int getModifierIcon() {
-        return modifierIcon;
-    }
+//    public int getModifierIcon() {
+//        return modifierIcon;
+//    }
 
-    public void setModifierIcon(int modifierIcon) {
-        this.modifierIcon = modifierIcon;
-    }
+//    public void setModifierIcon(int modifierIcon) {
+//        this.modifierIcon = modifierIcon;
+//    }
 }

@@ -28,12 +28,10 @@ public class CartFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        CartViewModel cartViewModel =
-                new ViewModelProvider(this).get(CartViewModel.class);
-
+//        CartViewModel cartViewModel =
+//                new ViewModelProvider(this).get(CartViewModel.class);
         binding = FragmentCartBinding.inflate(inflater, container, false);
 //        View root = binding.getRoot();
-
 //        final TextView textView = binding.textCart;
 //        cartViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return binding.getRoot();

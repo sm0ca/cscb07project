@@ -16,7 +16,7 @@ public class CartPresenter {
         model.createEventListener();
     }
 
-    public void setAdapter(List<ItemListEntry> items) {
+    public void setAdapter(List<CartEntry> items) {
         adapter = new CartRVAdapter(fragment.getContext(), items);
         fragment.setAdapter(adapter);
     }

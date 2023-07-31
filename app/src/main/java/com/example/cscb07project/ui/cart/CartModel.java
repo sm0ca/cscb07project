@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartModel {
@@ -19,10 +20,12 @@ public class CartModel {
     private final DatabaseReference queryNames;
     private ChildEventListener listener;
 
-    private List<ItemListEntry> itemList;
+    private List<CartEntry> cartList;
 
     public CartModel(CartPresenter presenter, String url) {
         this.presenter = presenter;
-
+        cartList = new ArrayList<>();
+        FirebaseDatabase db = FirebaseDatabase.getInstance(url);
+        queryNames = db.getReference().child("users");
     }
 }
