@@ -30,6 +30,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_first" />
 
+        <Button
+            android:id="@+id/owner_list"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            android:text="Item List for owner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/store_list" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,15 +5,17 @@ public class ItemListEntry {
     private double price;
 
     private String brand;
+    private String description;
 
     public ItemListEntry() {
     }
 
-    public ItemListEntry(String itemName, String logoURL, double price, String brand) {
+    public ItemListEntry(String itemName, String logoURL, double price, String brand, String description) {
         this.itemName = itemName;
         this.logoURL = logoURL;
         this.price = price;
         this.brand = brand;
+        this.description = description;
     }
 
     public String getItemName() {
@@ -43,4 +45,6 @@ public class ItemListEntry {
     public void setItemBrand(String brand){this.brand = brand;}
 
     public String getBrand(){return brand;}
+
+    public String getDescription(){return description;}
 }

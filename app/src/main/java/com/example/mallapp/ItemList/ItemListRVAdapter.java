@@ -1,7 +1,9 @@
 package com.example.mallapp.ItemList;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mallapp.MainActivity;
 import com.example.mallapp.R;
+import com.example.mallapp.detailed_description;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.mallapp.R;
 
 
 public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.ItemListViewHolder> {
@@ -34,6 +33,9 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
 
     private final ItemListPresenter presenter;
     private final List<ItemListEntry> itemsList;
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     public ItemListRVAdapter(Context context, List<ItemListEntry> itemsList, ItemListPresenter presenter) {
         this.context = context;
@@ -54,20 +56,26 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
         holder.getItemPrice().setText(String.valueOf(itemsList.get(position).getPrice()));
         holder.getItemBrand().setText(itemsList.get(position).getBrand());
 
+        String username = "user2";
+        String store = MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey());
+        Getqty getqty = new Getqty(username, itemsList.get(position).getItemName(), store);
+        getqty.getQuantityFromFirebase(new Getqty.QuantityCallback() {
+            @Override
+            public void onQuantityReceived(int quantity) {
+                holder.getAmount().setText(quantity + " in cart");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                return;
+            }
+        });
+
         if (itemsList.get(position).getLogoURL() != null && !itemsList.get(position).getLogoURL().isEmpty()) {
             Glide.with(context).load(itemsList.get(position).getLogoURL()).into(holder.getItemLogo());
         } else {
             holder.getItemLogo().setImageResource(R.drawable.placeholder_store_icon);
         }
-
-//        holder.getItemLogo().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Context context = holder.itemView.getContext();
-//                Intent itemListIntent = new Intent(context, ItemListFragment.class);
-//                context.startActivity(itemListIntent);
-//            }
-//        });
     }
 
     @Override
@@ -83,6 +91,10 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
         private final TextView itemBrand;
 
         private final Button button_add;
+        private final TextView amount;
+
+        private final TextView detailed_itemDescription;
+
 
         public ItemListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,15 +102,46 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
             itemPrice = itemView.findViewById(R.id.item_price);
             itemLogo = itemView.findViewById(R.id.item_logo);
             itemBrand = itemView.findViewById(R.id.item_brand);
+            amount = itemView.findViewById(R.id.item_quantity);
             button_add = itemView.findViewById(R.id.button_add);
+            mAuth = FirebaseAuth.getInstance();
+            mUser = mAuth.getCurrentUser();
             button_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
                     String itemname = presenter.getItem(position);
+                //    String username = mUser.getUid();
                     String storename = MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey());
-                    Add add = new Add("user2", storename, itemname);
+                    Add add = new Add("user2", storename, itemname,1);
                     add.addToFirebase();
+                }
+            });
+
+            detailed_itemDescription = itemView.findViewById(R.id.item_description);
+
+            itemLogo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    ItemListPresenter.item_name = presenter.getItem(position);
+                    ItemListPresenter.item_description= presenter.getDescription(position);
+                    ItemListPresenter.item_brand = presenter.getitemBrand(position);
+                    ItemListPresenter.item_image = presenter.getLogo(position);
+                    Navigation.findNavController(view).navigate(R.id.action_item_list_to_detailed_list);
+                }
+            });
+
+            itemName.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    ItemListPresenter.item_name = presenter.getItem(position);
+                    ItemListPresenter.item_description= presenter.getDescription(position);
+                    ItemListPresenter.item_brand = presenter.getitemBrand(position);
+                    ItemListPresenter.item_image = presenter.getLogo(position);
+                    Navigation.findNavController(view).navigate(R.id.action_item_list_to_detailed_list);
                 }
             });
         }
@@ -116,6 +159,10 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
         }
 
         public TextView getItemBrand(){return itemBrand;}
+
+        public TextView getAmount(){return amount;}
+
+        public TextView getDetailed_itemDescription(){return detailed_itemDescription;}
     }
 }
 

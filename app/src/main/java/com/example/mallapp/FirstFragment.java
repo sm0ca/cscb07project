@@ -41,6 +41,13 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_home_to_store_list);
             }
         });
+        binding.ownerList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(FirstFragment.this)
+                        .navigate(R.id.action_home_to_owner_list);
+            }
+        });
     }
 
     @Override

@@ -13,9 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ItemListModel {
 
@@ -23,10 +21,12 @@ public class ItemListModel {
     private static final String ITEMS_NODE_NAME = "items";
     private static final String PRICE_NODE_NAME = "price";
     private static final String BRAND = "brand";
+    private static final String DESCRIP = "description";
 
 
     private final ItemListPresenter presenter;
     private final DatabaseReference queryNames;
+    private DatabaseReference query_owner;
     private ChildEventListener listener;
 
     private List<ItemListEntry> ItemsList;
@@ -40,58 +40,58 @@ public class ItemListModel {
 
     public void createEventListener() {
         Log.d("SLM.java", "Started listener2");
-        listener = queryNames.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.d("ss","hello");
-                    String itemName = snapshot.getKey();
-                    Log.d("name", itemName);
-                    String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                    double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
-                    String brand = snapshot.child(BRAND).getValue(String.class);
-                    ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand);
-                    ItemsList.add(newEntry);
+                    listener = queryNames.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            String itemName = snapshot.getKey();
+                            String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
+                            double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                            String brand = snapshot.child(BRAND).getValue(String.class);
+                            String description = snapshot.child(DESCRIP).getValue(String.class);
+                            ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
+                            ItemsList.add(newEntry);
 
-                presenter.setAdapter(ItemsList);
-            }
+                            presenter.setAdapter(ItemsList);
+                        }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String storeName = snapshot.getKey();
-                for (DataSnapshot itemSnapshot : snapshot.child(ITEMS_NODE_NAME).getChildren()) {
-                    String itemName = itemSnapshot.getKey();
-                    String logoURL = itemSnapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                    double price = itemSnapshot.child(PRICE_NODE_NAME).getValue(Double.class);
-                    String brand = itemSnapshot.child(BRAND).getValue(String.class);
-                    ItemListEntry updatedEntry = new ItemListEntry(itemName, logoURL, price, brand);
-                    ItemsList.add(updatedEntry);
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            String storeName = snapshot.getKey();
+                            for (DataSnapshot itemSnapshot : snapshot.child(ITEMS_NODE_NAME).getChildren()) {
+                                String itemName = itemSnapshot.getKey();
+                                String logoURL = itemSnapshot.child(LOGO_NODE_NAME).getValue(String.class);
+                                double price = itemSnapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                                String brand = itemSnapshot.child(BRAND).getValue(String.class);
+                                String description = snapshot.child(DESCRIP).getValue(String.class);
+                                ItemListEntry updatedEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
+                                ItemsList.add(updatedEntry);
+                            }
+
+                            presenter.setAdapter(ItemsList);
+                            Log.d("SLM.java", "Changed: " + storeName);
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                            String storeName = snapshot.getKey();
+                            //.remove(storeName);
+
+                            //presenter.setAdapter(storeItemsMap.get(0));
+                            Log.d("SLM.java", "Removed: " + storeName);
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            onChildChanged(snapshot, previousChildName);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.d("SLM.java", "Err listening to item names");
+                            destroyEventListener();
+                        }
+                    });
                 }
-
-                presenter.setAdapter(ItemsList);
-                Log.d("SLM.java", "Changed: " + storeName);
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                String storeName = snapshot.getKey();
-                //.remove(storeName);
-
-                //presenter.setAdapter(storeItemsMap.get(0));
-                Log.d("SLM.java", "Removed: " + storeName);
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                onChildChanged(snapshot, previousChildName);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("SLM.java", "Err listening to store names");
-                destroyEventListener();
-            }
-        });
-    }
 
     public void destroyEventListener() {
         if (listener != null) {
@@ -102,6 +102,4 @@ public class ItemListModel {
     public List<ItemListEntry> getItemsList(){
         return ItemsList;
     }
-
-
 }
