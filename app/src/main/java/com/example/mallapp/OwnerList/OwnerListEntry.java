@@ -6,14 +6,17 @@ public class OwnerListEntry {
 
     private String brand;
 
+    private String description;
+
     public OwnerListEntry() {
     }
 
-    public OwnerListEntry(String itemName, String logoURL, double price, String brand) {
+    public OwnerListEntry(String itemName, String logoURL, double price, String brand, String description) {
         this.itemName = itemName;
         this.logoURL = logoURL;
         this.price = price;
         this.brand = brand;
+        this.description = description;
     }
 
     public String getItemName() {
@@ -43,4 +46,6 @@ public class OwnerListEntry {
     public void setItemBrand(String brand){this.brand = brand;}
 
     public String getBrand(){return brand;}
+
+    public String getDescription(){return description;}
 }

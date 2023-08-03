@@ -20,6 +20,11 @@ public class OwnerListModel {
     private static final String PRICE_NODE_NAME = "price";
     private static final String BRAND = "brand";
 
+    private static final String ForSale = "forSale";
+
+    private static final String DESCRIP = "description";
+
+
     //private FirebaseAuth mAuth;
     //private FirebaseUser mUser;
 
@@ -29,6 +34,7 @@ public class OwnerListModel {
     private ChildEventListener listener;
 
     private List<OwnerListEntry> ItemsList;
+
 
     public OwnerListModel(OwnerListPresenter presenter, String url) {
         this.presenter = presenter;
@@ -51,16 +57,35 @@ public class OwnerListModel {
                             listener = query_owner.addChildEventListener(new ChildEventListener() {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    String itemName = snapshot.getKey();
-                                    String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                                    double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
-                                    String brand = snapshot.child(BRAND).getValue(String.class);
-                                    OwnerListEntry newEntry = new OwnerListEntry(itemName, logoURL, price, brand);
-                                    ItemsList.add(newEntry);
-                                    presenter.setAdapter(ItemsList);
+                                   boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
+                                    if(forSale)
+                                    {
+                                        String itemName = snapshot.getKey();
+                                        String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
+                                        double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                                        String brand = snapshot.child(BRAND).getValue(String.class);
+                                        String description = snapshot.child(DESCRIP).getValue(String.class);
+                                        OwnerListEntry newEntry = new OwnerListEntry(itemName, logoURL, price, brand, description);
+                                        ItemsList.add(newEntry);
+                                        presenter.setAdapter(ItemsList);
+                                    }
+                                    else{
+                                    }
                                 }
                                 @Override
                                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
+                                    if (!forSale) {
+                                        String itemName = snapshot.getKey();
+                                        // Find and remove the item from the ItemsList
+                                        for (OwnerListEntry entry : ItemsList) {
+                                            if (entry.getItemName().equals(itemName)) {
+                                                ItemsList.remove(entry);
+                                                break;
+                                            }
+                                        }
+                                        presenter.setAdapter(ItemsList);
+                                    }
                                 }
 
                                 @Override

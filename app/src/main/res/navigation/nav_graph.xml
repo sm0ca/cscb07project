@@ -61,6 +61,10 @@
         android:name="com.example.mallapp.OwnerList.OwnerListFragment"
         android:label="owner List"
         tools:layout="@layout/fragment_owner_list">
+        <action
+            android:id="@+id/action_owner_list_to_detailed_owner_entry"
+            app:destination="@+id/detailed_owner_description" />
+
     </fragment>
 
     <fragment
@@ -69,5 +73,6 @@
         android:label="detailed List"
         tools:layout="@layout/fragment_detailed_item">
     </fragment>
+
 
 </navigation>

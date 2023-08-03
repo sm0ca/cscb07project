@@ -28,7 +28,7 @@ public class Add {
 
     public void addToFirebase() {
         Log.d("Firebase", "Adding data to Firebase...");
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        mDatabase = FirebaseDatabase.getInstance().getReference(username);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -93,6 +94,7 @@ public class detailed_description extends Fragment {
             public void onClick(View view) {
                 String storename = MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey());
                 Add add = new Add("user2", storename, itemName, selectedQuantity);
+                Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
                 add.addToFirebase();
             }
         });
