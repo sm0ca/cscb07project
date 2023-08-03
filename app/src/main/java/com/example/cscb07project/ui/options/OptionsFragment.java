@@ -2,6 +2,7 @@ package com.example.cscb07project.ui.options;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentOptionsBinding;
-import com.example.cscb07project.ui.login_register.activity_login;
+import com.example.cscb07project.ui.login.activity_login;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class OptionsFragment extends Fragment {

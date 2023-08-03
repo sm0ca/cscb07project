@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.login_register.activity_register"
+    tools:context=".ui.register.activity_register"
     android:padding="10dp">
 
     <TextView
@@ -39,7 +39,22 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"/>
+            android:hint="@string/password"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/store_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/store_name_text"
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,18 +99,5 @@
             android:text="@string/i_am_an_store_owner" />
     </RadioGroup>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/store_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/store_name_text"
-            android:textColor="@color/black"
-            android:visibility="gone" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>

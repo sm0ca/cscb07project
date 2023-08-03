@@ -1,9 +1,7 @@
-package com.example.cscb07project.ui.login_register;
+package com.example.cscb07project.ui.register;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -21,16 +19,15 @@ public class createUserEmail implements createUser{
     private String storeName;
     private int isOwner_check;
     private FirebaseAuth mAuth;
-    private Context context;
-    private View view;
-    public createUserEmail (String email, String password, String storeName, int isOwner_check, FirebaseAuth mAuth, Context context, View view) {
+    private activity_register_contract.Presenter presenter;
+    public createUserEmail (String email, String password, String storeName, int isOwner_check,
+                            FirebaseAuth mAuth, activity_register_contract.Presenter presenter) {
         this.email = email;
         this.password = password;
         this.storeName = storeName;
         this.isOwner_check = isOwner_check;
         this.mAuth = mAuth;
-        this.context =context;
-        this.view = view;
+        this.presenter = presenter;
     }
     @Override
     public void create() {
@@ -38,35 +35,26 @@ public class createUserEmail implements createUser{
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        activity_register.getRegisterProgressBar().setVisibility(View.INVISIBLE);
+                        presenter.changeProgressBarVisibility(4);
 
                         if (task.isSuccessful()) {
                             Log.d("TAG_REGISTER", "createUserWithEmail:success");
 
                             DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference().
                                     child("users").child(mAuth.getCurrentUser().getUid());
-                            if(isOwner_check == R.id.radioButton_register_owner) {
+                            if (isOwner_check == R.id.radioButton_register_owner) {
                                 dbReference.child("isOwner").setValue(true);
                                 dbReference.child("storeName").setValue(storeName);
-                            }
-                            else if(isOwner_check == R.id.radioButton_register_customer) {
+                            } else if (isOwner_check == R.id.radioButton_register_customer) {
                                 dbReference.child("isOwner").setValue(false);
                                 dbReference.child("cart").setValue("");
                             }
-                            else {
-                                Toast.makeText(context, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
                         } else {
-                            Log.w("TAG_REGISTER", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(context, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.w("TAG_REGISTER", "createUserWithEmail:failure");
+                            presenter.doToastView("Authentication failed");
                         }
                     }
                 });
-
     }
-
-
 
 }
