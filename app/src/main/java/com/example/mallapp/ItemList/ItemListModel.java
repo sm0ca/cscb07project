@@ -23,6 +23,8 @@ public class ItemListModel {
     private static final String BRAND = "brand";
     private static final String DESCRIP = "description";
 
+    private static final String ForSale = "forSale";
+
 
     private final ItemListPresenter presenter;
     private final DatabaseReference queryNames;
@@ -43,15 +45,20 @@ public class ItemListModel {
                     listener = queryNames.addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                            String itemName = snapshot.getKey();
-                            String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                            double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
-                            String brand = snapshot.child(BRAND).getValue(String.class);
-                            String description = snapshot.child(DESCRIP).getValue(String.class);
-                            ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
-                            ItemsList.add(newEntry);
-
-                            presenter.setAdapter(ItemsList);
+                            boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
+                            if(forSale)
+                            {
+                                String itemName = snapshot.getKey();
+                                String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
+                                double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                                String brand = snapshot.child(BRAND).getValue(String.class);
+                                String description = snapshot.child(DESCRIP).getValue(String.class);
+                                ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
+                                ItemsList.add(newEntry);
+                                presenter.setAdapter(ItemsList);
+                            }
+                            else{
+                            }
                         }
 
                         @Override
