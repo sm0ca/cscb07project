@@ -35,6 +35,7 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        presenter = new StoreListPresenter(this);
         binding = FragmentStoreListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -42,10 +43,22 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new StoreListPresenter(this);
         recyclerView = view.findViewById(RECYCLER_VIEW_RESOURCE);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         presenter.onViewCreated();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        presenter.onStop();
+        Glide.get(requireContext()).clearMemory();
+        super.onStop();
     }
 
     @Override
@@ -78,6 +91,6 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
     public void onDestroy() {
         super.onDestroy();
         binding = null;
-        presenter.onDestroy();
+        Glide.get(requireContext()).clearMemory();
     }
 }

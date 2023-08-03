@@ -116,16 +116,6 @@ public class StoreListModel implements IFStoreListModel {
         });
     }
 
-//    private void printCurrentList() {
-//        Log.d("SLM.java", "========= Printing List =========");
-//
-//        int i = 0;
-//        for(StoreListEntry sle : stores) {
-//            Log.d("SLM.java", "idx " + i + ": " + sle.getStoreName());
-//            i++;
-//        }
-//        Log.d("SLM.java", "=================================");
-//    }
 
     public void destroyEventListener() {
         if(listener != null) {

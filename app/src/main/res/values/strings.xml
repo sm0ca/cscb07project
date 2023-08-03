@@ -28,6 +28,16 @@
     <string name="item_add">Add</string>
     <string name="item_description_placeholder">[item description]</string>
 
+    <!--  Order list text  -->
+    <string name="order_image_description">Item Icon</string>
+    <string name="order_item_name_placeholder">[item name]</string>
+    <string name="order_item_qty_placeholder">[item qty]</string>
+    <string name="order_store_status_placeholder">[store status]</string>
+    <string name="order_id_placeholder">[order id]</string>
+    <string name="order_all_status_placeholder">[order status]</string>
+    <string name="order_complete">COMPLETE</string>
+    <string name="order_incomplete">INCOMPLETE</string>
+
     <!--  Spinner View  -->
     <string-array name="quantity_options">
         <item>1</item>

@@ -52,7 +52,7 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
 
         public StoreList_VH(View view) {
             super(view);
-            storeNameTV = view.findViewById(R.id.store_name);
+            storeNameTV = view.findViewById(R.id.order_id);
             storeOwnerTV = view.findViewById(R.id.owner_name);
             storeLogoIV = view.findViewById(R.id.store_logo);
             view.setOnClickListener(view1 -> {

@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static String currentUser = "Bob";
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
     private static final Bundle bundleStoreToItem = new Bundle();

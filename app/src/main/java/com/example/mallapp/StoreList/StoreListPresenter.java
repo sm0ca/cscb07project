@@ -22,12 +22,15 @@ public class StoreListPresenter implements IFStoreListPresenter {
     @Override
     public void onViewCreated() {
         view.setAdapter(adapter);
-        model.destroyEventListener();
+    }
+
+    @Override
+    public void onStart() {
         model.createEventListener();
     }
 
     @Override
-    public void onDestroy() {
+    public void onStop() {
         model.destroyEventListener();
     }
 

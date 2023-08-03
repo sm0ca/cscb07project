@@ -1,8 +1,5 @@
 package com.example.mallapp;
 
-import static android.content.Intent.getIntent;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +13,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.mallapp.ItemList.Add;
 import com.example.mallapp.ItemList.ItemListPresenter;
-import com.example.mallapp.ItemList.Remove;
-import com.example.mallapp.R;
-import com.example.mallapp.StoreList.StoreList_RVAdapter;
 import com.example.mallapp.databinding.FragmentDetailedItemBinding;
-import com.example.mallapp.databinding.FragmentItemListBinding;
-
-import java.lang.reflect.Array;
 
 public class detailed_description extends Fragment {
 
@@ -47,7 +37,7 @@ public class detailed_description extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView itemNameView = view.findViewById(R.id.item_name);
+        TextView itemNameView = view.findViewById(R.id.order_item_name);
         TextView itemBrandView = view.findViewById(R.id.item_brand);
         TextView itemDescriptionView = view.findViewById(R.id.item_description);
         ImageView itemImageView = view.findViewById(R.id.item_logo);

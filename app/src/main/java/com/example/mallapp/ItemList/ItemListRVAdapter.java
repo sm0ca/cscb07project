@@ -1,9 +1,6 @@
 package com.example.mallapp.ItemList;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mallapp.MainActivity;
 import com.example.mallapp.R;
-import com.example.mallapp.detailed_description;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
@@ -98,7 +94,7 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
 
         public ItemListViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.item_name);
+            itemName = itemView.findViewById(R.id.order_item_name);
             itemPrice = itemView.findViewById(R.id.item_price);
             itemLogo = itemView.findViewById(R.id.item_logo);
             itemBrand = itemView.findViewById(R.id.item_brand);

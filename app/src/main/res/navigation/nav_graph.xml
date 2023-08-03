@@ -22,6 +22,9 @@
             android:id="@+id/action_home_to_owner_list"
             app:destination="@id/owner_list" />
 
+        <action
+            android:id="@+id/action_home_to_order_list"
+            app:destination="@+id/order_all_list" />
 
     </fragment>
     <fragment
@@ -69,5 +72,11 @@
         android:label="detailed List"
         tools:layout="@layout/fragment_detailed_item">
     </fragment>
+
+    <fragment
+        android:id="@+id/order_all_list"
+        android:name="com.example.mallapp.OrderList.OrderListFragment"
+        android:label="Order List"
+        tools:layout="@layout/fragment_order_all_list" />
 
 </navigation>
