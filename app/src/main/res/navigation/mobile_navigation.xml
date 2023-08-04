@@ -9,13 +9,28 @@
         android:id="@+id/navigation_shop"
         android:name="com.example.cscb07project.ui.shop.ShopFragment"
         android:label="@string/title_shop"
-        tools:layout="@layout/fragment_shop" />
+        tools:layout="@layout/fragment_shop"/>
 
     <fragment
         android:id="@+id/navigation_cart"
         android:name="com.example.cscb07project.ui.cart.CartFragment"
         android:label="@string/title_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_navigation_cart_to_cart_checkout"
+            app:destination="@id/cart_checkout" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart_checkout"
+        android:name="com.example.cscb07project.ui.cart.CheckoutFragment"
+        android:label="@string/title_checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_cart_checkout_to_navigation_shop"
+            app:destination="@id/navigation_shop" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_orders"

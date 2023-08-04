@@ -2,6 +2,8 @@ package com.example.cscb07project.ui.cart;
 
 import com.example.cscb07project.ui.itemlist.ItemListEntry;
 
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartPresenter {
@@ -19,5 +21,19 @@ public class CartPresenter {
     public void setAdapter(List<CartEntry> items) {
         adapter = new CartRVAdapter(fragment.getContext(), items);
         fragment.setAdapter(adapter);
+
+        double subTotal = 0;
+        for (CartEntry item : items) {
+            subTotal += item.getPrice() * item.getQty();
+        }
+
+        fragment.setTotal(subTotal);
+    }
+
+    public static void removeItem(String store, String item) {
+        CartModel.removeItem(store, item, false);
+    }
+    public static void placeOrder(String name, String address) {
+        CartModel.placeOrder(name, address);
     }
 }
