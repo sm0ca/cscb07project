@@ -1,4 +1,4 @@
-package com.example.mallapp.OrderList;
+package com.example.mallapp.OrderList.AllList;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,7 +18,6 @@ import com.example.mallapp.databinding.FragmentOrderAllListBinding;
 
 public class OrderListFragment extends Fragment implements IFOrderListView {
 
-    private FragmentOrderAllListBinding binding;
     private IFOrderListPresenter presenter;
     private RecyclerView recyclerView;
 
@@ -28,7 +27,7 @@ public class OrderListFragment extends Fragment implements IFOrderListView {
             Bundle savedInstanceState
     ) {
         presenter = new OrderListPresenter(this);
-        binding = FragmentOrderAllListBinding.inflate(inflater, container, false);
+        com.example.mallapp.databinding.FragmentOrderAllListBinding binding = FragmentOrderAllListBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -41,15 +40,9 @@ public class OrderListFragment extends Fragment implements IFOrderListView {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        presenter.onStop();
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.onDestroyView();
     }
 
     @Override

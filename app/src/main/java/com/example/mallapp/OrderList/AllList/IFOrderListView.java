@@ -1,4 +1,4 @@
-package com.example.mallapp.OrderList;
+package com.example.mallapp.OrderList.AllList;
 
 import android.widget.TextView;
 

@@ -1,4 +1,4 @@
-package com.example.mallapp.OrderList;
+package com.example.mallapp.OrderList.AllList;
 
 import android.util.Log;
 
@@ -41,7 +41,10 @@ public class OrderListModel implements IFOrderListModel {
 
     @Override
     public void createEventListener() {
-        Log.d("OLM.java", "Started order listener");
+        Log.d("mine", "Started order listener");
+        if(listener != null) {
+            return;
+        }
         listener = queryOrders.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -70,6 +73,7 @@ public class OrderListModel implements IFOrderListModel {
                     String orderTime = snapshot.child(NODE_TIME).getValue(String.class);
                     if(!orderList.contains(new OrderListEntry(orderId))) {
                         orderList.add(new OrderListEntry(orderId));
+                        Collections.sort(orderList);
                     }
                     int idx = orderList.indexOf(new OrderListEntry(orderId));
                     orderList.get(idx).setAddress(orderAddress);
@@ -103,7 +107,7 @@ public class OrderListModel implements IFOrderListModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("OLM.java", "Listener had error. Not good very bad.");
+                Log.d("mine", "Listener had error. Not good very bad.");
                 destroyEventListener();
             }
         });
@@ -112,6 +116,7 @@ public class OrderListModel implements IFOrderListModel {
     @Override
     public void destroyEventListener() {
         if(listener != null) {
+            Log.d("mine", "destroyed order listener");
             queryOrders.removeEventListener(listener);
         }
     }

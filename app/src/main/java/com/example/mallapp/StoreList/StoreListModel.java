@@ -33,7 +33,10 @@ public class StoreListModel implements IFStoreListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener");
+        Log.d("mine", "Started listener");
+        if(listener != null) {
+            return;
+        }
         listener = queryNames.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -110,7 +113,7 @@ public class StoreListModel implements IFStoreListModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("SLM.java", "Err listening to store names");
+                Log.d("mine", "Err listening to store names");
                 destroyEventListener();
             }
         });
@@ -119,6 +122,7 @@ public class StoreListModel implements IFStoreListModel {
 
     public void destroyEventListener() {
         if(listener != null) {
+            Log.d("mine", "destroyed store listener");
             queryNames.removeEventListener(listener);
         }
     }

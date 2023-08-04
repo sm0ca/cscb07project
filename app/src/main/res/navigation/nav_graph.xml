@@ -75,8 +75,19 @@
 
     <fragment
         android:id="@+id/order_all_list"
-        android:name="com.example.mallapp.OrderList.OrderListFragment"
+        android:name="com.example.mallapp.OrderList.AllList.OrderListFragment"
         android:label="Order List"
-        tools:layout="@layout/fragment_order_all_list" />
+        tools:layout="@layout/fragment_order_all_list" >
+        <action
+            android:id="@+id/action_order_list_to_store_status"
+            app:destination="@+id/order_expandable_list"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/order_expandable_list"
+        android:name="com.example.mallapp.OrderList.StoreStatusList.StoreStatusFragment"
+        android:label="Store Status"
+        tools:layout="@layout/fragment_order_store_list"/>
+
 
 </navigation>

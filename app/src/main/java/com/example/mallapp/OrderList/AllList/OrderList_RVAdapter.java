@@ -1,4 +1,4 @@
-package com.example.mallapp.OrderList;
+package com.example.mallapp.OrderList.AllList;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mallapp.R;
@@ -16,6 +17,7 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
 
     private final IFOrderListPresenter presenter;
     private final IFOrderListView view;
+    private static int orderIdClicked;
 
     public OrderList_RVAdapter(IFOrderListPresenter presenter, IFOrderListView view) {
         this.presenter = presenter;
@@ -38,6 +40,10 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
         return presenter.getDataSize();
     }
 
+    public static int getOrderIdClicked() {
+        return orderIdClicked;
+    }
+
     public class OrderListVH extends RecyclerView.ViewHolder {
 
         private final TextView orderIdTV;
@@ -45,7 +51,6 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
         private final TextView orderAllCompleteTV;
         private final TextView orderFullNameTV;
         private final TextView orderTimeTV;
-        private final ImageView orderNextIconIV;
 
         public OrderListVH(@NonNull View itemView) {
             super(itemView);
@@ -54,7 +59,13 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
             orderAllCompleteTV = itemView.findViewById(R.id.order_status);
             orderFullNameTV = itemView.findViewById(R.id.order_full_name);
             orderTimeTV = itemView.findViewById(R.id.order_time);
-            orderNextIconIV = itemView.findViewById(R.id.order_next_icon);
+            ImageView orderNextIconIV = itemView.findViewById(R.id.order_next_icon);
+
+            orderNextIconIV.setOnClickListener(view -> {
+                int positionClicked = getBindingAdapterPosition();
+                orderIdClicked = presenter.getOrderIdAtPos(positionClicked);
+                Navigation.findNavController(view).navigate(R.id.action_order_list_to_store_status);
+            });
         }
 
         public TextView getOrderIdTV() {
@@ -77,9 +88,6 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
             return orderTimeTV;
         }
 
-        public ImageView getOrderNextIconIV() {
-            return orderNextIconIV;
-        }
     }
 
 }

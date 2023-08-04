@@ -1,4 +1,4 @@
-package com.example.mallapp.OrderList;
+package com.example.mallapp.OrderList.AllList;
 
 import com.example.mallapp.OrderList.DataHolder.OrderListEntry;
 import com.example.mallapp.tools.IFNotifyAdapterService;
@@ -18,16 +18,17 @@ public class OrderListPresenter implements IFOrderListPresenter {
     @Override
     public void onViewCreated() {
         view.setAdapter(adapter);
-    }
-
-    @Override
-    public void onStart() {
         model.createEventListener();
     }
 
     @Override
-    public void onStop() {
+    public void onDestroyView() {
         model.destroyEventListener();
+    }
+
+    @Override
+    public int getOrderIdAtPos(int position) {
+        return model.getDataList().get(position).getOrderId();
     }
 
     @Override
