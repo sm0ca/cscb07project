@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         dbAuth = FirebaseAuth.getInstance();
-        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
+        currentUser = dbAuth.getCurrentUser().getUid();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
