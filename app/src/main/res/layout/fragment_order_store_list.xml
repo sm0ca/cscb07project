@@ -7,5 +7,9 @@
         android:id="@+id/order_expandable_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+        android:divider="#00000000"
+        android:dividerHeight="5dp"
+        android:fadeScrollbars="true"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:padding="10dp" />
 </RelativeLayout>

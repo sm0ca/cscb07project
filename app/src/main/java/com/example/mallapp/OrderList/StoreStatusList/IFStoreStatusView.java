@@ -5,5 +5,6 @@ import android.widget.BaseExpandableListAdapter;
 
 public interface IFStoreStatusView {
     Context getViewContext();
+    BaseExpandableListAdapter getAdapter();
     void setAdapter(BaseExpandableListAdapter adapter);
 }

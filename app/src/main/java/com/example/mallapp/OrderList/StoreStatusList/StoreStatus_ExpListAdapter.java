@@ -13,10 +13,12 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
 
     private final IFStoreStatusPresenter storePresenter;
     private final IFStoreStatusView storeView;
+//    private final ExpandableListView expListView;
 
     public StoreStatus_ExpListAdapter(IFStoreStatusPresenter storePresenter, IFStoreStatusView storeView) {
         this.storePresenter = storePresenter;
         this.storeView = storeView;
+//        this.expListView = expListView;
     }
 
     @Override
@@ -56,20 +58,16 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-//        if(view == null) {
-//            LayoutInflater inflater = (LayoutInflater) storeView.getViewContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            view = View.inflate(storeView.getViewContext(), R.layout.fragment_order_store_title, null);
-//        }
         View inflatedView = View.inflate(storeView.getViewContext(), R.layout.fragment_order_store_title, null);
         TextView storeNameTV = inflatedView.findViewById(R.id.order_store_name);
         TextView storeCompleteTV = inflatedView.findViewById(R.id.order_store_status);
         storeNameTV.setText(storePresenter.getStoreName(i));
         String status;
         if(storePresenter.getStoreComplete(i)) {
-            status = "[COMPLETE]";
+            status = "COMPLETE";
         }
         else {
-            status = "[INCOMPLETE]";
+            status = "INCOMPLETE";
         }
         storeCompleteTV.setText(status);
         return inflatedView;
@@ -81,7 +79,7 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
         TextView itemNameTV = inflatedView.findViewById(R.id.order_item_name);
         TextView itemQtyTV = inflatedView.findViewById(R.id.order_item_qty);
         itemNameTV.setText(storePresenter.getItemName(i, i1));
-        itemQtyTV.setText(String.format(Locale.CANADA, "[QTY: %d]", storePresenter.getItemQty(i, i1)));
+        itemQtyTV.setText(String.format(Locale.CANADA, "QTY: %d", storePresenter.getItemQty(i, i1)));
         return inflatedView;
     }
 

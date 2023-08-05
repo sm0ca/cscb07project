@@ -1,7 +1,6 @@
 package com.example.mallapp.OrderList.StoreStatusList;
 
 public interface IFStoreStatusPresenter {
-    void onViewCreated();
     void onStart();
     void onDestroyView();
     void notifyAdapterDataChanged();

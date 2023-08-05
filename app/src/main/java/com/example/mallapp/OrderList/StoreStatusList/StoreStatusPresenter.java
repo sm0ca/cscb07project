@@ -4,17 +4,10 @@ public class StoreStatusPresenter implements IFStoreStatusPresenter {
 
     private final IFStoreStatusView view;
     private final IFStoreStatusModel model;
-    private final StoreStatus_ExpListAdapter adapter;
 
     public StoreStatusPresenter(IFStoreStatusView view, int orderIdClicked) {
         this.view = view;
         this.model = new StoreStatusModel(this, "https://grocery-store-app-75a7a-default-rtdb.firebaseio.com/", orderIdClicked);
-        this.adapter = new StoreStatus_ExpListAdapter(this, view);
-    }
-
-    @Override
-    public void onViewCreated() {
-        view.setAdapter(adapter);
     }
 
     @Override
@@ -29,7 +22,7 @@ public class StoreStatusPresenter implements IFStoreStatusPresenter {
 
     @Override
     public void notifyAdapterDataChanged() {
-        adapter.notifyDataSetChanged();
+        view.getAdapter().notifyDataSetChanged();
     }
 
     @Override

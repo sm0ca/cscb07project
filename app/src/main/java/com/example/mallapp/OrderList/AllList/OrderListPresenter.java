@@ -73,7 +73,8 @@ public class OrderListPresenter implements IFOrderListPresenter {
         }
         String orderTime = order.getTime();     // Start of orderTime
         if(orderTime != null && !orderTime.isEmpty()) {
-            view.setTextViewText(holder.getOrderTimeTV(), orderTime);
+            String formattedTime = orderTime.replace(", ", "\n");
+            view.setTextViewText(holder.getOrderTimeTV(), formattedTime);
 //            holder.getOrderTimeTV().setText(orderTime);
         }
         else {

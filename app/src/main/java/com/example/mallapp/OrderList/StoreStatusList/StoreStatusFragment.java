@@ -20,6 +20,7 @@ public class StoreStatusFragment extends Fragment implements IFStoreStatusView {
 
     private IFStoreStatusPresenter presenter;
     private ExpandableListView expandableListView;
+    private BaseExpandableListAdapter adapter;
 
     @Override
     public View onCreateView(
@@ -35,7 +36,8 @@ public class StoreStatusFragment extends Fragment implements IFStoreStatusView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         expandableListView = view.findViewById(R.id.order_expandable_list);
-        presenter.onViewCreated();
+        adapter = new StoreStatus_ExpListAdapter(presenter, this);
+        expandableListView.setAdapter(adapter);
     }
 
     @Override
@@ -53,6 +55,11 @@ public class StoreStatusFragment extends Fragment implements IFStoreStatusView {
     @Override
     public Context getViewContext() {
         return getContext();
+    }
+
+    @Override
+    public BaseExpandableListAdapter getAdapter() {
+        return adapter;
     }
 
     @Override

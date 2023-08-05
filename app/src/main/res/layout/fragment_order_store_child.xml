@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-    android:paddingEnd="20dp"
+    android:paddingStart="?android:attr/expandableListPreferredChildPaddingLeft"
+    android:paddingEnd="25dp"
     android:layout_margin="10dp"
     android:orientation="horizontal">
 
@@ -13,10 +13,10 @@
         android:id="@+id/order_item_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="420"
         android:layout_marginEnd="15dp"
         android:text="@string/order_item_name_placeholder"
-        android:textSize="18sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/order_item_qty"
