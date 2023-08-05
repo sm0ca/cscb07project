@@ -1,6 +1,6 @@
 package com.example.mallapp.OrderList.DataHolder;
 
-public class OrderListItemEntry implements Comparable<OrderListItemEntry> {
+public class OrderListItemEntry extends ABOrderImage implements Comparable<OrderListItemEntry> {
 
     private final String itemName;
     private final int itemQty;

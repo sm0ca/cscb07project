@@ -53,6 +53,7 @@ public class StoreListModel implements IFStoreListModel {
                     stores.add(idxToInsert, newEntry);
                     presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
                 }
+//                Log.d("mine", String.valueOf(snapshot.getRef().getParent().getParent().getKey()));
 //                Log.d("SLM.java", "Added");
 //                printCurrentList();
             }

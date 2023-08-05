@@ -3,8 +3,10 @@ package com.example.mallapp.OrderList.StoreStatusList;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.mallapp.R;
 
 import java.util.Locale;
@@ -61,9 +63,10 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
         View inflatedView = View.inflate(storeView.getViewContext(), R.layout.fragment_order_store_title, null);
         TextView storeNameTV = inflatedView.findViewById(R.id.order_store_name);
         TextView storeCompleteTV = inflatedView.findViewById(R.id.order_store_status);
+        ImageView storeImageIV = inflatedView.findViewById(R.id.order_store_image);
         storeNameTV.setText(storePresenter.getStoreName(i));
         String status;
-        if(storePresenter.getStoreComplete(i)) {
+        if (storePresenter.getStoreComplete(i)) {
             status = "COMPLETE";
             inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_completed));
         }
@@ -72,6 +75,10 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
             inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_not_complete));
         }
         storeCompleteTV.setText(status);
+        String storeImgURL = storePresenter.getStoreImageURL(i);
+        if (storeImgURL != null) {
+            Glide.with(storeView.getViewContext()).load(storeImgURL).into(storeImageIV);
+        }
         return inflatedView;
     }
 
@@ -80,8 +87,13 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
         View inflatedView = View.inflate(storeView.getViewContext(), R.layout.fragment_order_store_child, null);
         TextView itemNameTV = inflatedView.findViewById(R.id.order_item_name);
         TextView itemQtyTV = inflatedView.findViewById(R.id.order_item_qty);
+        ImageView itemImageIV = inflatedView.findViewById(R.id.order_item_image);
         itemNameTV.setText(storePresenter.getItemName(i, i1));
         itemQtyTV.setText(String.format(Locale.CANADA, "QTY: %d", storePresenter.getItemQty(i, i1)));
+        String itemImgURL = storePresenter.getItemImageURL(i, i1);
+        if (itemImgURL != null) {
+            Glide.with(storeView.getViewContext()).load(itemImgURL).into(itemImageIV);
+        }
         return inflatedView;
     }
 

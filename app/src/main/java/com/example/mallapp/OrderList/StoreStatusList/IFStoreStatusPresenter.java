@@ -14,4 +14,6 @@ public interface IFStoreStatusPresenter {
     boolean getStoreComplete(int i);
     String getItemName(int i, int i1);
     int getItemQty(int i, int i1);
+    String getStoreImageURL(int i);
+    String getItemImageURL(int i, int i1);
 }

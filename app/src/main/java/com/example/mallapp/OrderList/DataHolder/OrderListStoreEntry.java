@@ -3,15 +3,11 @@ package com.example.mallapp.OrderList.DataHolder;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderListStoreEntry implements Comparable<OrderListStoreEntry> {
+public class OrderListStoreEntry extends ABOrderImage implements Comparable<OrderListStoreEntry> {
 
     private final String storeName;
-    private boolean complete;
-    private List<OrderListItemEntry> itemList;
-
-    public OrderListStoreEntry(String storeName) {
-        this.storeName = storeName;
-    }
+    private final boolean complete;
+    private final List<OrderListItemEntry> itemList;
 
     public OrderListStoreEntry(String storeName, boolean complete, List<OrderListItemEntry> itemList) {
         this.storeName = storeName;
@@ -27,17 +23,9 @@ public class OrderListStoreEntry implements Comparable<OrderListStoreEntry> {
         return complete;
     }
 
-    public void setComplete(boolean complete) {
-        this.complete = complete;
-    }
-
 
     public List<OrderListItemEntry> getItemList() {
         return itemList;
-    }
-
-    public void setItemList(List<OrderListItemEntry> itemList) {
-        this.itemList = itemList;
     }
 
     @Override

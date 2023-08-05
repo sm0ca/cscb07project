@@ -75,5 +75,15 @@ public class StoreStatusPresenter implements IFStoreStatusPresenter {
         return model.getDataList().get(i).getItemList().get(i1).getItemQty();
     }
 
+    @Override
+    public String getStoreImageURL(int i) {
+        return model.getDataList().get(i).getImageURL();
+    }
+
+    @Override
+    public String getItemImageURL(int i, int i1) {
+        return model.getDataList().get(i).getItemList().get(i1).getImageURL();
+    }
+
 
 }
