@@ -5,6 +5,18 @@
     <string name="title_checkout">Checkout</string>
     <string name="title_orders">Orders</string>
     <string name="title_options">Options</string>
+    <string name="login_text">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_text">Register</string>
+    <string name="logout_text">Logout</string>
+    <string name="i_am_a_customer">I am a customer</string>
+    <string name="i_am_an_store_owner">I am an store owner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="store_name_text">Store name</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="register_owner">register_owner</string>
     <string name="checkout_button">Proceed</string>
     <string name="checkout_header">Please fill out your shipping\nand billing information below</string>
 </resources>
