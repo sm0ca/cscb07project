@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mallapp.R;
 import com.example.mallapp.databinding.FragmentOrderAllListBinding;
+
+import java.util.Objects;
 
 public class OrderListFragment extends Fragment implements IFOrderListView {
 
@@ -63,6 +66,16 @@ public class OrderListFragment extends Fragment implements IFOrderListView {
     @Override
     public void setTextViewText(TextView textView, String text) {
         textView.setText(text);
+    }
+
+    @Override
+    public void setColorComplete(View view) {
+        view.setBackgroundColor(requireContext().getColor(R.color.order_completed));
+    }
+
+    @Override
+    public void setColorIncomplete(View view) {
+        view.setBackgroundColor(requireContext().getColor(R.color.order_not_complete));
     }
 
 }

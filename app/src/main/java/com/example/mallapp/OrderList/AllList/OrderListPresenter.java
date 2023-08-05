@@ -46,22 +46,21 @@ public class OrderListPresenter implements IFOrderListPresenter {
         if(orderAddress != null && !orderAddress.isEmpty()) {
             String formattedAddress = orderAddress.replace(", ", "\n");
             view.setTextViewText(holder.getOrderAddressTV(), formattedAddress);
-//            holder.getOrderAddressTV().setText(formattedAddress);
         }
         else {
             String noAddress = "Address: N/A";
             view.setTextViewText(holder.getOrderAddressTV(), noAddress);
-//            holder.getOrderAddressTV().setText(noAddress);
         }
         boolean orderAllComplete = order.isAllComplete();   // Start of orderAllComplete
         if(orderAllComplete) {
             String complete = "COMPLETE";
             view.setTextViewText(holder.getOrderAllCompleteTV(), complete);
-//            holder.getOrderAllCompleteTV().setText(complete);
+            view.setColorComplete(holder.itemView);
         }
         else {
             String incomplete = "INCOMPLETE";
             view.setTextViewText(holder.getOrderAllCompleteTV(), incomplete);
+            view.setColorIncomplete(holder.itemView);
         }
         String orderFullName = order.getFullName();     // Start of orderFullName
         if(orderFullName != null && !orderFullName.isEmpty()) {
@@ -75,12 +74,10 @@ public class OrderListPresenter implements IFOrderListPresenter {
         if(orderTime != null && !orderTime.isEmpty()) {
             String formattedTime = orderTime.replace(", ", "\n");
             view.setTextViewText(holder.getOrderTimeTV(), formattedTime);
-//            holder.getOrderTimeTV().setText(orderTime);
         }
         else {
             String noTime = "Time of order: N/A";
             view.setTextViewText(holder.getOrderTimeTV(), noTime);
-//            holder.getOrderTimeTV().setText(noTime);
         }
     }
 

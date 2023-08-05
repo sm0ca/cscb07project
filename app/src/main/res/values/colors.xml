@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="order_not_complete">#FFC2C2</color>
-    <color name="order_completed">#C1FDB6</color>
-    <color name="order_not_completed_text_color">#A61818</color>
-    <color name="order_completed_text_color">#0A7E04</color>
+    <color name="order_not_complete">#4DED6C6C</color>
+    <color name="night_order_not_complete">#9A1C1C</color>
+    <color name="order_completed">#4D90F180</color>
+    <color name="night_order_completed">#278125</color>
 </resources>

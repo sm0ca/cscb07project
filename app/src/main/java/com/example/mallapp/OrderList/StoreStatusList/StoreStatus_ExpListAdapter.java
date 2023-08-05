@@ -65,9 +65,11 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
         String status;
         if(storePresenter.getStoreComplete(i)) {
             status = "COMPLETE";
+            inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_completed));
         }
         else {
             status = "INCOMPLETE";
+            inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_not_complete));
         }
         storeCompleteTV.setText(status);
         return inflatedView;
