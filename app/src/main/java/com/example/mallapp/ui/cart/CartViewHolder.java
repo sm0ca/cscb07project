@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cscb07project.R;
 
-import org.w3c.dom.Text;
-
 public class CartViewHolder extends RecyclerView.ViewHolder {
     private final TextView storeName;
     private final TextView itemName;

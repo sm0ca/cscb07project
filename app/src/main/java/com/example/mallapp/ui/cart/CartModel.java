@@ -28,10 +28,10 @@ public class CartModel {
     private final DatabaseReference cartRef; // make static?
     private final DatabaseReference storeRef;
     private ChildEventListener listener;
-    private List<CartEntry> cartList;
+    private final List<CartEntry> cartList;
 
     public CartModel(CartPresenter presenter, String url) {
-        this.dbUrl = url;
+        dbUrl = url;
         this.presenter = presenter;
         cartList = new ArrayList<>();
         FirebaseDatabase db = FirebaseDatabase.getInstance(dbUrl);
