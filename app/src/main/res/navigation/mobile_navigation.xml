@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_shop"
-        android:name="com.example.cscb07project.ui.shop.ShopFragment"
+        android:name="com.example.mallapp.ui.shop.ShopFragment"
         android:label="@string/title_shop"
         tools:layout="@layout/fragment_shop">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.cscb07project.ui.cart.CartFragment"
+        android:name="com.example.mallapp.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart">
         <action
@@ -27,14 +27,14 @@
 
     <fragment
         android:id="@+id/shop_storelist"
-        android:name="com.example.cscb07project.ui.shop.storelist.StoreListFragment"
+        android:name="com.example.mallapp.ui.shop.storelist.StoreListFragment"
         android:label="@string/title_storelist"
         tools:layout="@layout/fragment_store_list">
     </fragment>
 
     <fragment
         android:id="@+id/cart_checkout"
-        android:name="com.example.cscb07project.ui.cart.CheckoutFragment"
+        android:name="com.example.mallapp.ui.cart.CheckoutFragment"
         android:label="@string/title_checkout"
         tools:layout="@layout/fragment_checkout">
         <action
@@ -45,13 +45,13 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.cscb07project.ui.orders.OrdersFragment"
+        android:name="com.example.mallapp.ui.orders.OrdersFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_orders" />
 
     <fragment
         android:id="@+id/navigation_options"
-        android:name="com.example.cscb07project.ui.options.OptionsFragment"
+        android:name="com.example.mallapp.ui.options.OptionsFragment"
         android:label="@string/title_options"
         tools:layout="@layout/fragment_options" />
 
