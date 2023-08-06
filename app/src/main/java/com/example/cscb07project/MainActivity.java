@@ -20,7 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth dbAuth;
     public static String currentUser;
+    public static boolean isOwner;
     private ActivityMainBinding binding;
+    private static final Bundle bundleStoreToItem = new Bundle();
+    private static final String BUNDLE_STORE_KEY = "key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         dbAuth = FirebaseAuth.getInstance();
         currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
+        isOwner = false;
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -50,4 +55,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public static Bundle getStoreBundle() {
+        return bundleStoreToItem;
+    }
+
+    public static String getStoreBundleKey() {
+        return BUNDLE_STORE_KEY;
+    }
 }

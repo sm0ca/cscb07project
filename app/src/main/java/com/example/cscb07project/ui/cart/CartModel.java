@@ -221,7 +221,7 @@ public class CartModel {
                         .getReference("orders");
 
                 SimpleDateFormat idFormatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-                SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
                 Date currTime = new Date();
                 String orderId = idFormatter.format(currTime);
 

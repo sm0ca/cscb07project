@@ -9,7 +9,11 @@
         android:id="@+id/navigation_shop"
         android:name="com.example.cscb07project.ui.shop.ShopFragment"
         android:label="@string/title_shop"
-        tools:layout="@layout/fragment_shop"/>
+        tools:layout="@layout/fragment_shop">
+        <action
+            android:id="@+id/action_navigation_shop_to_shop_storelist"
+            app:destination="@id/shop_storelist" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cart"
@@ -19,6 +23,13 @@
         <action
             android:id="@+id/action_navigation_cart_to_cart_checkout"
             app:destination="@id/cart_checkout" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/shop_storelist"
+        android:name="com.example.cscb07project.ui.shop.storelist.StoreListFragment"
+        android:label="@string/title_storelist"
+        tools:layout="@layout/fragment_store_list">
     </fragment>
 
     <fragment
