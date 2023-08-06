@@ -1,6 +1,7 @@
 package com.example.mallapp;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.ActivityMainBinding;
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth dbAuth = FirebaseAuth.getInstance();
         currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
-        isOwner = false;
+        isOwner = true;
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -42,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHost.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        if (isOwner) {
+            BottomNavigationView bottomNav = findViewById(R.id.nav_view);
+            bottomNav.getMenu().findItem(R.id.navigation_cart).setVisible(false);
+        }
     }
 
     @Override
