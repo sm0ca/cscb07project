@@ -49,7 +49,6 @@ public class OwnerListModel {
         //        mAuth = FirebaseAuth.getInstance();
 //        mUser = mAuth.getCurrentUser();
 //        String username = mUser.getUid();
-// to get the current userID/name, but use a hard coded one for now
         String username = currentUser;
                     getStoreName getStoreNameInstance = new getStoreName(username);
                     getStoreNameInstance.retrieveStoreName(new getStoreName.OnStoreNameListener() { // get storename

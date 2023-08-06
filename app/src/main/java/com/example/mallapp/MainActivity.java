@@ -32,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth dbAuth = FirebaseAuth.getInstance();
         // for shopper
-       // currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
-       // isOwner = false;
-        // ownerStore = "";
+        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
+        isOwner = false;
+        ownerStore = "";
 
         // for owner
-        currentUser = "person 1";
-        isOwner = true;
-        ownerStore = "st 1";
+//        currentUser = "person 1";
+//        isOwner = true;
+//        ownerStore = "st 1";
 
 
         if (isOwner) {

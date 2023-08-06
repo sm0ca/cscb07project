@@ -88,6 +88,7 @@ public class detailed_description extends Fragment {
                 Add add = new Add(currentUser, storename, itemName, selectedQuantity);
                 Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
                 add.addToFirebase();
+                getParentFragmentManager().popBackStack();
             }
         });
 
