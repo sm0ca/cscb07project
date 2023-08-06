@@ -1,6 +1,6 @@
 package com.example.mallapp.ui.cart;
 
-import com.example.mallapp.ui.itemlist.ItemListEntry;
+import com.example.mallapp.ui.ItemList.ItemListEntry;
 
 public class CartEntry extends ItemListEntry {
     private String storeName;
@@ -11,7 +11,11 @@ public class CartEntry extends ItemListEntry {
     }
 
     public CartEntry(String itemName, String brand, String imgURL, double price, int modifierIcon, int qty) {
-        super(itemName, brand, imgURL, price, modifierIcon);
+        super.itemName = itemName;
+        super.brand = brand;
+        super.logoURL = imgURL;
+        super.price = price;
+        super.modifiericon = modifierIcon;
         this.qty = qty;
     }
 

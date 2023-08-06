@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_shop_to_shop_storelist"
             app:destination="@id/shop_storelist" />
+        <action
+            android:id="@+id/action_navigation_shop_to_ownerlist"
+            app:destination="@id/owner_list" />
     </fragment>
 
     <fragment
@@ -30,6 +33,44 @@
         android:name="com.example.mallapp.ui.shop.storelist.StoreListFragment"
         android:label="@string/title_storelist"
         tools:layout="@layout/fragment_store_list">
+        <action
+            android:id="@+id/action_store_list_to_item_list"
+            app:destination="@+id/ItemList"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ItemList"
+        android:name="com.example.mallapp.ui.ItemList.ItemListFragment"
+        android:label="Item List"
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/action_item_list_to_detailed_list"
+            app:destination="@+id/detailed_description" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailed_description"
+        android:name="com.example.mallapp.ui.ItemList.detailed_description"
+        android:label="detailed List"
+        tools:layout="@layout/fragment_detailed_item">
+    </fragment>
+
+    <fragment
+        android:id="@+id/owner_list"
+        android:name="com.example.mallapp.ui.OwnerList.OwnerListFragment"
+        android:label="owner List"
+        tools:layout="@layout/fragment_owner_list">
+        <action
+            android:id="@+id/action_owner_list_to_detailed_owner_entry"
+            app:destination="@+id/detailed_description_owner" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailed_description_owner"
+        android:name="com.example.mallapp.ui.OwnerList.owner_detailed_description"
+        android:label="detailed Owner List"
+        tools:layout="@layout/fragment_detailed_owner_item">
     </fragment>
 
     <fragment

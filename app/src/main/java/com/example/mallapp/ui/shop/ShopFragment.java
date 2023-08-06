@@ -33,6 +33,9 @@ public class ShopFragment extends Fragment {
             NavHostFragment.findNavController(ShopFragment.this)
                     .navigate(R.id.action_navigation_shop_to_shop_storelist);
         }
+        else{
+            NavHostFragment.findNavController(ShopFragment.this).navigate(R.id.action_navigation_shop_to_ownerlist);
+        }
     }
 
     @Override

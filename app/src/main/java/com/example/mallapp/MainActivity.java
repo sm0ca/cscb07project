@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     public static boolean isOwner;
     private static final Bundle bundleStoreToItem = new Bundle();
     private static final String BUNDLE_STORE_KEY = "key";
+
+    public static String ownerStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         FirebaseAuth dbAuth = FirebaseAuth.getInstance();
-        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
-        isOwner = false;
+        // for shopper
+       // currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
+       // isOwner = false;
+        // ownerStore = "";
+
+        // for owner
+        currentUser = "person 1";
+        isOwner = true;
+        ownerStore = "st 1";
+
+
+        if (isOwner) {
+            BottomNavigationView bottomNav = findViewById(R.id.nav_view);
+            bottomNav.getMenu().findItem(R.id.navigation_cart).setVisible(false);
+        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
