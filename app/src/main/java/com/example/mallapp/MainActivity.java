@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_shop, R.id.navigation_cart, R.id.navigation_orders, R.id.navigation_options)
+                R.id.navigation_shop, R.id.navigation_cart, R.id.navigation_orders, R.id.navigation_options, R.id.shop_storelist)
                 .build();
 
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
