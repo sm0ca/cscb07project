@@ -18,14 +18,10 @@ public class ShopFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ShopViewModel shopViewModel =
-                new ViewModelProvider(this).get(ShopViewModel.class);
 
         binding = FragmentShopBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textShop;
-        shopViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
