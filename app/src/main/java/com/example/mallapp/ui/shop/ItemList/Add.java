@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.ItemList;
+package com.example.mallapp.ui.shop.ItemList;
 
 import android.util.Log;
 

@@ -1,6 +1,7 @@
 package com.example.mallapp.ui.cart;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentCartBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -64,6 +66,10 @@ public class CartFragment extends Fragment {
                         .navigate(R.id.action_navigation_cart_to_cart_checkout);
             }
         });
+
+//        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+//        MenuItem cartMenuItem = bottomNavigationView.getMenu().findItem(R.id.navigation_cart);
+//        cartMenuItem.setChecked(true);
 
         CartRVAdapter adapter = new CartRVAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);

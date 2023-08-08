@@ -1,6 +1,6 @@
 package com.example.mallapp.ui.cart;
 
-import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
 
 public class CartEntry extends ItemListEntry {
     private String storeName;

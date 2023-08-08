@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.OwnerList;
+package com.example.mallapp.ui.shop.ItemList;
 
 
 import android.os.Bundle;
@@ -7,20 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentItemListBinding;
+import com.example.mallapp.MainActivity;
 
-public class OwnerListFragment extends Fragment {
+public class ItemListFragment extends Fragment {
 
     private FragmentItemListBinding binding;
-    private OwnerListPresenter presenter;
+    private ItemListPresenter presenter;
     private RecyclerView recyclerView;
 
-    public OwnerListFragment() {
+    public ItemListFragment() {
         super(R.layout.fragment_item_list);
     }
 
@@ -36,13 +38,17 @@ public class OwnerListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new OwnerListPresenter(this);
+
+        ((AppCompatActivity) requireContext()).getSupportActionBar().setTitle(
+                MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey())
+        );
+        presenter = new ItemListPresenter(this);
         recyclerView = view.findViewById(R.id.item_list_entry);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     // Method to set the adapter for the RecyclerView
-    public void setAdapter(OwnerListRVAdapter adapter) {
+    public void setAdapter(ItemListRVAdapter adapter) {
         recyclerView.setAdapter(adapter);
     }
 }

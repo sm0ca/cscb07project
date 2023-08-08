@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/ItemList"
-        android:name="com.example.mallapp.ui.ItemList.ItemListFragment"
+        android:name="com.example.mallapp.ui.shop.ItemList.ItemListFragment"
         tools:layout="@layout/fragment_item_list">
         <action
             android:id="@+id/action_item_list_to_detailed_list"
@@ -50,14 +50,14 @@
 
     <fragment
         android:id="@+id/detailed_description"
-        android:name="com.example.mallapp.ui.ItemList.detailed_description"
+        android:name="com.example.mallapp.ui.shop.ItemList.detailed_description"
         android:label="detailed List"
         tools:layout="@layout/fragment_detailed_item">
     </fragment>
 
     <fragment
         android:id="@+id/owner_list"
-        android:name="com.example.mallapp.ui.OwnerList.OwnerListFragment"
+        android:name="com.example.mallapp.ui.shop.OwnerList.OwnerListFragment"
         android:label="Your Store"
         tools:layout="@layout/fragment_owner_list">
         <action
@@ -67,7 +67,7 @@
 
     <fragment
         android:id="@+id/detailed_description_owner"
-        android:name="com.example.mallapp.ui.OwnerList.owner_detailed_description"
+        android:name="com.example.mallapp.ui.shop.OwnerList.owner_detailed_description"
         android:label="detailed Owner List"
         tools:layout="@layout/fragment_detailed_owner_item">
     </fragment>

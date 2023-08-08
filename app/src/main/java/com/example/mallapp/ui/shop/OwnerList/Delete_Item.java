@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.OwnerList;
+package com.example.mallapp.ui.shop.OwnerList;
 
 import android.util.Log;
 

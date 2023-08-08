@@ -1,9 +1,8 @@
-package com.example.mallapp.ui.OwnerList;
+package com.example.mallapp.ui.shop.ItemList;
 
 import static com.example.mallapp.MainActivity.currentUser;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,27 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
-import com.example.mallapp.ui.ItemList.ItemListPresenter;
-import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.example.mallapp.MainActivity;
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 
-
-public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.ItemListViewHolder> {
+public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.ItemListViewHolder> {
 
     private final Context context;
 
-    private final OwnerListPresenter presenter;
+    private final ItemListPresenter presenter;
     private final List<ItemListEntry> itemsList;
 
-    private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
-
-    public OwnerListRVAdapter(Context context, List<ItemListEntry> itemsList, OwnerListPresenter presenter) {
+    public ItemListRVAdapter(Context context, List<ItemListEntry> itemsList, ItemListPresenter presenter) {
         this.context = context;
         this.itemsList = itemsList;
         this.presenter = presenter;
@@ -53,10 +46,9 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
     @Override
     public void onBindViewHolder(@NonNull ItemListViewHolder holder, int position) {
         holder.getItemName().setText(itemsList.get(position).getItemName());
-        holder.getItemPrice().setText(String.valueOf(itemsList.get(position).getPrice()));
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        holder.getItemPrice().setText(formatter.format(itemsList.get(position).getPrice()));
         holder.getItemBrand().setText(itemsList.get(position).getBrand());
-        holder.getDeleteButton().setIcon(context.getDrawable(R.drawable.round_remove_36));
-     //   holder.getItemDescription().setText(itemsList.get(position).getDescription());
 
         if (itemsList.get(position).getImgURL() != null && !itemsList.get(position).getImgURL().isEmpty()) {
             Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
@@ -77,9 +69,10 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
 
         private final TextView itemBrand;
 
-        private final TextView itemDescription;
+        private final MaterialButton button_add;
 
-        private final MaterialButton deleteButton;
+        private final TextView detailed_itemDescription;
+
 
         public ItemListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,43 +80,21 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
             itemPrice = itemView.findViewById(R.id.item_entry_price);
             itemLogo = itemView.findViewById(R.id.item_entry_img);
             itemBrand = itemView.findViewById(R.id.item_entry_brand);
-            itemDescription = itemView.findViewById(R.id.item_entry_description);
-            deleteButton = itemView.findViewById(R.id.item_entry_modifier);
+            button_add = itemView.findViewById(R.id.item_entry_modifier);
 
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            button_add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
                     String itemname = presenter.getItem(position);
-                    String username = currentUser;
-                    getStoreName getStoreNameInstance = new getStoreName(username);
-                    getStoreNameInstance.retrieveStoreName(new getStoreName.OnStoreNameListener() {
-                        @Override
-                        public void onStoreNameRetrieved(String storename) {
-                            Delete_Item delete_item = new Delete_Item(storename, itemname);
-                            delete_item.delete();
-                            Toast.makeText(context, "Item removed", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(String errorMessage) {
-                            Log.d("failed", "delete failed");
-                        }
-                    });
+                    String storename = MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey());
+                    Add add = new Add(currentUser, storename, itemname,1);
+                    add.addToFirebase();
+                    Toast.makeText(context, "item added", Toast.LENGTH_SHORT).show();
                 }
             });
 
-            itemName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getBindingAdapterPosition();
-                    ItemListPresenter.item_name = presenter.getItem(position);
-                    ItemListPresenter.item_description= presenter.getDescription(position);
-                    ItemListPresenter.item_brand = presenter.getitemBrand(position);
-                    ItemListPresenter.item_image = presenter.getLogo(position);
-                    Navigation.findNavController(view).navigate(R.id.action_owner_list_to_detailed_owner_entry);
-                }
-            });
+            detailed_itemDescription = itemView.findViewById(R.id.item_entry_description);
 
             itemLogo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,10 +104,22 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
                     ItemListPresenter.item_description= presenter.getDescription(position);
                     ItemListPresenter.item_brand = presenter.getitemBrand(position);
                     ItemListPresenter.item_image = presenter.getLogo(position);
-                    Navigation.findNavController(view).navigate(R.id.action_owner_list_to_detailed_owner_entry);
+                    Navigation.findNavController(view).navigate(R.id.action_item_list_to_detailed_list);
                 }
             });
 
+            itemName.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    ItemListPresenter.item_name = presenter.getItem(position);
+                    ItemListPresenter.item_description= presenter.getDescription(position);
+                    ItemListPresenter.item_brand = presenter.getitemBrand(position);
+                    ItemListPresenter.item_image = presenter.getLogo(position);
+                    Navigation.findNavController(view).navigate(R.id.action_item_list_to_detailed_list);
+                }
+            });
         }
 
         public TextView getItemName() {
@@ -153,10 +136,9 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
 
         public TextView getItemBrand(){return itemBrand;}
 
-        public MaterialButton getDeleteButton() {
-            return deleteButton;
-        }
-
-        public TextView getItemDescription(){return itemDescription;}
+        public TextView getDetailed_itemDescription(){return detailed_itemDescription;}
     }
 }
+
+
+

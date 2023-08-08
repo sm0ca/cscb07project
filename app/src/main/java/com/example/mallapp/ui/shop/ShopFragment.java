@@ -2,6 +2,7 @@ package com.example.mallapp.ui.shop;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.mallapp.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentShopBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ShopFragment extends Fragment {
 
@@ -37,6 +39,10 @@ public class ShopFragment extends Fragment {
             NavHostFragment.findNavController(ShopFragment.this)
                     .navigate(R.id.action_navigation_shop_to_ownerlist);
         }
+//
+//        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+//        MenuItem shopMenuItem = bottomNavigationView.getMenu().findItem(R.id.navigation_shop);
+//        shopMenuItem.setChecked(true);
     }
 
     @Override

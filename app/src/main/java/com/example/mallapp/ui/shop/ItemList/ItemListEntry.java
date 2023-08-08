@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.ItemList;
+package com.example.mallapp.ui.shop.ItemList;
 public class ItemListEntry {
     public String itemName;
     public String logoURL;

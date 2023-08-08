@@ -1,6 +1,6 @@
-package com.example.mallapp.ui.OwnerList;
+package com.example.mallapp.ui.shop.OwnerList;
 
-import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
 
 import java.util.List;
 

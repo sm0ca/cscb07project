@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.OwnerList;
+package com.example.mallapp.ui.shop.OwnerList;
 
 import static com.example.mallapp.MainActivity.currentUser;
 
@@ -7,8 +7,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.mallapp.ui.ItemList.ItemListEntry;
-import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

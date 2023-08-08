@@ -2,6 +2,7 @@ package com.example.mallapp.ui.orders;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentOrdersBinding;
 import com.example.mallapp.MainActivity;
 import com.example.mallapp.ui.shop.ShopFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class OrdersFragment extends Fragment {
 
@@ -44,6 +46,9 @@ public class OrdersFragment extends Fragment {
         else {
             // pass
         }
+//        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+//        MenuItem orderMenuItem = bottomNavigationView.getMenu().findItem(R.id.navigation_orders);
+//        orderMenuItem.setChecked(true);
     }
 
     @Override
