@@ -119,7 +119,14 @@ public class OrderModel {
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+                String orderNumber = snapshot.getKey();
+                DatabaseReference allCompleteRef = orderRef.child(orderNumber).child("allComplete");
+                DataSnapshot storeSnapshot = snapshot.child("storesItems");
+                boolean allComplete = true;
+                for(DataSnapshot store: storeSnapshot.getChildren()){
+                    allComplete = allComplete && store.child("complete").getValue(boolean.class);
+                }
+                allCompleteRef.setValue(allComplete);
             }
 
             @Override
