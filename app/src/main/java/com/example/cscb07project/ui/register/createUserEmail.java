@@ -31,6 +31,14 @@ public class createUserEmail implements createUser{
     }
     @Override
     public void create() {
+
+        // checking and uploading storeLogo
+        if(presenter.getStoreLogoUri() == null) {
+            presenter.doToastView("Upload store logo");
+            return;
+        }
+
+        // creating the account
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -45,6 +53,15 @@ public class createUserEmail implements createUser{
                             if (isOwner_check == R.id.radioButton_register_owner) {
                                 dbReference.child("isOwner").setValue(true);
                                 dbReference.child("storeName").setValue(storeName);
+                                FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "logo")
+                                        .setValue(presenter.setStoreLogo());
+
+                                FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "owner")
+                                        .setValue(mAuth.getUid());
+
+//                                FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "owner")
+//                                        .setValue(mAuth.getUid());
+
                             } else if (isOwner_check == R.id.radioButton_register_customer) {
                                 dbReference.child("isOwner").setValue(false);
                                 dbReference.child("cart").setValue("");
@@ -56,5 +73,6 @@ public class createUserEmail implements createUser{
                     }
                 });
     }
+
 
 }

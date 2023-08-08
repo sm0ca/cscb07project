@@ -1,8 +1,17 @@
 package com.example.cscb07project.ui.register;
 
+import static android.app.Activity.RESULT_OK;
+
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 public class activity_register_presenter implements activity_register_contract.Presenter {
 
@@ -43,6 +52,13 @@ public class activity_register_presenter implements activity_register_contract.P
             return;
         }
 
+        // check if logo is empty
+        if(view.getStoreLogoUri() == null) {
+            Toast.makeText((Context) view, "Enter your store logo", Toast.LENGTH_SHORT).show();
+            view.progressBarVisibility(4);
+            return;
+        }
+
         // create the user
         model.createUser(email, password, storeName, isOwnerId);
     }
@@ -65,6 +81,16 @@ public class activity_register_presenter implements activity_register_contract.P
     @Override
     public void changeProgressBarVisibility(int mode) {
         view.progressBarVisibility(mode);
+    }
+
+    @Override
+    public String setStoreLogo() {
+        return model.setStoreLogoData(getStoreLogoUri());
+    }
+
+    @Override
+    public Uri getStoreLogoUri() {
+        return view.getStoreLogoUri();
     }
 
 

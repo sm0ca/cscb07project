@@ -1,11 +1,14 @@
 package com.example.cscb07project.ui.register;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,6 +24,8 @@ public class activity_register extends AppCompatActivity implements activity_reg
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
     private TextInputEditText editTextStoreName;
+    private ImageView storeLogo;
+    private Uri storeLogoUri = null;
     private Button button;
     private TextView redirect;
     private activity_register_contract.Presenter presenter;
@@ -30,10 +35,16 @@ public class activity_register extends AppCompatActivity implements activity_reg
 
     public int getRadioButtonRegisterOwner() { return R.id.radioButton_register_owner; }
     public int getRadioButtonRegisterCustomer() { return R.id.radioButton_register_customer; }
+    public Uri getStoreLogoUri() {
+        return storeLogoUri;
+    }
 
     // other functions
     public void progressBarVisibility (int mode) {
         ProgressBar.setVisibility(mode);
+    }
+    public void setStoreLogo(Uri uri) {
+        storeLogo.setImageURI(uri);
     }
 
     // change activity if logged in
@@ -57,7 +68,9 @@ public class activity_register extends AppCompatActivity implements activity_reg
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         editTextStoreName = findViewById(R.id.store_name);
+
         button = findViewById(R.id.register_button);
+        storeLogo = findViewById(R.id.store_logo);
         ProgressBar = findViewById(R.id.progress_bar);
         redirect = findViewById(R.id.redirect);
 
@@ -72,6 +85,19 @@ public class activity_register extends AppCompatActivity implements activity_reg
                 ProgressBar.setVisibility(View.VISIBLE);
 
                 presenter.doRegisterEmail(email, password, storeName, isOwnerId);
+
+            }
+        });
+
+        // onClickListener for storeLogo to get storeLogo's image
+        storeLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(intent, 69);
+
             }
         });
 
@@ -99,11 +125,26 @@ public class activity_register extends AppCompatActivity implements activity_reg
                 // change storeName visibility
                 if(isOwnerId == R.id.radioButton_register_owner) {
                     editTextStoreName.setVisibility(View.VISIBLE);
+                    editTextStoreName.setHint(getResources().getString(R.string.store_name_text));
+                    storeLogo.setVisibility(View.VISIBLE);
                 }
                 else {
                     editTextStoreName.setVisibility(View.GONE);
+                    editTextStoreName.setHint(null);
+                    storeLogo.setVisibility(View.GONE);
                 }
             }
         });
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 69 && resultCode == RESULT_OK && data.getData() != null) { //nice!
+            storeLogoUri = data.getData();
+            setStoreLogo(storeLogoUri);
+        }
     }
 }

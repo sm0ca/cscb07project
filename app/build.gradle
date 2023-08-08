@@ -51,6 +51,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.google.android.gms:play-services-auth:20.6.0")
+    implementation 'com.google.firebase:firebase-storage:20.1.0'
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.20") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")

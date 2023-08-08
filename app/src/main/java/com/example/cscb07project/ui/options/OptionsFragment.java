@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentOptionsBinding;
@@ -50,6 +53,16 @@ public class OptionsFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
+            }
+        });
+
+        // Delete this!!!!
+        Button isOwnerButton = root.findViewById(R.id.toAddOwner);
+        isOwnerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.navigation_isOwner_add_button);
             }
         });
 
