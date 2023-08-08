@@ -15,6 +15,7 @@ import com.example.cscb07project.R;
 
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Objects;
 
 public class OrderRVAdapter extends RecyclerView.Adapter<OrderViewHolder> {
 
@@ -38,12 +39,15 @@ public class OrderRVAdapter extends RecyclerView.Adapter<OrderViewHolder> {
         if (orderList.get(position).getOrderNumber() != null) {
             holder.getHeaderLayout().setVisibility(View.VISIBLE);
             holder.getContentLayout().setVisibility(View.GONE);
-            holder.getOrderNumber().setText("Order Number: "+orderList.get(position).getOrderNumber());
+            holder.getOrderNumber().setText("ID: "+orderList.get(position).getOrderNumber());
             holder.getDate().setText(orderList.get(position).getDate());
-            if (orderList.get(position).isStatus())
+            if (orderList.get(position).isStatus()) {
                 holder.getStatus().setText("Complete");
+                holder.getCompleteButton().setText("Set Incomplete");
+            }
             else{
                 holder.getStatus().setText("Incomplete");
+                holder.getCompleteButton().setText("Set Complete");
             }
             Log.d("SLM.java", "HIIIIIIII");
             holder.getCompleteButton().setOnClickListener(new View.OnClickListener() {
@@ -55,14 +59,17 @@ public class OrderRVAdapter extends RecyclerView.Adapter<OrderViewHolder> {
                     boolean currentStatus = orderList.get(idx).isStatus();
                     Log.d("SLM.java", "Change to not " + currentStatus);
                     OrderPresenter.changeStatus(orderNumber, !currentStatus);
-
                 }
             });
+
         } else {
             holder.getHeaderLayout().setVisibility(View.GONE);
-            holder.getContentLayout().setVisibility(View.VISIBLE);
+            if (orderList.get(position).isVisible()){
+                holder.getContentLayout().setVisibility(View.VISIBLE);
+            }else{
+                holder.getContentLayout().setVisibility(View.GONE)  ;
+            }
             holder.getItemModifier().setVisibility(View.GONE);
-
             holder.getItemName().setText(orderList.get(position).getItemName());
             holder.getItemBrand().setText(orderList.get(position).getBrand());
             int quantity_val = orderList.get(position).getQty();

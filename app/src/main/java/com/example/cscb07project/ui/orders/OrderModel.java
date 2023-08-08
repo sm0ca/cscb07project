@@ -59,13 +59,20 @@ public class OrderModel {
                         public void onChildChanged(@NonNull DataSnapshot completeSnapshot, @Nullable String previousChildName) {
                             boolean newStatus = completeSnapshot.getValue(boolean.class);
                             int idx = 0;
-                            Log.d("SLM.java", "Change To "+newStatus);
-                            while (idx < orderList.size() - 1 && !Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
+                            while (idx < orderList.size()  && !Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
+                                Log.d("SLM.java",orderList.get(idx).getItemName() + " is " + orderList.get(idx).isVisible());
                                 idx++;
                             }
                             if (Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
                                 orderList.get(idx).setStatus(newStatus);
-                                Log.d("SLM.java", "Changed To "+newStatus);
+                                Log.d("SLM.java", "Changed "+orderNumber+" To "+newStatus);
+                                idx++;
+                            }
+                            while (idx < orderList.size()  && Objects.equals(orderList.get(idx).getOrderNumber(), null)) {
+                                orderList.get(idx).setVisible(!newStatus);
+                                Log.d("SLM.java",orderList.get(idx).getItemName() + " is " + orderList.get(idx).isVisible());
+                                idx++;
+
                             }
                             presenter.setAdapter(orderList);
                         }
