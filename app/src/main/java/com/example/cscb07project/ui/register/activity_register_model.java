@@ -32,7 +32,7 @@ public class activity_register_model implements activity_register_contract.Model
     public void createUser(String email, String password, String storeName, int isOwnerId) {
         this.storeName = storeName;
 
-        user = new createUserEmail(email, password, storeName, isOwnerId, mAuth, presenter);
+        user = new createUserEmail(email, password, storeName, isOwnerId, mAuth,this, presenter);
         user.create();
     }
 
@@ -77,5 +77,10 @@ public class activity_register_model implements activity_register_contract.Model
     @Override
     public void doToastView(String string) {
         presenter.doToastView(string);
+    }
+
+    @Override
+    public Uri getStoreLogoUri() {
+        return presenter.getStoreLogoUri();
     }
 }

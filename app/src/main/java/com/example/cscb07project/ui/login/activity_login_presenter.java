@@ -2,7 +2,6 @@ package com.example.cscb07project.ui.login;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Toast;
 
 public class activity_login_presenter implements activity_login_contract.Presenter {

@@ -1,7 +1,6 @@
 package com.example.cscb07project.ui.register;
 
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -19,22 +18,25 @@ public class createUserEmail implements createUser{
     private String storeName;
     private int isOwner_check;
     private FirebaseAuth mAuth;
+    private activity_register_contract.Model model;
     private activity_register_contract.Presenter presenter;
     public createUserEmail (String email, String password, String storeName, int isOwner_check,
-                            FirebaseAuth mAuth, activity_register_contract.Presenter presenter) {
+                            FirebaseAuth mAuth, activity_register_contract.Model model,
+                            activity_register_contract.Presenter presenter) {
         this.email = email;
         this.password = password;
         this.storeName = storeName;
         this.isOwner_check = isOwner_check;
         this.mAuth = mAuth;
+        this.model = model;
         this.presenter = presenter;
     }
     @Override
     public void create() {
 
         // checking and uploading storeLogo
-        if(presenter.getStoreLogoUri() == null) {
-            presenter.doToastView("Upload store logo");
+        if(model.getStoreLogoUri() == null) {
+            model.doToastView("Upload store logo");
             return;
         }
 
@@ -68,7 +70,7 @@ public class createUserEmail implements createUser{
                             }
                         } else {
                             Log.w("TAG_REGISTER", "createUserWithEmail:failure");
-                            presenter.doToastView("Authentication failed");
+                            model.doToastView("Authentication failed");
                         }
                     }
                 });

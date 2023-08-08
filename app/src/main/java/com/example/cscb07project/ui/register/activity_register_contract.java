@@ -30,6 +30,7 @@ public interface activity_register_contract {
         void checkLoggedIn();
         String setStoreLogoData(Uri uri);
         void doToastView(String string);
+        Uri getStoreLogoUri();
 
     }
 }
