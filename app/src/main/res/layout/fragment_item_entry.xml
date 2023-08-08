@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_entry_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
+    android:layout_marginHorizontal="25dp"
     android:layout_marginBottom="25dp"
-    app:cardCornerRadius="20dp"
     tools:context="com.example.mallapp.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,17 +91,17 @@
             app:layout_constraintHorizontal_bias="0.082"
             app:layout_constraintStart_toEndOf="@+id/item_entry_img" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/item_entry_modifier"
-            android:background="?android:selectableItemBackgroundBorderless"
+            style="?attr/materialIconButtonFilledTonalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/round_add_circle_36" />
+            app:icon="@drawable/round_add_36" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

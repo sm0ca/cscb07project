@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentStoreListBinding;
+import com.example.mallapp.MainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class StoreListFragment extends Fragment implements IFStoreListView {
 
@@ -46,6 +48,9 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
         recyclerView = view.findViewById(RECYCLER_VIEW_RESOURCE);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         presenter.onViewCreated();
+
+        // MainActivity.bottomNav.getMenu().findItem(R.id.navigation_shop).setChecked(true); //setSelectedItemId(R.id.navigation_shop);
+
     }
 
     @Override

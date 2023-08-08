@@ -1,0 +1,52 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/order_store_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="25dp"
+    android:layout_marginBottom="25dp"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:id="@+id/order_item_child"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:paddingStart="30dp"
+        android:paddingEnd="10dp">
+
+        <ImageView
+            android:id="@+id/order_store_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:maxWidth="60dp"
+            android:maxHeight="60dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/order_store_img_desc" />
+
+        <TextView
+            android:id="@+id/order_store_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="69"
+            android:layout_gravity="center"
+            android:text="@string/order_store_name"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/order_store_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/order_incomplete"
+            android:textAllCaps="true"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

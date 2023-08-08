@@ -12,5 +12,5 @@
         android:layout_height="match_parent"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
-        tools:listitem="@layout/fragment_owner_entry" />
+        tools:listitem="@layout/fragment_item_entry" />
 </RelativeLayout>

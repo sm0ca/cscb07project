@@ -19,12 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.mallapp.MainActivity;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
-
 
 
 public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.ItemListViewHolder> {
@@ -33,9 +33,6 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
 
     private final ItemListPresenter presenter;
     private final List<ItemListEntry> itemsList;
-
-    private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
 
     public ItemListRVAdapter(Context context, List<ItemListEntry> itemsList, ItemListPresenter presenter) {
         this.context = context;
@@ -74,7 +71,7 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
         if (itemsList.get(position).getImgURL() != null && !itemsList.get(position).getImgURL().isEmpty()) {
             Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
         } else {
-            holder.getItemLogo().setImageResource(R.drawable.placeholder_item_icon);
+            holder.getItemLogo().setImageResource(R.drawable.ic_launcher_background);
         }
     }
 
@@ -90,7 +87,7 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
 
         private final TextView itemBrand;
 
-        private final ImageButton button_add;
+        private final MaterialButton button_add;
 
         private final TextView detailed_itemDescription;
 

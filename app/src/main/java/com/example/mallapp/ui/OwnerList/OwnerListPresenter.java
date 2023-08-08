@@ -1,5 +1,7 @@
 package com.example.mallapp.ui.OwnerList;
 
+import com.example.mallapp.ui.ItemList.ItemListEntry;
+
 import java.util.List;
 
 public class OwnerListPresenter {
@@ -14,7 +16,7 @@ public class OwnerListPresenter {
         model.createEventListener();
     }
 
-    public void setAdapter(List<OwnerListEntry> items) {
+    public void setAdapter(List<ItemListEntry> items) {
         adapter = new OwnerListRVAdapter(fragment.getContext(), items, this);
         fragment.setAdapter(adapter);
     }
@@ -27,6 +29,6 @@ public class OwnerListPresenter {
 
     public String getitemBrand(int index){return model.getItemsList().get(index).getBrand();}
 
-    public String getLogo(int index){return model.getItemsList().get(index).getLogoURL();}
+    public String getLogo(int index){return model.getItemsList().get(index).getImgURL();}
 
 }

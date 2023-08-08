@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.example.mallapp.ui.ItemList.ItemListEntry;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +37,7 @@ public class OwnerListModel {
     private DatabaseReference query_owner;
     private ChildEventListener listener;
 
-    private List<OwnerListEntry> ItemsList;
+    private List<ItemListEntry> ItemsList;
 
 
     public OwnerListModel(OwnerListPresenter presenter, String url) {
@@ -66,7 +68,7 @@ public class OwnerListModel {
                                         double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
                                         String brand = snapshot.child(BRAND).getValue(String.class);
                                         String description = snapshot.child(DESCRIP).getValue(String.class);
-                                        OwnerListEntry newEntry = new OwnerListEntry(itemName, logoURL, price, brand, description);
+                                        ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
                                         ItemsList.add(newEntry);
                                         presenter.setAdapter(ItemsList);
                                     }
@@ -79,7 +81,7 @@ public class OwnerListModel {
                                     if (!forSale) {
                                         String itemName = snapshot.getKey();
                                         // Find and remove the item from the ItemsList
-                                        for (OwnerListEntry entry : ItemsList) {
+                                        for (ItemListEntry entry : ItemsList) {
                                             if (entry.getItemName().equals(itemName)) {
                                                 ItemsList.remove(entry);
                                                 break;
@@ -122,7 +124,7 @@ public class OwnerListModel {
         }
     }
 
-    public List<OwnerListEntry> getItemsList(){
+    public List<ItemListEntry> getItemsList(){
         return ItemsList;
     }
 

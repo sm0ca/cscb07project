@@ -3,6 +3,7 @@ package com.example.mallapp.ui.cart;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
+import com.google.android.material.elevation.SurfaceColors;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -37,6 +39,12 @@ public class CartRVAdapter extends RecyclerView.Adapter<CartViewHolder> {
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Log.d("SLM.java", "Testing");
         if (cartList.get(position).getStoreName() != null) {
+//            TypedValue typedVal =  new TypedValue();
+//            context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedVal, true);
+//
+            int bgColor = SurfaceColors.SURFACE_1.getColor(context);
+            holder.getCardView().setCardBackgroundColor(bgColor);
+            holder.getCardView().setStrokeWidth(0);
             holder.getHeaderLayout().setVisibility(View.VISIBLE);
             holder.getContentLayout().setVisibility(View.GONE);
 
@@ -59,7 +67,7 @@ public class CartRVAdapter extends RecyclerView.Adapter<CartViewHolder> {
             } else {
                 Glide.with(context).load(img_url_val).into(holder.getItemImg());
             }
-            holder.getItemModifier().setImageResource(R.drawable.round_remove_circle_36);
+            holder.getItemModifier().setIcon(context.getDrawable(R.drawable.round_remove_36));
             holder.getItemModifier().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

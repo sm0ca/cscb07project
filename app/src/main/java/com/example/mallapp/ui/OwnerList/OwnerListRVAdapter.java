@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.mallapp.ui.ItemList.ItemListPresenter;
+import com.example.mallapp.ui.ItemList.ItemListEntry;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,12 +32,12 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
     private final Context context;
 
     private final OwnerListPresenter presenter;
-    private final List<OwnerListEntry> itemsList;
+    private final List<ItemListEntry> itemsList;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
-    public OwnerListRVAdapter(Context context, List<OwnerListEntry> itemsList, OwnerListPresenter presenter) {
+    public OwnerListRVAdapter(Context context, List<ItemListEntry> itemsList, OwnerListPresenter presenter) {
         this.context = context;
         this.itemsList = itemsList;
         this.presenter = presenter;
@@ -46,7 +47,7 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
     @NonNull
     @Override
     public ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemListViewHolder(LayoutInflater.from(context).inflate(R.layout.fragment_owner_entry, parent, false));
+        return new ItemListViewHolder(LayoutInflater.from(context).inflate(R.layout.fragment_item_entry, parent, false));
     }
 
     @Override
@@ -54,10 +55,11 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
         holder.getItemName().setText(itemsList.get(position).getItemName());
         holder.getItemPrice().setText(String.valueOf(itemsList.get(position).getPrice()));
         holder.getItemBrand().setText(itemsList.get(position).getBrand());
+        holder.getDeleteButton().setIcon(context.getDrawable(R.drawable.round_remove_36));
      //   holder.getItemDescription().setText(itemsList.get(position).getDescription());
 
-        if (itemsList.get(position).getLogoURL() != null && !itemsList.get(position).getLogoURL().isEmpty()) {
-            Glide.with(context).load(itemsList.get(position).getLogoURL()).into(holder.getItemLogo());
+        if (itemsList.get(position).getImgURL() != null && !itemsList.get(position).getImgURL().isEmpty()) {
+            Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
         } else {
             holder.getItemLogo().setImageResource(R.drawable.ic_launcher_background);
         }
@@ -77,18 +79,18 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
 
         private final TextView itemDescription;
 
-        private final Button delete_button;
+        private final MaterialButton deleteButton;
 
         public ItemListViewHolder(@NonNull View itemView) {
             super(itemView);
-            itemName = itemView.findViewById(R.id.item_name);
-            itemPrice = itemView.findViewById(R.id.item_price);
-            itemLogo = itemView.findViewById(R.id.item_logo);
-            itemBrand = itemView.findViewById(R.id.item_brand);
+            itemName = itemView.findViewById(R.id.item_entry_name);
+            itemPrice = itemView.findViewById(R.id.item_entry_price);
+            itemLogo = itemView.findViewById(R.id.item_entry_img);
+            itemBrand = itemView.findViewById(R.id.item_entry_brand);
             itemDescription = itemView.findViewById(R.id.item_entry_description);
-            delete_button = itemView.findViewById(R.id.delete_button);
+            deleteButton = itemView.findViewById(R.id.item_entry_modifier);
 
-            delete_button.setOnClickListener(new View.OnClickListener() {
+            deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
@@ -151,9 +153,10 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
 
         public TextView getItemBrand(){return itemBrand;}
 
+        public MaterialButton getDeleteButton() {
+            return deleteButton;
+        }
+
         public TextView getItemDescription(){return itemDescription;}
     }
 }
-
-
-

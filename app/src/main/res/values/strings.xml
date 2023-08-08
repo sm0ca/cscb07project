@@ -5,8 +5,8 @@
     <string name="title_checkout">Checkout</string>
     <string name="title_orders">Orders</string>
     <string name="title_options">Options</string>
-    <string name="checkout_button">Proceed</string>
-    <string name="checkout_header">Please fill out your shipping\nand billing information below</string>
+    <string name="checkout_button">Next</string>
+    <string name="checkout_header">Shipping &amp; Billing Info</string>
 
     <!--  Text for button to store list  -->
     <string name="store_list_button_text">Store List</string>
@@ -24,6 +24,19 @@
     <string name="item_add">Add</string>
     <string name="item_description_placeholder">[item description]</string>
     <string name="title_storelist">Shop</string>
+
+    <!--  Order list text  -->
+    <string name="order_item_img_desc">Item Image</string>
+    <string name="order_item_name_placeholder">[item name]</string>
+    <string name="order_item_qty_placeholder">[item qty]</string>
+    <string name="order_store_status_placeholder">[store status]</string>
+    <string name="order_store_name">[store name]</string>
+    <string name="order_store_img_desc">Store Logo</string>
+    <string name="order_id_placeholder">[order id]</string>
+    <string name="order_incomplete">INCOMPLETE</string>
+    <string name="order_full_name">[full name]</string>
+    <string name="order_address">[address line 1]\n[line 2]\n[line 3]</string>
+    <string name="order_time">[time]</string>
 
     <!--  Spinner View  -->
     <string-array name="quantity_options">

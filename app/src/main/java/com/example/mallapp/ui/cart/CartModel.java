@@ -71,7 +71,7 @@ public class CartModel {
                                         itemSnapshot.child("brand").getValue(String.class),
                                         itemSnapshot.child("image").getValue(String.class),
                                         itemSnapshot.child("price").getValue(Double.class),
-                                        R.drawable.round_remove_circle_36,
+                                        R.drawable.round_remove_36,
                                         qty);
                                 int idx = 0;
                                 while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
