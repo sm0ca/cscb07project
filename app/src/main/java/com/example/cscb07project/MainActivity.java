@@ -1,6 +1,7 @@
 package com.example.cscb07project;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.cscb07project.ui.cart.CheckoutFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,8 +19,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    private FirebaseAuth dbAuth;
     public static String currentUser;
+    public static boolean isOwner;
+    public static String ownerStore;
+    private FirebaseAuth dbAuth;
     private ActivityMainBinding binding;
 
     @Override
@@ -29,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        dbAuth = FirebaseAuth.getInstance();
-        currentUser = dbAuth.getCurrentUser().getUid();
+        Log.d("TAG_MAIN", ownerStore + currentUser);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

@@ -38,7 +38,7 @@ public class activity_register_presenter implements activity_register_contract.P
             return;
         }
 
-        // check if user have chosen if they aare owner or not
+        // check if user have chosen if they are owner or not
         if(isOwnerId == 0) {
             Toast.makeText((Context) view, "Select your user type", Toast.LENGTH_SHORT).show();
             view.progressBarVisibility(4);
@@ -83,10 +83,6 @@ public class activity_register_presenter implements activity_register_contract.P
         view.progressBarVisibility(mode);
     }
 
-    @Override
-    public String setStoreLogo() {
-        return model.setStoreLogoData(getStoreLogoUri());
-    }
 
     @Override
     public Uri getStoreLogoUri() {

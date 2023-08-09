@@ -2,16 +2,22 @@ package com.example.cscb07project.ui.register;
 
 
 import android.net.Uri;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.example.cscb07project.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -32,8 +38,22 @@ public class activity_register_model implements activity_register_contract.Model
     public void createUser(String email, String password, String storeName, int isOwnerId) {
         this.storeName = storeName;
 
-        user = new createUserEmail(email, password, storeName, isOwnerId, mAuth,this, presenter);
-        user.create();
+        DatabaseReference newRef = FirebaseDatabase.getInstance().getReference().child("stores");
+        newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                DataSnapshot storesSnap = task.getResult();
+                if (storesSnap.hasChild(storeName)) {
+                    presenter.doToastView("Store name has already exist");
+                    presenter.changeProgressBarVisibility(4);
+
+                } else {
+                    user = new createUserEmail(email, password, storeName, isOwnerId, mAuth,activity_register_model.this);
+                    user.create();
+                    makeSampleShopItem(mAuth, isOwnerId);
+                }
+            }
+        });
     }
 
     @Override
@@ -83,4 +103,26 @@ public class activity_register_model implements activity_register_contract.Model
     public Uri getStoreLogoUri() {
         return presenter.getStoreLogoUri();
     }
+
+    @Override
+    public void changeProgressBarVisibility(int mode) {
+        presenter.changeProgressBarVisibility(mode);
+    }
+
+
+    @Override
+    public void makeSampleShopItem(FirebaseAuth user, int isOwnerId) {
+
+        if(isOwnerId == R.id.radioButton_register_owner) {
+            DatabaseReference temp_db = FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/items/sampleItem");
+            temp_db.child("brand").setValue("[item name]");
+            temp_db.child("description").setValue("[item description]");
+            temp_db.child("forSale").setValue(true);
+            temp_db.child("image").setValue("");
+            temp_db.child("price").setValue(0);
+        }
+
+    }
+
+
 }

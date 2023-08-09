@@ -19,7 +19,7 @@ public class activity_login_model implements activity_login_contract.Model {
 
     @Override
     public void loggingInUser(String email, String password) {
-        user = new loggingInUserEmail(email, password, mAuth, presenter);
+        user = new loggingInUserEmail(email, password, mAuth, this);
         user.enter();
     }
 
@@ -34,5 +34,15 @@ public class activity_login_model implements activity_login_contract.Model {
                 }
             }
         });
+    }
+
+    @Override
+    public void changeProgressBarVisibility(int mode) {
+        presenter.changeProgressBarVisibility(mode);
+    }
+
+    @Override
+    public void doToastView(String message) {
+        presenter.doToastView(message);
     }
 }

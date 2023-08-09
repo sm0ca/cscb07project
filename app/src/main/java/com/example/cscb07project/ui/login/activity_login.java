@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.register.activity_register;
+import com.example.cscb07project.ui.tools.MainStart;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class activity_login extends AppCompatActivity implements activity_login_contract.View {
@@ -31,9 +32,7 @@ public class activity_login extends AppCompatActivity implements activity_login_
     // change activity to MainActivity
     @Override
     public void loggedIn() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
+        MainStart.switchToMain(this);
     }
 
 

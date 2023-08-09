@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.login.activity_login;
+import com.example.cscb07project.ui.tools.MainStart;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -47,12 +49,11 @@ public class activity_register extends AppCompatActivity implements activity_reg
         storeLogo.setImageURI(uri);
     }
 
-    // change activity if logged in
+    // change activity to MainActivity if logged in
     @Override
     public void loggedIn() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
+        Log.d("TAG_REGISTER", "Call MainStart");
+        MainStart.switchToMain(this);
     }
 
     @Override

@@ -3,6 +3,9 @@ package com.example.cscb07project.ui.register;
 
 import android.net.Uri;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public interface activity_register_contract {
 
     interface View {
@@ -21,7 +24,6 @@ public interface activity_register_contract {
         void doCheckLoggedIn();
         void isLoggedIn();
         void changeProgressBarVisibility(int mode);
-        String setStoreLogo();
         Uri getStoreLogoUri();
     }
 
@@ -31,6 +33,8 @@ public interface activity_register_contract {
         String setStoreLogoData(Uri uri);
         void doToastView(String string);
         Uri getStoreLogoUri();
+        void changeProgressBarVisibility(int mode);
+        void makeSampleShopItem(FirebaseAuth user, int isOwnerId);
 
     }
 }
