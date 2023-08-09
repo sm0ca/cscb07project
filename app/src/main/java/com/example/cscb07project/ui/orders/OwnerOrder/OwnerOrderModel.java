@@ -60,17 +60,14 @@ public class OwnerOrderModel {
                             boolean newStatus = completeSnapshot.getValue(boolean.class);
                             int idx = 0;
                             while (idx < orderList.size()  && !Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
-                                Log.d("SLM.java",orderList.get(idx).getItemName() + " is " + orderList.get(idx).isVisible());
                                 idx++;
                             }
                             if (Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
                                 orderList.get(idx).setStatus(newStatus);
-                                Log.d("SLM.java", "Changed "+orderNumber+" To "+newStatus);
                                 idx++;
                             }
                             while (idx < orderList.size()  && Objects.equals(orderList.get(idx).getOrderNumber(), null)) {
                                 orderList.get(idx).setVisible(!newStatus);
-                                Log.d("SLM.java",orderList.get(idx).getItemName() + " is " + orderList.get(idx).isVisible());
                                 idx++;
 
                             }
@@ -100,7 +97,6 @@ public class OwnerOrderModel {
                             public void onComplete(@NonNull Task<DataSnapshot> task) {
                                 DataSnapshot itemDataSnapshot = task.getResult();
                                 String brand = itemDataSnapshot.child("brand").getValue(String.class);
-                                Log.d("SLM.java", brand);
                                 String image = itemDataSnapshot.child("image").getValue(String.class);
                                 double price = itemDataSnapshot.child("price").getValue(Double.class);
                                 int qty = itemSnapshot.getValue(int.class);
@@ -141,7 +137,6 @@ public class OwnerOrderModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("SLM.java", "Err listening to order.");
                 destroyEventListener();
             }
         });

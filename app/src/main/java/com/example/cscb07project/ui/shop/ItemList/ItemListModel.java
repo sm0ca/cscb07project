@@ -41,7 +41,6 @@ public class ItemListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener2");
                     listener = queryNames.addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -75,7 +74,6 @@ public class ItemListModel {
                             }
 
                             presenter.setAdapter(ItemsList);
-                            Log.d("SLM.java", "Changed: " + storeName);
                         }
 
                         @Override
@@ -84,7 +82,6 @@ public class ItemListModel {
                             //.remove(storeName);
 
                             //presenter.setAdapter(storeItemsMap.get(0));
-                            Log.d("SLM.java", "Removed: " + storeName);
                         }
 
                         @Override

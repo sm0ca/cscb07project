@@ -46,7 +46,6 @@ public class OwnerListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener2");
         //        mAuth = FirebaseAuth.getInstance();
 //        mUser = mAuth.getCurrentUser();
 //        String username = mUser.getUid();
@@ -93,7 +92,6 @@ public class OwnerListModel {
                                 @Override
                                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                                     String storeName = snapshot.getKey();
-                                    Log.d("SLM.java", "Removed: " + storeName);
                                 }
 
                                 @Override

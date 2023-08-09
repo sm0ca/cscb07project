@@ -26,14 +26,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
+//public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
     public static String currentUser;
     public static boolean isOwner;
+    public static String ownerStore;
 //    public static BottomNavigationView bottomNav;
     private static final Bundle bundleStoreToItem = new Bundle();
     private static final String BUNDLE_STORE_KEY = "key";
-
-    public static String ownerStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         com.example.cscb07project.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         NavigationBarView bottomNav = findViewById(R.id.nav_view);
-        FirebaseAuth dbAuth = FirebaseAuth.getInstance();
+//        FirebaseAuth dbAuth = FirebaseAuth.getInstance();
         // for shopper
         currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
         isOwner = false;
@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_shop, R.id.navigation_cart, R.id.navigation_orders,
-                R.id.navigation_options, R.id.shop_storelist, R.id.owner_orders, R.id.orders_all_list, R.id.owner_list)
+                R.id.navigation_options, R.id.shop_storelist, R.id.owner_orders,
+                R.id.orders_all_list, R.id.owner_list)
                 .build();
 
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         NavController navController = navHost.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        bottomNav.setOnItemSelectedListener(this);
+//        bottomNav.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -94,32 +95,32 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         return BUNDLE_STORE_KEY;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.navigation_shop && !isOwner) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new StoreListFragment()).commit();
-            return true;
-        }
-        if(item.getItemId() == R.id.navigation_shop && isOwner) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OwnerListFragment()).commit();
-            return true;
-        }
-        if(item.getItemId() == R.id.navigation_cart) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new CartFragment()).commit();
-            return true;
-        }
-        if(item.getItemId() == R.id.navigation_orders && !isOwner) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OrderListFragment()).commit();
-            return true;
-        }
-        if(item.getItemId() == R.id.navigation_orders &&!isOwner) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OwnerOrderFragment()).commit();
-            return true;
-        }
-        if(item.getItemId() == R.id.navigation_options) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OptionsFragment()).commit();
-            return true;
-        }
-        return false;
-    }
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        if(item.getItemId() == R.id.navigation_shop && !isOwner) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new StoreListFragment()).commit();
+//            return true;
+//        }
+//        if(item.getItemId() == R.id.navigation_shop && isOwner) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OwnerListFragment()).commit();
+//            return true;
+//        }
+//        if(item.getItemId() == R.id.navigation_cart) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new CartFragment()).commit();
+//            return true;
+//        }
+//        if(item.getItemId() == R.id.navigation_orders && !isOwner) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OrderListFragment()).commit();
+//            return true;
+//        }
+//        if(item.getItemId() == R.id.navigation_orders &&!isOwner) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OwnerOrderFragment()).commit();
+//            return true;
+//        }
+//        if(item.getItemId() == R.id.navigation_options) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_activity_main, new OptionsFragment()).commit();
+//            return true;
+//        }
+//        return false;
+//    }
 }

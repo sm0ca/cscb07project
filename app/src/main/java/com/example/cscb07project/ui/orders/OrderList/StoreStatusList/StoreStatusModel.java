@@ -48,7 +48,6 @@ public class StoreStatusModel implements IFStoreStatusModel {
 
     @Override
     public void createEventListener() {
-        Log.d("mine", "started store status listener");
         if(listener != null) {
             return;
         }

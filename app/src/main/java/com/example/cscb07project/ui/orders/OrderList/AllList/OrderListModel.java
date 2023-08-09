@@ -40,7 +40,6 @@ public class OrderListModel implements IFOrderListModel {
 
     @Override
     public void createEventListener() {
-        Log.d("mine", "Started order listener");
         if(listener != null) {
             return;
         }
@@ -106,7 +105,7 @@ public class OrderListModel implements IFOrderListModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.d("mine", "Listener had error. Not good very bad.");
+                Log.d("mine", "Listener had error.");
                 destroyEventListener();
             }
         });

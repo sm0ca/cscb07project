@@ -48,15 +48,12 @@ public class OwnerOrderRVAdapter extends RecyclerView.Adapter<OwnerOrderViewHold
                 holder.getStatus().setText("Incomplete");
                 holder.getCompleteButton().setText("Set Complete");
             }
-            Log.d("SLM.java", "HIIIIIIII");
             holder.getCompleteButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("SLM.java", String.valueOf(holder.getAdapterPosition()));
                     int idx = holder.getAdapterPosition();
                     String orderNumber = orderList.get(idx).getOrderNumber();
                     boolean currentStatus = orderList.get(idx).isStatus();
-                    Log.d("SLM.java", "Change to not " + currentStatus);
                     OwnerOrderPresenter.changeStatus(orderNumber, !currentStatus);
                 }
             });

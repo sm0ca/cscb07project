@@ -36,7 +36,6 @@ public class CartRVAdapter extends RecyclerView.Adapter<CartViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        Log.d("SLM.java", "Testing");
         if (cartList.get(position).getStoreName() != null) {
 //            TypedValue typedVal =  new TypedValue();
 //            context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedVal, true);
@@ -69,7 +68,6 @@ public class CartRVAdapter extends RecyclerView.Adapter<CartViewHolder> {
             holder.getItemModifier().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("SLM.java", String.valueOf(holder.getAdapterPosition()));
                     int idx = holder.getAdapterPosition();
                     String remItemName = cartList.get(idx).getItemName();
                     while (idx > 0 && cartList.get(idx).getStoreName() == null) {idx--;}

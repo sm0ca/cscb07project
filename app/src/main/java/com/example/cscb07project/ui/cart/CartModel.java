@@ -24,18 +24,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CartModel {
-    private static String dbUrl;
     private final CartPresenter presenter;
-    private final DatabaseReference cartRef; // make static?
+    private final DatabaseReference cartRef;
     private final DatabaseReference storeRef;
     private ChildEventListener listener;
     private final List<CartEntry> cartList;
 
     public CartModel(CartPresenter presenter, String url) {
-        dbUrl = url;
         this.presenter = presenter;
         cartList = new ArrayList<>();
-        FirebaseDatabase db = FirebaseDatabase.getInstance(dbUrl);
+        FirebaseDatabase db = FirebaseDatabase.getInstance(url);
         cartRef = db.getReference().child("users").child(MainActivity.currentUser).child("cart");
         storeRef = db.getReference().child("stores");
     }
@@ -65,7 +63,6 @@ public class CartModel {
                                     return;
                                 }
                                 if (itemSnapshot.child("price").getValue(Double.class) == null) {
-                                    Log.d("SLM.java", itemName + " is priceless.");
                                     return;
                                 }
                                 CartEntry newEntry = new CartEntry(itemName,
@@ -136,7 +133,6 @@ public class CartModel {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Log.d("SLM.java", "Big Rem.");
                 String removedStore = snapshot.getKey();
                 int idx = 0;
                 while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), removedStore)) {idx++;}
@@ -168,7 +164,7 @@ public class CartModel {
     }
 
     public static void removeItem(String store, String item, Boolean fullRem) {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser).child("cart");
         newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -191,7 +187,7 @@ public class CartModel {
 
 
     public static void checkCart() {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser);
         newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -205,14 +201,14 @@ public class CartModel {
     }
 
     public static void placeOrder(String name, String address) {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser);
 
         newRef.child("cart").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                DatabaseReference orderRef = FirebaseDatabase.getInstance(dbUrl)
+                DatabaseReference orderRef = FirebaseDatabase.getInstance()
                         .getReference("orders");
 
                 SimpleDateFormat idFormatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");

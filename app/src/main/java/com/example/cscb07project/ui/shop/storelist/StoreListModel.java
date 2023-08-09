@@ -33,7 +33,6 @@ public class StoreListModel implements IFStoreListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener");
         listener = queryNames.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {

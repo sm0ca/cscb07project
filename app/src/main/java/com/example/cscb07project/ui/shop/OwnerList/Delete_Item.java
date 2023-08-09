@@ -30,7 +30,6 @@ public class Delete_Item {
                 if (snapshot.exists()) {
                     if (snapshot.child("items").hasChild(itemname)) {
                         mDatabase.child("items").child(itemname).child("forSale").setValue(false);
-                        Log.d("Firebase", "Item '" + itemname + "' set forSale=false");
                     } else {
                         Log.d("Firebase", "Item '" + itemname + "' does not exist");
                     }

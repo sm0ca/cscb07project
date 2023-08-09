@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentItemListBinding;
-import com.example.mallapp.MainActivity;
+import com.example.cscb07project.MainActivity;
+
+import java.util.Objects;
 
 public class OwnerListFragment extends Fragment {
 
@@ -41,9 +43,8 @@ public class OwnerListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity) requireContext()).getSupportActionBar().setTitle(
-                MainActivity.getStoreBundle().getString(MainActivity.ownerStore)
-        );
+        Objects.requireNonNull(((AppCompatActivity) requireContext()).getSupportActionBar())
+                .setTitle("Your Store (" + MainActivity.ownerStore + ")");
 
         presenter = new OwnerListPresenter(this);
         recyclerView = view.findViewById(R.id.item_list_entry);

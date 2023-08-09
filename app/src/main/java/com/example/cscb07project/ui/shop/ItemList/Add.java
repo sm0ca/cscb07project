@@ -27,7 +27,6 @@ public class Add {
     }
 
     public void addToFirebase() {
-        Log.d("Firebase", "Adding data to Firebase...");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
