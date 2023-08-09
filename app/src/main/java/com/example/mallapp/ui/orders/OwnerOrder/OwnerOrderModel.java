@@ -104,7 +104,7 @@ public class OwnerOrderModel {
                                 String image = itemDataSnapshot.child("image").getValue(String.class);
                                 double price = itemDataSnapshot.child("price").getValue(Double.class);
                                 int qty = itemSnapshot.getValue(int.class);
-                                OwnerOrderEntry itemEntry = new OwnerOrderEntry(itemName, brand, image, price, R.drawable.round_remove_circle_36, qty);
+                                OwnerOrderEntry itemEntry = new OwnerOrderEntry(itemName, brand, image, price, R.drawable.round_remove_circle_36, qty, !status);
                                 int idx = 0;
                                 while (idx < orderList.size() - 1 && !Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
                                     idx++;

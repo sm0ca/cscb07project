@@ -16,14 +16,14 @@ public class OwnerOrderEntry extends ItemListEntry {
         this.isVisible = true;
     }
 
-    public OwnerOrderEntry(String itemName, String brand, String imgURL, double price, int modifierIcon, int qty) {
+    public OwnerOrderEntry(String itemName, String brand, String imgURL, double price, int modifierIcon, int qty, boolean visible) {
         super.itemName = itemName;
         super.brand = brand;
         super.logoURL = imgURL;
         super.price = price;
         super.modifiericon = modifierIcon;
         this.qty = qty;
-        this.isVisible = true;
+        this.isVisible = visible;
     }
 
     public String getOrderNumber() {
