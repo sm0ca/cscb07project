@@ -1,6 +1,7 @@
 package com.example.cscb07project.ui.cart;
 
 import android.annotation.SuppressLint;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,12 +10,16 @@ import androidx.annotation.Nullable;
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 import java.util.ArrayList;
@@ -65,18 +70,47 @@ public class CartModel {
                                 if (itemSnapshot.child("price").getValue(Double.class) == null) {
                                     return;
                                 }
-                                CartEntry newEntry = new CartEntry(itemName,
-                                        itemSnapshot.child("brand").getValue(String.class),
-                                        itemSnapshot.child("image").getValue(String.class),
-                                        itemSnapshot.child("price").getValue(Double.class),
-                                        R.drawable.round_remove_36,
-                                        qty);
-                                int idx = 0;
-                                while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
-                                    idx++;
+                                String imgURL = itemSnapshot.child("image").getValue(String.class);
+                                if (imgURL == null || imgURL.isEmpty()) {
+                                    CartEntry newEntry = new CartEntry(itemName,
+                                            itemSnapshot.child("brand").getValue(String.class),
+                                            itemSnapshot.child("image").getValue(String.class),
+                                            itemSnapshot.child("price").getValue(Double.class),
+                                            R.drawable.round_remove_36,
+                                            qty);
+                                    int idx = 0;
+                                    while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
+                                        idx++;
+                                    }
+                                    cartList.add(idx + 1, newEntry);
+                                    presenter.setAdapter(cartList);
+                                    return;
                                 }
-                                cartList.add(idx + 1, newEntry);
-                                presenter.setAdapter(cartList);
+                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                StorageReference storageRef = storage.getReference();
+                                StorageReference fileRef = storageRef.child(imgURL);
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        CartEntry newEntry = new CartEntry(itemName,
+                                                itemSnapshot.child("brand").getValue(String.class),
+                                                uri.toString(),
+                                                itemSnapshot.child("price").getValue(Double.class),
+                                                R.drawable.round_remove_36,
+                                                qty);
+                                        int idx = 0;
+                                        while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
+                                            idx++;
+                                        }
+                                        cartList.add(idx + 1, newEntry);
+                                        presenter.setAdapter(cartList);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e("SLM.java", "Error getting download URL: " + e.getMessage());
+                                    }
+                                });
                             }
                         });
                     }
