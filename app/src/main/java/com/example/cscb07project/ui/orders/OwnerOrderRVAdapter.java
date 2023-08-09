@@ -15,27 +15,26 @@ import com.example.cscb07project.R;
 
 import java.text.NumberFormat;
 import java.util.List;
-import java.util.Objects;
 
-public class OrderRVAdapter extends RecyclerView.Adapter<OrderViewHolder> {
+public class OwnerOrderRVAdapter extends RecyclerView.Adapter<OwnerOrderViewHolder> {
 
     private final Context context;
-    private final List<OrderEntry> orderList;
+    private final List<OwnerOrderEntry> orderList;
 
-    public OrderRVAdapter(Context context, List<OrderEntry> orderList) {
+    public OwnerOrderRVAdapter(Context context, List<OwnerOrderEntry> orderList) {
         this.context = context;
         this.orderList = orderList;
     }
 
     @NonNull
     @Override
-    public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new OrderViewHolder(LayoutInflater.from(context).inflate(R.layout.fragment_item_entry, parent, false));
+    public OwnerOrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new OwnerOrderViewHolder(LayoutInflater.from(context).inflate(R.layout.fragment_item_entry, parent, false));
     }
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OwnerOrderViewHolder holder, int position) {
         if (orderList.get(position).getOrderNumber() != null) {
             holder.getHeaderLayout().setVisibility(View.VISIBLE);
             holder.getContentLayout().setVisibility(View.GONE);
@@ -58,7 +57,7 @@ public class OrderRVAdapter extends RecyclerView.Adapter<OrderViewHolder> {
                     String orderNumber = orderList.get(idx).getOrderNumber();
                     boolean currentStatus = orderList.get(idx).isStatus();
                     Log.d("SLM.java", "Change to not " + currentStatus);
-                    OrderPresenter.changeStatus(orderNumber, !currentStatus);
+                    OwnerOrderPresenter.changeStatus(orderNumber, !currentStatus);
                 }
             });
 

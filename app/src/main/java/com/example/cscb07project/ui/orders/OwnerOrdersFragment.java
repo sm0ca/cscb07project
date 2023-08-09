@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,13 +15,13 @@ import com.example.cscb07project.databinding.FragmentOrdersBinding;
 
 import java.util.ArrayList;
 
-public class OrdersFragment extends Fragment {
+public class OwnerOrdersFragment extends Fragment {
 
     private FragmentOrdersBinding binding;
 
     private RecyclerView recyclerView;
 
-    private OrderPresenter presenter;
+    private OwnerOrderPresenter presenter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,14 +33,14 @@ public class OrdersFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter = new OrderPresenter(this);
+        presenter = new OwnerOrderPresenter(this);
         recyclerView = view.findViewById(R.id.order_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        OrderRVAdapter adapter = new OrderRVAdapter(requireContext(), new ArrayList<>());
+        OwnerOrderRVAdapter adapter = new OwnerOrderRVAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);
     }
 
-    public void setAdapter(OrderRVAdapter adapter) {recyclerView.setAdapter(adapter);}
+    public void setAdapter(OwnerOrderRVAdapter adapter) {recyclerView.setAdapter(adapter);}
 
 
     @Override

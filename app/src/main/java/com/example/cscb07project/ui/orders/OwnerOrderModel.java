@@ -19,16 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderModel {
+public class OwnerOrderModel {
     private static String dbUrl;
-    private final OrderPresenter presenter;
+    private final OwnerOrderPresenter presenter;
     private final DatabaseReference orderRef; // make static?
 
     private final DatabaseReference storeRef;
     private ChildEventListener listener;
-    private List<OrderEntry> orderList;
+    private List<OwnerOrderEntry> orderList;
 
-    public OrderModel(OrderPresenter presenter, String url){
+    public OwnerOrderModel(OwnerOrderPresenter presenter, String url){
         this.dbUrl = url;
         this.presenter = presenter;
         orderList = new ArrayList<>();
@@ -46,7 +46,7 @@ public class OrderModel {
                     DataSnapshot storeSnapshot = snapshot.child("storesItems").child(MainActivity.ownerStore);
                     String time = snapshot.child("time").getValue(String.class);
                     boolean status = storeSnapshot.child("complete").getValue(boolean.class);
-                    orderList.add(new OrderEntry(orderNumber, time, status));
+                    orderList.add(new OwnerOrderEntry(orderNumber, time, status));
                     presenter.setAdapter(orderList);
                     DatabaseReference completeRef = orderRef.child(orderNumber).child("storesItems").child(MainActivity.ownerStore);
                     completeRef.addChildEventListener(new ChildEventListener() {
@@ -104,7 +104,7 @@ public class OrderModel {
                                 String image = itemDataSnapshot.child("image").getValue(String.class);
                                 double price = itemDataSnapshot.child("price").getValue(Double.class);
                                 int qty = itemSnapshot.getValue(int.class);
-                                OrderEntry itemEntry = new OrderEntry(itemName, brand, image, price, R.drawable.round_remove_circle_36, qty);
+                                OwnerOrderEntry itemEntry = new OwnerOrderEntry(itemName, brand, image, price, R.drawable.round_remove_circle_36, qty);
                                 int idx = 0;
                                 while (idx < orderList.size() - 1 && !Objects.equals(orderList.get(idx).getOrderNumber(), orderNumber)) {
                                     idx++;

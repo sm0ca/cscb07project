@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
 
-public class OrderViewHolder extends RecyclerView.ViewHolder {
+public class OwnerOrderViewHolder extends RecyclerView.ViewHolder {
     private final TextView itemName;
     private final TextView itemBrand;
     private final TextView itemPrice;
@@ -24,7 +24,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     private final Button completeButton;
 
 
-    public OrderViewHolder(@NonNull View itemView) {
+    public OwnerOrderViewHolder(@NonNull View itemView) {
         super(itemView);
         itemName = itemView.findViewById(R.id.item_entry_name);
         itemBrand = itemView.findViewById(R.id.item_entry_brand);

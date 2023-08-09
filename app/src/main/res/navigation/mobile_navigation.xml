@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.cscb07project.ui.orders.OrdersFragment"
+        android:name="com.example.cscb07project.ui.orders.OwnerOrdersFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_orders" />
 
