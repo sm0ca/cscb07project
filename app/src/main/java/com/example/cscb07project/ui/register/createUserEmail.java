@@ -37,6 +37,20 @@ public class createUserEmail implements createUser{
     }
     @Override
     public void create() {
+        // check if storeName is not taken
+        FirebaseDatabase.getInstance().getReference("stores").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChild(storeName)) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // checking and uploading storeLogo
         if(model.getStoreLogoUri() == null) {
