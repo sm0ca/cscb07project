@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.shop.storelist;
+package com.example.cscb07project.ui.shop.storelist;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.mallapp.ui.tools.NotifyAdapter;
+import com.example.cscb07project.ui.tools.NotifyAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -37,7 +37,6 @@ public class StoreListModel implements IFStoreListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener");
         listener = queryNames.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -55,11 +54,10 @@ public class StoreListModel implements IFStoreListModel {
                             String downloadUrl = uri.toString();
                             String owner = snapshot.child(OWNER).getValue(String.class);
                             StoreListEntry newEntry = new StoreListEntry(storeName, owner, downloadUrl);
-                            if(previousChildName == null) {
+                            if (previousChildName == null) {
                                 stores.add(FIRST_IDX, newEntry);
                                 presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
-                            }
-                            else {
+                            } else {
                                 int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                                 stores.add(idxToInsert, newEntry);
                                 presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
@@ -70,11 +68,10 @@ public class StoreListModel implements IFStoreListModel {
                 else{
                     String owner = snapshot.child(OWNER).getValue(String.class);
                     StoreListEntry newEntry = new StoreListEntry(storeName, owner, logoURL);
-                    if(previousChildName == null) {
+                    if (previousChildName == null) {
                         stores.add(FIRST_IDX, newEntry);
                         presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
-                    }
-                    else {
+                    } else {
                         int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
                         stores.add(idxToInsert, newEntry);
                         presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
