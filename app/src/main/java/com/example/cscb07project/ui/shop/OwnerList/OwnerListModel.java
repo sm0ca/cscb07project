@@ -1,6 +1,6 @@
-package com.example.mallapp.ui.shop.OwnerList;
+package com.example.cscb07project.ui.shop.OwnerList;
 
-import static com.example.mallapp.MainActivity.currentUser;
+import static com.example.cscb07project.MainActivity.currentUser;
 
 import android.net.Uri;
 import android.util.Log;
@@ -8,7 +8,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
+import com.example.cscb07project.ui.shop.ItemList.ItemListEntry;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -51,7 +51,9 @@ public class OwnerListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener2");
+        //        mAuth = FirebaseAuth.getInstance();
+//        mUser = mAuth.getCurrentUser();
+//        String username = mUser.getUid();
         String username = currentUser;
                     getStoreName getStoreNameInstance = new getStoreName(username);
                     getStoreNameInstance.retrieveStoreName(new getStoreName.OnStoreNameListener() { // get storename
@@ -61,7 +63,7 @@ public class OwnerListModel {
                             listener = query_owner.addChildEventListener(new ChildEventListener() {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
+                                   boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
                                     if (forSale) {
                                         String itemName = snapshot.getKey();
                                         String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
@@ -96,11 +98,8 @@ public class OwnerListModel {
                                             presenter.setAdapter(ItemsList);
                                         }
                                     } else{
-                                        }
                                     }
-
-
-
+                                }
                                 @Override
                                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                     boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
@@ -120,7 +119,6 @@ public class OwnerListModel {
                                 @Override
                                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                                     String storeName = snapshot.getKey();
-                                    Log.d("SLM.java", "Removed: " + storeName);
                                 }
 
                                 @Override
