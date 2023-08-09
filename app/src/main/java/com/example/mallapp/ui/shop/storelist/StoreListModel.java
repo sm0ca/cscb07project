@@ -1,16 +1,20 @@
 package com.example.mallapp.ui.shop.storelist;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.mallapp.ui.tools.NotifyAdapter;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,21 +41,45 @@ public class StoreListModel implements IFStoreListModel {
         listener = queryNames.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
                 String storeName = snapshot.getKey();
                 String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                String owner = snapshot.child(OWNER).getValue(String.class);
-                StoreListEntry newEntry = new StoreListEntry(storeName, owner, logoURL);
-                if(previousChildName == null) {
-                    stores.add(FIRST_IDX, newEntry);
-                    presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
+                if (logoURL != null && !logoURL.isEmpty()) {
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    StorageReference storageRef = storage.getReference();
+                    StorageReference fileRef = storageRef.child(logoURL);
+
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String downloadUrl = uri.toString();
+                            String owner = snapshot.child(OWNER).getValue(String.class);
+                            StoreListEntry newEntry = new StoreListEntry(storeName, owner, downloadUrl);
+                            if(previousChildName == null) {
+                                stores.add(FIRST_IDX, newEntry);
+                                presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
+                            }
+                            else {
+                                int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
+                                stores.add(idxToInsert, newEntry);
+                                presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
+                            }
+                        }
+                    });
                 }
-                else {
-                    int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
-                    stores.add(idxToInsert, newEntry);
-                    presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
+                else{
+                    String owner = snapshot.child(OWNER).getValue(String.class);
+                    StoreListEntry newEntry = new StoreListEntry(storeName, owner, logoURL);
+                    if(previousChildName == null) {
+                        stores.add(FIRST_IDX, newEntry);
+                        presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
+                    }
+                    else {
+                        int idxToInsert = stores.indexOf(new StoreListEntry(previousChildName)) + 1;
+                        stores.add(idxToInsert, newEntry);
+                        presenter.notifyAdapter(new NotifyAdapter.Inserted(idxToInsert));
+                    }
                 }
-//                Log.d("SLM.java", "Added");
-//                printCurrentList();
             }
 
             @Override

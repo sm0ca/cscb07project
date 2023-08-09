@@ -2,17 +2,22 @@ package com.example.mallapp.ui.shop.OwnerList;
 
 import static com.example.mallapp.MainActivity.currentUser;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +52,6 @@ public class OwnerListModel {
 
     public void createEventListener() {
         Log.d("SLM.java", "Started listener2");
-        //        mAuth = FirebaseAuth.getInstance();
-//        mUser = mAuth.getCurrentUser();
-//        String username = mUser.getUid();
         String username = currentUser;
                     getStoreName getStoreNameInstance = new getStoreName(username);
                     getStoreNameInstance.retrieveStoreName(new getStoreName.OnStoreNameListener() { // get storename
@@ -59,21 +61,46 @@ public class OwnerListModel {
                             listener = query_owner.addChildEventListener(new ChildEventListener() {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                   boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
-                                    if(forSale)
-                                    {
+                                    boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
+                                    if (forSale) {
                                         String itemName = snapshot.getKey();
                                         String logoURL = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                                        double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
-                                        String brand = snapshot.child(BRAND).getValue(String.class);
-                                        String description = snapshot.child(DESCRIP).getValue(String.class);
-                                        ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
-                                        ItemsList.add(newEntry);
-                                        presenter.setAdapter(ItemsList);
+                                        if (logoURL != null && !logoURL.isEmpty()) {
+                                            FirebaseStorage storage = FirebaseStorage.getInstance();
+                                            StorageReference storageRef = storage.getReference();
+                                            StorageReference fileRef = storageRef.child(logoURL);
+
+                                            fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    String downloadUrl = uri.toString();
+                                                    double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                                                    String brand = snapshot.child(BRAND).getValue(String.class);
+                                                    String description = snapshot.child(DESCRIP).getValue(String.class);
+                                                    ItemListEntry newEntry = new ItemListEntry(itemName, downloadUrl, price, brand, description);
+                                                    ItemsList.add(newEntry);
+                                                    presenter.setAdapter(ItemsList);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception exception) {
+                                                    Log.e("SLM.java", "Error getting download URL: " + exception.getMessage());
+                                                }
+                                            });
+                                        } else {
+                                            double price = snapshot.child(PRICE_NODE_NAME).getValue(Double.class);
+                                            String brand = snapshot.child(BRAND).getValue(String.class);
+                                            String description = snapshot.child(DESCRIP).getValue(String.class);
+                                            ItemListEntry newEntry = new ItemListEntry(itemName, logoURL, price, brand, description);
+                                            ItemsList.add(newEntry);
+                                            presenter.setAdapter(ItemsList);
+                                        }
+                                    } else{
+                                        }
                                     }
-                                    else{
-                                    }
-                                }
+
+
+
                                 @Override
                                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                     boolean forSale = snapshot.child(ForSale).getValue(Boolean.class);
