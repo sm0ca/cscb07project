@@ -1,4 +1,4 @@
-package com.example.mallapp.ui.shop.ItemList;
+package com.example.cscb07project.ui.shop.ItemList;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.mallapp.MainActivity;
+import com.example.cscb07project.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
@@ -46,7 +46,6 @@ public class ItemListModel {
     }
 
     public void createEventListener() {
-        Log.d("SLM.java", "Started listener2");
                     listener = queryNames.addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -104,7 +103,6 @@ public class ItemListModel {
                             }
 
                             presenter.setAdapter(ItemsList);
-                            Log.d("SLM.java", "Changed: " + storeName);
                         }
 
                         @Override
@@ -113,7 +111,6 @@ public class ItemListModel {
                             //.remove(storeName);
 
                             //presenter.setAdapter(storeItemsMap.get(0));
-                            Log.d("SLM.java", "Removed: " + storeName);
                         }
 
                         @Override
