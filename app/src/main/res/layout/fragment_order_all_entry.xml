@@ -81,7 +81,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/order_id"
-            tools:srcCompat="@drawable/round_keyboard_arrow_right_36" />
+            tools:srcCompat="@drawable/round_keyboard_arrow_right_36"
+            />
 
         <TextView
             android:id="@+id/order_id"
