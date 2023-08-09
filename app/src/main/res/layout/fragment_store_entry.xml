@@ -9,7 +9,7 @@
     android:layout_marginRight="12.5dp"
     android:layout_marginBottom="25dp"
 
-    tools:context="com.example.mallapp.MainActivity">
+    tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
