@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
+import com.google.android.material.button.MaterialButton;
 
 
 public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapter.OrderListVH> {
@@ -59,7 +60,7 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
             orderAllCompleteTV = itemView.findViewById(R.id.order_status);
             orderFullNameTV = itemView.findViewById(R.id.order_full_name);
             orderTimeTV = itemView.findViewById(R.id.order_time);
-            ImageView orderNextIconIV = itemView.findViewById(R.id.order_next_icon);
+            MaterialButton orderNextIconIV = itemView.findViewById(R.id.order_next_icon);
 
             orderNextIconIV.setOnClickListener(view -> {
                 int positionClicked = getBindingAdapterPosition();

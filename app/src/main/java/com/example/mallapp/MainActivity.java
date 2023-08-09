@@ -36,14 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseAuth dbAuth = FirebaseAuth.getInstance();
         // for shopper
-        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
-        isOwner = false;
-        ownerStore = "";
+//        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
+//        isOwner = false;
+//        ownerStore = "";
 
         // for owner
-//        currentUser = "person 1";
-//        isOwner = true;
-//        ownerStore = "st 1";
+        currentUser = "person 1";
+        isOwner = true;
+        ownerStore = "st 1";
 
 //        bottomNav = findViewById(R.id.nav_view);
 //        bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_shop, R.id.navigation_cart, R.id.navigation_orders,
-                R.id.navigation_options, R.id.shop_storelist, R.id.owner_list)
+                R.id.navigation_options, R.id.shop_storelist, R.id.orders_all_list, R.id.owner_list)
                 .build();
 
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);

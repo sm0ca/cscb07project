@@ -2,6 +2,7 @@ package com.example.mallapp.ui.shop.storelist;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,11 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        try {
+            super.onDestroy();
+        } catch (NullPointerException e) {
+            Log.d("SLM.java", "Something went wrong with onDestroy()!");
+        }
         binding = null;
         presenter.onDestroy();
     }

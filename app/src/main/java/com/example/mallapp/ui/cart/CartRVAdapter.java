@@ -42,8 +42,7 @@ public class CartRVAdapter extends RecyclerView.Adapter<CartViewHolder> {
 //            TypedValue typedVal =  new TypedValue();
 //            context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedVal, true);
 //
-            int bgColor = SurfaceColors.SURFACE_1.getColor(context);
-            holder.getCardView().setCardBackgroundColor(bgColor);
+            holder.getCardView().setCardBackgroundColor(SurfaceColors.SURFACE_1.getColor(context));
             holder.getCardView().setStrokeWidth(0);
             holder.getHeaderLayout().setVisibility(View.VISIBLE);
             holder.getContentLayout().setVisibility(View.GONE);

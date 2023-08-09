@@ -68,13 +68,15 @@ public class OrderListFragment extends Fragment implements IFOrderListView {
 
     @Override
     public void setColorComplete(View view) {
-        ((CardView) view.findViewById(R.id.order_all_entry_card))
-                .setCardBackgroundColor(requireContext().getColor(R.color.order_completed));
+//        ((CardView) view.findViewById(R.id.order_all_entry_card))
+//                .setCardBackgroundColor(requireContext().getColor(R.color.order_completed));
+        ((TextView) view.findViewById(R.id.order_status))
+                .setTextColor(requireContext().getColor(R.color.order_completed));
     }
 
     @Override
     public void setColorIncomplete(View view) {
-        ((CardView) view.findViewById(R.id.order_all_entry_card))
-                .setCardBackgroundColor(requireContext().getColor(R.color.order_not_complete));
+        ((TextView) view.findViewById(R.id.order_status))
+                .setTextColor(requireContext().getColor(R.color.order_not_complete));
     }
 }

@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.elevation.SurfaceColors;
 
 import java.util.Locale;
 
@@ -66,13 +68,16 @@ public class StoreStatus_ExpListAdapter extends BaseExpandableListAdapter {
         ImageView storeImageIV = inflatedView.findViewById(R.id.order_store_image);
         storeNameTV.setText(storePresenter.getStoreName(i));
         String status;
+
+        ((MaterialCardView) inflatedView.findViewById(R.id.order_store_card_view))
+                .setCardBackgroundColor(SurfaceColors.SURFACE_1.getColor(storeView.getViewContext()));
         if (storePresenter.getStoreComplete(i)) {
             status = "COMPLETE";
-            inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_completed));
+            storeCompleteTV.setTextColor(storeView.getViewContext().getColor(R.color.order_completed));
         }
         else {
             status = "INCOMPLETE";
-            inflatedView.setBackgroundColor(storeView.getViewContext().getColor(R.color.order_not_complete));
+            storeCompleteTV.setTextColor(storeView.getViewContext().getColor(R.color.order_not_complete));
         }
         storeCompleteTV.setText(status);
         String storeImgURL = storePresenter.getStoreImageURL(i);
