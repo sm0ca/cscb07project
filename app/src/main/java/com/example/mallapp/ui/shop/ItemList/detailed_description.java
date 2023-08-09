@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +24,8 @@ import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentDetailedItemBinding;
 import com.example.mallapp.MainActivity;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class detailed_description extends Fragment {
 
@@ -60,31 +64,15 @@ public class detailed_description extends Fragment {
         }
         itemDescriptionView.setText(itemDescription);
 
-        Spinner quantityspinner = view.findViewById(R.id.quantity_spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                requireContext(),
-                R.array.quantity_options,
-                android.R.layout.simple_spinner_item
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        quantityspinner.setAdapter(adapter);
-        quantityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                selectedQuantity = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
-            }
+        AutoCompleteTextView quantityspinner = view.findViewById(R.id.quantity_spinner_autocomplete);
+        quantityspinner.setText("1", false);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
-            }
-        });
-
-        Button addButton = view.findViewById(R.id.detailed_add_button);
+        MaterialButton addButton = view.findViewById(R.id.detailed_add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String storename = MainActivity.getStoreBundle().getString(MainActivity.getStoreBundleKey());
+                int selectedQuantity = Integer.parseInt(quantityspinner.getText().toString());
                 Add add = new Add(currentUser, storename, itemName, selectedQuantity);
                 Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
                 add.addToFirebase();

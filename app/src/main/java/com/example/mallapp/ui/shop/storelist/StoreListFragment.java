@@ -51,7 +51,6 @@ public class StoreListFragment extends Fragment implements IFStoreListView {
         presenter.onViewCreated();
 
         // MainActivity.bottomNav.getMenu().findItem(R.id.navigation_shop).setChecked(true); //setSelectedItemId(R.id.navigation_shop);
-
     }
 
     @Override

@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentDetailedOwnerItemBinding;
 import com.example.mallapp.ui.shop.ItemList.ItemListPresenter;
+import com.google.android.material.button.MaterialButton;
 
 public class owner_detailed_description extends Fragment {
 
@@ -57,7 +58,7 @@ public class owner_detailed_description extends Fragment {
             itemImageView.setImageResource(R.drawable.ic_launcher_background);
         }
         itemDescriptionView.setText(itemDescription);
-        Button deletebutton = view.findViewById(R.id.detailed_delete_button);
+        MaterialButton deletebutton = view.findViewById(R.id.detailed_delete_button);
         deletebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
