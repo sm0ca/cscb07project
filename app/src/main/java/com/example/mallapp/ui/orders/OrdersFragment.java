@@ -25,15 +25,10 @@ public class OrdersFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        OrdersViewModel ordersViewModel =
-                new ViewModelProvider(this).get(OrdersViewModel.class);
 
         binding = FragmentOrdersBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textOrders;
-        ordersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        return binding.getRoot();
     }
 
     @Override
@@ -44,7 +39,8 @@ public class OrdersFragment extends Fragment {
                     .navigate(R.id.action_navigation_orders_to_orders_all_list);
         }
         else {
-            // pass
+            NavHostFragment.findNavController(OrdersFragment.this)
+                    .navigate(R.id.action_navigation_orders_to_owner_orders);
         }
 //        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
 //        MenuItem orderMenuItem = bottomNavigationView.getMenu().findItem(R.id.navigation_orders);

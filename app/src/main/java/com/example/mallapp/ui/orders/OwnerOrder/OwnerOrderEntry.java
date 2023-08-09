@@ -1,6 +1,6 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
-import com.example.cscb07project.ui.itemlist.ItemListEntry;
+import com.example.mallapp.ui.shop.ItemList.ItemListEntry;
 
 public class OwnerOrderEntry extends ItemListEntry {
     private String orderNumber;
@@ -17,9 +17,13 @@ public class OwnerOrderEntry extends ItemListEntry {
     }
 
     public OwnerOrderEntry(String itemName, String brand, String imgURL, double price, int modifierIcon, int qty) {
-        super(itemName, brand, imgURL, price, modifierIcon);
+        super.itemName = itemName;
+        super.brand = brand;
+        super.logoURL = imgURL;
+        super.price = price;
+        super.modifiericon = modifierIcon;
         this.qty = qty;
-        this.isVisible = false;
+        this.isVisible = true;
     }
 
     public String getOrderNumber() {

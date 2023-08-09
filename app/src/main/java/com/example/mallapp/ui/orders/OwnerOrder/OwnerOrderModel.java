@@ -1,11 +1,11 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.cscb07project.MainActivity;
+import com.example.mallapp.MainActivity;
 import com.example.cscb07project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

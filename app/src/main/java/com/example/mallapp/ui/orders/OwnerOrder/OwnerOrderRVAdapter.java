@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -65,8 +65,14 @@ public class OwnerOrderRVAdapter extends RecyclerView.Adapter<OwnerOrderViewHold
             holder.getHeaderLayout().setVisibility(View.GONE);
             if (orderList.get(position).isVisible()){
                 holder.getContentLayout().setVisibility(View.VISIBLE);
+
             }else{
-                holder.getContentLayout().setVisibility(View.GONE)  ;
+                ViewGroup.MarginLayoutParams cardLayoutParams =
+                        (ViewGroup.MarginLayoutParams) holder.getCardView().getLayoutParams();
+                cardLayoutParams.setMargins(0, 0, 0, 0);
+                holder.getCardView().requestLayout();
+
+                holder.getContentLayout().setVisibility(View.GONE);
             }
             holder.getItemModifier().setVisibility(View.GONE);
             holder.getItemName().setText(orderList.get(position).getItemName());

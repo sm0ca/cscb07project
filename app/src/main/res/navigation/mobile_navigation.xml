@@ -91,13 +91,16 @@
         <action
             android:id="@+id/action_navigation_orders_to_orders_all_list"
             app:destination="@id/orders_all_list" />
+        <action
+            android:id="@+id/action_navigation_orders_to_owner_orders"
+            app:destination="@id/owner_orders" />
     </fragment>
 
     <fragment
         android:id="@+id/orders_all_list"
         android:name="com.example.mallapp.ui.orders.OrderList.AllList.OrderListFragment"
         android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" >
+        tools:layout="@layout/fragment_order_all_list" >
         <action
             android:id="@+id/action_orders_all_list_to_orders_store_status_list"
             app:destination="@id/orders_store_status_list" />
@@ -107,12 +110,19 @@
         android:id="@+id/orders_store_status_list"
         android:name="com.example.mallapp.ui.orders.OrderList.StoreStatusList.StoreStatusFragment"
         android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_order_store_list" />
+
+    <fragment
+        android:id="@+id/owner_orders"
+        android:name="com.example.mallapp.ui.orders.OwnerOrder.OwnerOrderFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_owner_orders" />
 
     <fragment
         android:id="@+id/navigation_options"
         android:name="com.example.mallapp.ui.options.OptionsFragment"
         android:label="@string/title_options"
         tools:layout="@layout/fragment_options" />
+
 
 </navigation>

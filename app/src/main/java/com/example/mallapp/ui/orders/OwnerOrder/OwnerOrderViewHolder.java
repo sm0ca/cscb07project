@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
 import android.view.View;
 import android.widget.Button;
@@ -9,19 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
 public class OwnerOrderViewHolder extends RecyclerView.ViewHolder {
     private final TextView itemName;
     private final TextView itemBrand;
     private final TextView itemPrice;
     private final ImageView itemImg;
-    private final ImageView itemModifier;
+    private final MaterialButton itemModifier;
     private final View headerLayout;
     private final View contentLayout;
     private final TextView orderNumber;
     private final TextView date;
     private final TextView status;
-    private final Button completeButton;
+    private final MaterialButton completeButton;
+
+    private final MaterialCardView cardView;
 
 
     public OwnerOrderViewHolder(@NonNull View itemView) {
@@ -37,6 +41,7 @@ public class OwnerOrderViewHolder extends RecyclerView.ViewHolder {
         date = itemView.findViewById(R.id.date);
         status = itemView.findViewById(R.id.status);
         completeButton = itemView.findViewById(R.id.complete_button);
+        cardView = itemView.findViewById(R.id.item_entry_card);
     }
 
 
@@ -56,7 +61,7 @@ public class OwnerOrderViewHolder extends RecyclerView.ViewHolder {
         return itemImg;
     }
 
-    public ImageView getItemModifier() {
+    public MaterialButton getItemModifier() {
         return itemModifier;
     }
 
@@ -80,7 +85,11 @@ public class OwnerOrderViewHolder extends RecyclerView.ViewHolder {
         return status;
     }
 
-    public Button getCompleteButton() {
+    public MaterialButton getCompleteButton() {
         return completeButton;
+    }
+
+    public MaterialCardView getCardView() {
+        return cardView;
     }
 }

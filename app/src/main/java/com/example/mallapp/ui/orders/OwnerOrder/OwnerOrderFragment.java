@@ -1,4 +1,4 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cscb07project.R;
-import com.example.cscb07project.databinding.FragmentOrdersBinding;
+import com.example.cscb07project.databinding.FragmentOwnerOrdersBinding;
 
 import java.util.ArrayList;
 
-public class OwnerOrdersFragment extends Fragment {
+public class OwnerOrderFragment extends Fragment {
 
-    private FragmentOrdersBinding binding;
+    private FragmentOwnerOrdersBinding binding;
 
     private RecyclerView recyclerView;
 
@@ -27,7 +27,7 @@ public class OwnerOrdersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentOrdersBinding.inflate(inflater, container, false);
+        binding = FragmentOwnerOrdersBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

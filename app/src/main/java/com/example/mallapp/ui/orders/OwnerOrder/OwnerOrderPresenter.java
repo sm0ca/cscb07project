@@ -1,14 +1,14 @@
-package com.example.cscb07project.ui.orders;
+package com.example.mallapp.ui.orders.OwnerOrder;
 
 import java.util.List;
 
 public class OwnerOrderPresenter {
 
-    private final OwnerOrdersFragment fragment;
+    private final OwnerOrderFragment fragment;
     private final OwnerOrderModel model;
     private OwnerOrderRVAdapter adapter;
 
-    public OwnerOrderPresenter(OwnerOrdersFragment fragment) {
+    public OwnerOrderPresenter(OwnerOrderFragment fragment) {
         this.fragment = fragment;
         this.model = new OwnerOrderModel(this, "https://grocery-store-app-75a7a-default-rtdb.firebaseio.com/");
         model.createEventListener();
