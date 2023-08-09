@@ -7,6 +7,12 @@
     <string name="title_options">Options</string>
     <string name="checkout_button">Next</string>
     <string name="checkout_header">Shipping &amp; Billing Info</string>
+    <!--  OwnerList Add text  -->
+    <string name="add_item_to_store">Add Item to Store</string>
+    <string name="successfully_uploaded_item">Successfully uploaded item</string>
+    <string name="failed_to_upload_item">Failed to upload item</string>
+    <string name="isowneradditem">isOwnerAddItem</string>
+    <string name="item_price">[item price]</string>
 
     <!--  Text for button to store list  -->
     <string name="store_list_button_text">Store List</string>
@@ -37,6 +43,7 @@
     <string name="order_full_name">[full name]</string>
     <string name="order_address">[address line 1]\n[line 2]\n[line 3]</string>
     <string name="order_time">[time]</string>
+    <string name="tap_of_the_picture_to_upload_your_image">Tap above to upload your image.</string>
 
     <!--  Spinner View  -->
     <string-array name="quantity_options">
