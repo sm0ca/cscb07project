@@ -83,10 +83,6 @@ public class activity_register_presenter implements activity_register_contract.P
         view.progressBarVisibility(mode);
     }
 
-    @Override
-    public String setStoreLogo() {
-        return model.setStoreLogoData(getStoreLogoUri());
-    }
 
     @Override
     public Uri getStoreLogoUri() {

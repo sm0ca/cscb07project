@@ -18,6 +18,8 @@ public interface activity_login_contract {
     interface Model {
         void loggingInUser(String email, String password);
         void checkLoggedIn();
+        void changeProgressBarVisibility(int mode);
+        void doToastView(String message);
 
     }
 }

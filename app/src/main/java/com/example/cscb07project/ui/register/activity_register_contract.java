@@ -21,7 +21,6 @@ public interface activity_register_contract {
         void doCheckLoggedIn();
         void isLoggedIn();
         void changeProgressBarVisibility(int mode);
-        String setStoreLogo();
         Uri getStoreLogoUri();
     }
 
@@ -31,6 +30,8 @@ public interface activity_register_contract {
         String setStoreLogoData(Uri uri);
         void doToastView(String string);
         Uri getStoreLogoUri();
+        void changeProgressBarVisibility(int mode);
+        void checkExistingStoreName(String storeName);
 
     }
 }
