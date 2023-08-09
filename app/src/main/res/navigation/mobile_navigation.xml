@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_shop"
-        android:name="com.example.mallapp.ui.shop.ShopFragment"
+        android:name="com.example.cscb07project.ui.shop.ShopFragment"
         android:label="@string/title_shop"
         tools:layout="@layout/fragment_shop">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.mallapp.ui.cart.CartFragment"
+        android:name="com.example.cscb07project.ui.cart.CartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/fragment_cart">
         <action
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/shop_storelist"
-        android:name="com.example.mallapp.ui.shop.storelist.StoreListFragment"
+        android:name="com.example.cscb07project.ui.shop.storelist.StoreListFragment"
         android:label="@string/title_storelist"
         tools:layout="@layout/fragment_store_list">
         <action
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/ItemList"
-        android:name="com.example.mallapp.ui.shop.ItemList.ItemListFragment"
+        android:name="com.example.cscb07project.ui.shop.ItemList.ItemListFragment"
         tools:layout="@layout/fragment_item_list">
         <action
             android:id="@+id/action_item_list_to_detailed_list"
@@ -50,14 +50,14 @@
 
     <fragment
         android:id="@+id/detailed_description"
-        android:name="com.example.mallapp.ui.shop.ItemList.detailed_description"
+        android:name="com.example.cscb07project.ui.shop.ItemList.detailed_description"
         android:label="Item Details"
         tools:layout="@layout/fragment_detailed_item">
     </fragment>
 
     <fragment
         android:id="@+id/owner_list"
-        android:name="com.example.mallapp.ui.shop.OwnerList.OwnerListFragment"
+        android:name="com.example.cscb07project.ui.shop.OwnerList.OwnerListFragment"
         android:label="Your Store"
         tools:layout="@layout/fragment_owner_list">
         <action
@@ -67,14 +67,14 @@
 
     <fragment
         android:id="@+id/detailed_description_owner"
-        android:name="com.example.mallapp.ui.shop.OwnerList.owner_detailed_description"
+        android:name="com.example.cscb07project.ui.shop.OwnerList.owner_detailed_description"
         android:label="Item Details"
         tools:layout="@layout/fragment_detailed_owner_item">
     </fragment>
 
     <fragment
         android:id="@+id/cart_checkout"
-        android:name="com.example.mallapp.ui.cart.CheckoutFragment"
+        android:name="com.example.cscb07project.ui.cart.CheckoutFragment"
         android:label="@string/title_checkout"
         tools:layout="@layout/fragment_checkout">
         <action
@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.mallapp.ui.orders.OrdersFragment"
+        android:name="com.example.cscb07project.ui.orders.OrdersFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_orders" >
         <action
@@ -98,7 +98,7 @@
 
     <fragment
         android:id="@+id/orders_all_list"
-        android:name="com.example.mallapp.ui.orders.OrderList.AllList.OrderListFragment"
+        android:name="com.example.cscb07project.ui.orders.OrderList.AllList.OrderListFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_order_all_list" >
         <action
@@ -108,19 +108,19 @@
 
     <fragment
         android:id="@+id/orders_store_status_list"
-        android:name="com.example.mallapp.ui.orders.OrderList.StoreStatusList.StoreStatusFragment"
+        android:name="com.example.cscb07project.ui.orders.OrderList.StoreStatusList.StoreStatusFragment"
         android:label="Order Details"
         tools:layout="@layout/fragment_order_store_list" />
 
     <fragment
         android:id="@+id/owner_orders"
-        android:name="com.example.mallapp.ui.orders.OwnerOrder.OwnerOrderFragment"
+        android:name="com.example.cscb07project.ui.orders.OwnerOrder.OwnerOrderFragment"
         android:label="@string/title_orders"
         tools:layout="@layout/fragment_owner_orders" />
 
     <fragment
         android:id="@+id/navigation_options"
-        android:name="com.example.mallapp.ui.options.OptionsFragment"
+        android:name="com.example.cscb07project.ui.options.OptionsFragment"
         android:label="@string/title_options"
         tools:layout="@layout/fragment_options" />
 
