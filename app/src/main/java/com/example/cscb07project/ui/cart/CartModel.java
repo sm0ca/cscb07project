@@ -15,8 +15,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 
 import java.util.ArrayList;
@@ -67,7 +65,6 @@ public class CartModel {
                                 if (itemSnapshot.child("price").getValue(Double.class) == null) {
                                     return;
                                 }
-
                                 CartEntry newEntry = new CartEntry(itemName,
                                         itemSnapshot.child("brand").getValue(String.class),
                                         itemSnapshot.child("image").getValue(String.class),
