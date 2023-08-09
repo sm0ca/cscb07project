@@ -3,7 +3,6 @@ package com.example.cscb07project.ui.shop.ItemList;
 import static com.example.cscb07project.MainActivity.currentUser;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +51,7 @@ public class ItemListRVAdapter extends RecyclerView.Adapter<ItemListRVAdapter.It
         holder.getItemBrand().setText(itemsList.get(position).getBrand());
 
         if (itemsList.get(position).getImgURL() != null && !itemsList.get(position).getImgURL().isEmpty()) {
-            //Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
-            Glide.with(context).load(Uri.parse(itemsList.get(position).getImgURL())).into(holder.getItemLogo());
+            Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
         } else {
             holder.getItemLogo().setImageResource(R.drawable.ic_launcher_background);
         }
