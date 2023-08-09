@@ -63,7 +63,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/placeholder_item_icon"
+        android:src="@drawable/ic_launcher_background"
         android:visibility="gone"
         android:clickable="true"
         />
