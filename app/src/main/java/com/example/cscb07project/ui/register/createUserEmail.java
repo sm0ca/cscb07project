@@ -82,9 +82,6 @@ public class createUserEmail implements createUser{
                                 FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "owner")
                                         .setValue(mAuth.getUid());
 
-                                // make a sample item for owner's store
-                                FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "items/")
-                                        .setValue(null);
 
                             } else if (isOwner_check == R.id.radioButton_register_customer) {
                                 dbReference.child("isOwner").setValue(false);
