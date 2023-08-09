@@ -3,7 +3,6 @@ package com.example.cscb07project.ui.shop.OwnerList;
 import static com.example.cscb07project.MainActivity.currentUser;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,11 +58,10 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
         holder.getItemPrice().setText(formatter.format(itemsList.get(position).getPrice()));
         holder.getItemBrand().setText(itemsList.get(position).getBrand());
         holder.getDeleteButton().setIcon(context.getDrawable(R.drawable.round_remove_36));
+     //   holder.getItemDescription().setText(itemsList.get(position).getDescription());
 
         if (itemsList.get(position).getImgURL() != null && !itemsList.get(position).getImgURL().isEmpty()) {
-
-           // Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
-            Glide.with(context).load(Uri.parse(itemsList.get(position).getImgURL())).into(holder.getItemLogo());
+            Glide.with(context).load(itemsList.get(position).getImgURL()).into(holder.getItemLogo());
         } else {
             holder.getItemLogo().setImageResource(R.drawable.ic_launcher_background);
         }
@@ -93,7 +91,6 @@ public class OwnerListRVAdapter extends RecyclerView.Adapter<OwnerListRVAdapter.
             itemBrand = itemView.findViewById(R.id.item_entry_brand);
             itemDescription = itemView.findViewById(R.id.item_entry_description);
             deleteButton = itemView.findViewById(R.id.item_entry_modifier);
-
 
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
