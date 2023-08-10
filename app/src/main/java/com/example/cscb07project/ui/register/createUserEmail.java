@@ -1,12 +1,8 @@
 package com.example.cscb07project.ui.register;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.cscb07project.R;
 import com.google.android.gms.tasks.OnCompleteListener;

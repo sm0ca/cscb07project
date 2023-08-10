@@ -1,17 +1,9 @@
 package com.example.cscb07project.ui.register;
 
-import static android.app.Activity.RESULT_OK;
-
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 
 public class activity_register_presenter implements activity_register_contract.Presenter {
 

@@ -1,9 +1,5 @@
 package com.example.cscb07project.ui.register;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +12,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cscb07project.MainActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.login.activity_login;
 import com.example.cscb07project.ui.tools.MainStart;
@@ -30,11 +28,8 @@ public class activity_register extends AppCompatActivity implements activity_reg
     private TextInputEditText editTextStoreName;
     private ImageView storeLogo;
     private Uri storeLogoUri = null;
-    private Button button;
-    private TextView redirect;
     private activity_register_contract.Presenter presenter;
     private ProgressBar ProgressBar;
-    private RadioGroup isOwner_option;
     private int isOwnerId = 0;
 
     public int getRadioButtonRegisterOwner() { return R.id.radioButton_register_owner; }
@@ -76,10 +71,10 @@ public class activity_register extends AppCompatActivity implements activity_reg
         editTextPassword = findViewById(R.id.password);
         editTextStoreName = findViewById(R.id.store_name);
 
-        button = findViewById(R.id.register_button);
+        Button button = findViewById(R.id.register_button);
         storeLogo = findViewById(R.id.store_logo);
         ProgressBar = findViewById(R.id.progress_bar);
-        redirect = findViewById(R.id.redirect);
+        TextView redirect = findViewById(R.id.redirect);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +118,7 @@ public class activity_register extends AppCompatActivity implements activity_reg
 
 
         // check if owner or customer
-        isOwner_option = findViewById(R.id.radioButton_register);
+        RadioGroup isOwner_option = findViewById(R.id.radioButton_register);
         isOwner_option.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -153,6 +148,10 @@ public class activity_register extends AppCompatActivity implements activity_reg
         if(requestCode == 69 && resultCode == RESULT_OK && data.getData() != null) { //nice!
             storeLogoUri = data.getData();
             setStoreLogo(storeLogoUri);
+        }
+        else if(data.getData() == null) {
+            Log.e("TAG_ACTIVITY_REGISTER", "onActivityResult: getData() is null");
+            doToast("image select error, please select image again");
         }
     }
 }
