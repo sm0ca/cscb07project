@@ -63,7 +63,8 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/store_placeholder"
+        android:layout_margin="16dp"
         android:visibility="gone"
         android:clickable="true"
         />
@@ -73,7 +74,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -88,14 +89,14 @@
         android:id="@+id/redirect"
         android:text="@string/login_text"
         android:gravity="center"
-        android:textSize="15dp"
+        android:textSize="16sp"
         android:layout_marginTop="15dp"/>
 
     <RadioGroup
         android:id="@+id/radioButton_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_marginHorizontal="15dp">
 
         <RadioButton
             android:id="@+id/radioButton_register_customer"

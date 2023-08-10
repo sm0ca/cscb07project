@@ -26,7 +26,6 @@ public class MainStart {
                 MainActivity.currentUser = username;
                 MainActivity.isOwner = Boolean.TRUE.equals(userSnapshot.child("isOwner")
                         .getValue(Boolean.class));
-                Log.d("SLM.java", "IsOwner: " + MainActivity.isOwner);
                 MainActivity.ownerStore = userSnapshot.hasChild("storeName") ?
                         userSnapshot.child("storeName").getValue(String.class) : "";
 
