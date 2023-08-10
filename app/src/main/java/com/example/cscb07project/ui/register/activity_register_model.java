@@ -73,7 +73,6 @@ public class activity_register_model implements activity_register_contract.Model
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
-                    int idx = 0;
                     presenter.isLoggedIn();
                 }
             }
@@ -133,6 +132,4 @@ public class activity_register_model implements activity_register_contract.Model
             }
 
     }
-
-
 }
