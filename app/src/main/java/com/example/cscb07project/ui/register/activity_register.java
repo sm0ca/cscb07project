@@ -149,7 +149,7 @@ public class activity_register extends AppCompatActivity implements activity_reg
             storeLogoUri = data.getData();
             setStoreLogo(storeLogoUri);
         }
-        else if(data.getData() == null) {
+        else if(resultCode == RESULT_OK && data.getData() == null) {
             Log.w("TAG_ACTIVITY_REGISTER", "onActivityResult: getData() is null");
             doToast("image select error, please select image again");
         }
