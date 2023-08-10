@@ -65,7 +65,6 @@ public class OrderList_RVAdapter extends RecyclerView.Adapter<OrderList_RVAdapte
             orderNextIconIV.setOnClickListener(listenerView -> {
                 int positionClicked = getBindingAdapterPosition();
                 orderIdClicked = presenter.getOrderIdAtPos(positionClicked);
-                // TODO: Fix crash when going from order list to each store page
                 View inflatedView = View.inflate(view.getViewContext(), R.layout.fragment_order_all_entry, null);
                 Navigation.findNavController(listenerView).navigate(R.id.action_orders_all_list_to_orders_store_status_list);
             });
