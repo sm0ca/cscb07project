@@ -14,9 +14,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.example.cscb07project.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-
+    private FirebaseAuth dbAuth;
     public static String currentUser;
     public static boolean isOwner;
     public static String ownerStore;

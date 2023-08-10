@@ -100,7 +100,24 @@
         android:id="@+id/navigation_options"
         android:name="com.example.cscb07project.ui.options.OptionsFragment"
         android:label="@string/title_options"
-        tools:layout="@layout/fragment_options" />
+        tools:layout="@layout/fragment_options" >
+        <action
+            android:id="@+id/action_navigation_options_to_isOwner_add_button"
+            app:destination="@id/isOwner_add_button" />
+        <action
+            android:id="@+id/action_navigation_options_to_navigation_isOwner_add_button"
+            app:destination="@id/navigation_isOwner_add_button" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_isOwner_add_button"
+        android:name="com.example.cscb07project.ui.addItem.fragment_ownerAddItem"
+        android:label="@string/isonweradditem"
+        tools:layout="@layout/fragment_owner_add_item" >
+        <action
+            android:id="@+id/action_navigation_isOwner_add_button_to_navigation_options"
+            app:destination="@id/navigation_options" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/owner_list_add"

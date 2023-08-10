@@ -7,6 +7,21 @@
     <string name="title_options">Options</string>
     <string name="checkout_button">Next</string>
     <string name="checkout_header">Shipping &amp; Billing Info</string>
+
+    <!--  Login/Logout -->
+    <string name="login_text">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register_text">Register</string>
+    <string name="logout_text">Logout</string>
+    <string name="i_am_a_customer">I am a customer</string>
+    <string name="i_am_an_store_owner">I am an store owner</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="store_name_text">Store name</string>
+    <string name="confirm_text">Confirm</string>
+    <string name="register_owner">register_owner</string>
+
     <!--  OwnerList Add text  -->
     <string name="add_item_to_store">Add Item to Store</string>
     <string name="successfully_uploaded_item">Successfully uploaded item</string>
