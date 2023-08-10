@@ -5,13 +5,6 @@ import static android.app.Activity.RESULT_OK;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,9 +47,6 @@ public class owner_add_item extends Fragment {
     Uri imageUri = null;
     StorageReference storageReference;
     MaterialButton uploadButton;
-    String storeName;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    FirebaseDatabase db = FirebaseDatabase.getInstance();
 
     public owner_add_item() {
         // Required empty public constructor
@@ -81,17 +78,6 @@ public class owner_add_item extends Fragment {
         itemDescription = view.findViewById(R.id.item_description);
         itemPrice = view.findViewById(R.id.item_price);
 
-
-        db.getReference("users/" + user.getUid() + "/storeName").get()
-                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if(task.isSuccessful()) {
-                            storeName = String.valueOf(task.getResult().getValue());
-                        }
-                    }
-                });
-
         imageViewProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,8 +88,8 @@ public class owner_add_item extends Fragment {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                storageReference = FirebaseStorage.getInstance().getReference("images/" + storeName +
-                        "/" + String.valueOf(itemName.getText()));
+                storageReference = FirebaseStorage.getInstance().getReference("images/" + MainActivity.ownerStore +
+                        "/" + itemName.getText());
 
                 if(emptyCheck()) {
                     uploadDetails();
@@ -119,7 +105,7 @@ public class owner_add_item extends Fragment {
 
     private void uploadDetails() {
         DatabaseReference dbDetailsReference = FirebaseDatabase.getInstance().getReference("stores/"
-                + storeName + "/" + "items");
+                + MainActivity.ownerStore + "/" + "items");
 
         // setValue itemBrand
         dbDetailsReference.child(String.valueOf(itemName.getText()))
