@@ -52,8 +52,7 @@ public class StoreListModel implements IFStoreListModel {
                         @Override
                         public void onSuccess(Uri uri) {
                             String downloadUrl = uri.toString();
-                            String owner = snapshot.child(OWNER).getValue(String.class);
-                            StoreListEntry newEntry = new StoreListEntry(storeName, owner, downloadUrl);
+                            StoreListEntry newEntry = new StoreListEntry(storeName, downloadUrl);
                             if (previousChildName == null) {
                                 stores.add(FIRST_IDX, newEntry);
                                 presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
@@ -66,8 +65,7 @@ public class StoreListModel implements IFStoreListModel {
                     });
                 }
                 else{
-                    String owner = snapshot.child(OWNER).getValue(String.class);
-                    StoreListEntry newEntry = new StoreListEntry(storeName, owner, logoURL);
+                    StoreListEntry newEntry = new StoreListEntry(storeName, logoURL);
                     if (previousChildName == null) {
                         stores.add(FIRST_IDX, newEntry);
                         presenter.notifyAdapter(new NotifyAdapter.Inserted(FIRST_IDX));
@@ -87,7 +85,6 @@ public class StoreListModel implements IFStoreListModel {
                 if(previousChildName == null) {
                     stores.get(FIRST_IDX).setStoreName(updatedStoreName);
                     stores.get(FIRST_IDX).setLogo(updatedLogo);
-                    stores.get(FIRST_IDX).setOwnerName(updatedOwner);
                     presenter.notifyAdapter(new NotifyAdapter.Changed(FIRST_IDX));
                 }
                 else {
@@ -95,7 +92,6 @@ public class StoreListModel implements IFStoreListModel {
                     int idxToUpdate = stores.indexOf(prev) + 1;
                     stores.get(idxToUpdate).setStoreName(updatedStoreName);
                     stores.get(idxToUpdate).setLogo(updatedLogo);
-                    stores.get(idxToUpdate).setOwnerName(updatedOwner);
                     presenter.notifyAdapter(new NotifyAdapter.Changed(idxToUpdate));
                 }
 //                Log.d("SLM.java", "Changed");
@@ -116,8 +112,7 @@ public class StoreListModel implements IFStoreListModel {
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String movedName = snapshot.getKey();
                 String movedLogo = snapshot.child(LOGO_NODE_NAME).getValue(String.class);
-                String movedOwner = snapshot.child(OWNER).getValue(String.class);
-                StoreListEntry movedEntry = new StoreListEntry(movedName, movedOwner, movedLogo);
+                StoreListEntry movedEntry = new StoreListEntry(movedName, movedLogo);
                 int idxInitial = stores.indexOf(movedEntry);
                 stores.remove(movedEntry);
                 if(previousChildName == null) {

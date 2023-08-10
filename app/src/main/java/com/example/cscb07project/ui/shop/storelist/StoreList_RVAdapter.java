@@ -46,13 +46,11 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
     public class StoreList_VH extends RecyclerView.ViewHolder {
 
         private final TextView storeNameTV;
-        private final TextView storeOwnerTV;
         private final ImageView storeLogoIV;
 
         public StoreList_VH(View view) {
             super(view);
             storeNameTV = view.findViewById(R.id.store_name);
-            storeOwnerTV = view.findViewById(R.id.owner_name);
             storeLogoIV = view.findViewById(R.id.store_logo);
             view.setOnClickListener(view1 -> {
                 int position = getBindingAdapterPosition();
@@ -64,10 +62,6 @@ public class StoreList_RVAdapter extends RecyclerView.Adapter<StoreList_RVAdapte
 
         public TextView getStoreNameTV() {
             return storeNameTV;
-        }
-
-        public TextView getStoreOwnerTV() {
-            return storeOwnerTV;
         }
 
         public ImageView getStoreLogoIV() {

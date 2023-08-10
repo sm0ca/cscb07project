@@ -39,17 +39,8 @@ public class StoreListPresenter implements IFStoreListPresenter {
     @Override
     public void onBindViewHolderAtPos(StoreList_RVAdapter.StoreList_VH holder, int position) {
         String storeName = model.getDataList().get(position).getStoreName();
-        String ownerName = model.getDataList().get(position).getOwnerName();
         String storeLogo = model.getDataList().get(position).getLogo();
         holder.getStoreNameTV().setText(storeName);
-        String ownerLabel;
-        if(ownerName != null && !ownerName.isEmpty()) {
-            ownerLabel = "By: " + ownerName;
-        }
-        else {
-            ownerLabel = "By: N/A";
-        }
-        holder.getStoreOwnerTV().setText(ownerLabel);
         if(storeLogo != null && !storeLogo.isEmpty()) {
             view.displayStoreLogo(holder, storeLogo);
         }

@@ -8,15 +8,13 @@ public class StoreListEntry {
 
     private String storeName;
     private String logo;
-    private String ownerName;
 
     public StoreListEntry(String storeName) {
         this.storeName = storeName;
     }
 
-    public StoreListEntry(String storeName, String ownerName, String imageURL) {
+    public StoreListEntry(String storeName, String imageURL) {
         this.storeName = storeName;
-        this.ownerName = ownerName;
         this.logo = imageURL;
     }
 
@@ -35,11 +33,6 @@ public class StoreListEntry {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-
-    public String getOwnerName(){return ownerName;}
-
-    public void setOwnerName(String owner) {this.ownerName = owner;}
-
 
     @Override
     public boolean equals(Object o) {
