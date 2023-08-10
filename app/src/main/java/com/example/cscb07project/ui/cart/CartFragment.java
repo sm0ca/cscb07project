@@ -1,5 +1,4 @@
 package com.example.cscb07project.ui.cart;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentCartBinding;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CartFragment extends Fragment {
     public static double subTotal;
@@ -67,6 +66,10 @@ public class CartFragment extends Fragment {
             }
         });
 
+//        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.nav_view);
+//        MenuItem cartMenuItem = bottomNavigationView.getMenu().findItem(R.id.navigation_cart);
+//        cartMenuItem.setChecked(true);
+
         CartRVAdapter adapter = new CartRVAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);
     }
@@ -82,6 +85,7 @@ public class CartFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Glide.get(requireContext()).clearMemory();
         binding = null;
     }
 }

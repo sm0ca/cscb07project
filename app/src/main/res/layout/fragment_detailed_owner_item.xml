@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Image at the top -->
+
+        <!-- Layout for Name, Brand, and Description -->
+
+        <!-- Add Button at the bottom -->
+
+        <ImageView
+            android:id="@+id/item_entry_img"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="32dp"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Guideline to align buttons vertically -->
+
+        <!-- Add Button -->
+
+        <!-- Remove Button -->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/detailed_delete_button"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="Delete Item"
+            android:textSize="24sp"
+            app:iconSize="24sp"
+            app:icon="@drawable/round_remove_circle_outline_36"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_description" />
+
+        <TextView
+            android:id="@+id/item_entry_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/item_name_placeholder"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_img" />
+
+        <TextView
+            android:id="@+id/item_entry_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/item_brand_placeholder"
+            android:textSize="24sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_name" />
+
+        <TextView
+            android:id="@+id/item_entry_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/item_description_placeholder"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_entry_brand" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

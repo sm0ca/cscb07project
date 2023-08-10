@@ -6,12 +6,6 @@
     app:startDestination="@+id/navigation_shop">
 
     <fragment
-        android:id="@+id/navigation_shop"
-        android:name="com.example.cscb07project.ui.shop.ShopFragment"
-        android:label="@string/title_shop"
-        tools:layout="@layout/fragment_shop"/>
-
-    <fragment
         android:id="@+id/navigation_cart"
         android:name="com.example.cscb07project.ui.cart.CartFragment"
         android:label="@string/title_cart"
@@ -19,6 +13,54 @@
         <action
             android:id="@+id/action_navigation_cart_to_cart_checkout"
             app:destination="@id/cart_checkout" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_shop"
+        android:name="com.example.cscb07project.ui.shop.storelist.StoreListFragment"
+        android:label="@string/title_storelist"
+        tools:layout="@layout/fragment_store_list">
+        <action
+            android:id="@+id/action_store_list_to_item_list"
+            app:destination="@+id/ItemList"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ItemList"
+        android:name="com.example.cscb07project.ui.shop.ItemList.ItemListFragment"
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/action_item_list_to_detailed_list"
+            app:destination="@+id/detailed_description" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailed_description"
+        android:name="com.example.cscb07project.ui.shop.ItemList.detailed_description"
+        android:label="detailed List"
+        tools:layout="@layout/fragment_detailed_item">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_owner_shop"
+        android:name="com.example.cscb07project.ui.shop.OwnerList.OwnerListFragment"
+        android:label="Your Store"
+        tools:layout="@layout/fragment_owner_list">
+        <action
+            android:id="@+id/action_owner_list_to_detailed_owner_entry"
+            app:destination="@+id/detailed_description_owner" />
+        <action
+            android:id="@+id/action_owner_list_to_owner_list_add"
+            app:destination="@id/owner_list_add" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailed_description_owner"
+        android:name="com.example.cscb07project.ui.shop.OwnerList.owner_detailed_description"
+        android:label="detailed Owner List"
+        tools:layout="@layout/fragment_detailed_owner_item">
     </fragment>
 
     <fragment
@@ -34,15 +76,57 @@
 
     <fragment
         android:id="@+id/navigation_orders"
-        android:name="com.example.cscb07project.ui.orders.OrdersFragment"
+        android:name="com.example.cscb07project.ui.orders.OrderList.AllList.OrderListFragment"
         android:label="@string/title_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_order_all_list" >
+        <action
+            android:id="@+id/action_orders_all_list_to_orders_store_status_list"
+            app:destination="@id/orders_store_status_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orders_store_status_list"
+        android:name="com.example.cscb07project.ui.orders.OrderList.StoreStatusList.StoreStatusFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_order_store_list" />
+
+    <fragment
+        android:id="@+id/navigation_owner_orders"
+        android:name="com.example.cscb07project.ui.orders.OwnerOrder.OwnerOrderFragment"
+        android:label="@string/title_orders"
+        tools:layout="@layout/fragment_owner_orders" />
 
     <fragment
         android:id="@+id/navigation_options"
         android:name="com.example.cscb07project.ui.options.OptionsFragment"
         android:label="@string/title_options"
-        tools:layout="@layout/fragment_options" />
+        tools:layout="@layout/fragment_options" >
+        <action
+            android:id="@+id/action_navigation_options_to_isOwner_add_button"
+            app:destination="@id/isOwner_add_button" />
+        <action
+            android:id="@+id/action_navigation_options_to_navigation_isOwner_add_button"
+            app:destination="@id/navigation_isOwner_add_button" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_isOwner_add_button"
+        android:name="com.example.cscb07project.ui.addItem.fragment_ownerAddItem"
+        android:label="Add Item"
+        tools:layout="@layout/fragment_owner_add_item" >
+        <action
+            android:id="@+id/action_navigation_isOwner_add_button_to_navigation_options"
+            app:destination="@id/navigation_options" />
+    </fragment>
 
+
+    <fragment
+        android:id="@+id/owner_list_add"
+        android:name="com.example.cscb07project.ui.shop.OwnerList.owner_add_item"
+        android:label="Add Item"
+        tools:layout="@layout/fragment_owner_add_item" >
+        <action
+            android:id="@+id/action_owner_list_add_to_owner_list"
+            app:destination="@id/navigation_owner_shop" />
+    </fragment>
 
 </navigation>

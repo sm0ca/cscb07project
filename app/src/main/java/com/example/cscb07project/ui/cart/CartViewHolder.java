@@ -7,16 +7,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.cscb07project.R;
-
-import org.w3c.dom.Text;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
 
 public class CartViewHolder extends RecyclerView.ViewHolder {
+    private final MaterialCardView cardView;
     private final TextView storeName;
     private final TextView itemName;
     private final TextView itemBrand;
     private final TextView itemPrice;
     private final ImageView itemImg;
-    private final ImageView itemModifier;
+    private final MaterialButton itemModifier;
     private final View headerLayout;
     private final View contentLayout;
 
@@ -31,6 +32,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         storeName = itemView.findViewById(R.id.item_entry_store);
         headerLayout = itemView.findViewById(R.id.item_header_layout);
         contentLayout = itemView.findViewById(R.id.item_content_layout);
+        cardView = itemView.findViewById(R.id.item_entry_card);
     }
 
     public TextView getItemName() {
@@ -49,7 +51,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
         return itemImg;
     }
 
-    public ImageView getItemModifier() {
+    public MaterialButton getItemModifier() {
         return itemModifier;
     }
 
@@ -63,5 +65,9 @@ public class CartViewHolder extends RecyclerView.ViewHolder {
 
     public View getContentLayout() {
         return contentLayout;
+    }
+
+    public MaterialCardView getCardView() {
+        return cardView;
     }
 }

@@ -1,18 +1,23 @@
 package com.example.cscb07project.ui.register;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.cscb07project.MainActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.cscb07project.R;
 import com.example.cscb07project.ui.login.activity_login;
+import com.example.cscb07project.ui.tools.MainStart;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -21,27 +26,35 @@ public class activity_register extends AppCompatActivity implements activity_reg
     private TextInputEditText editTextEmail;
     private TextInputEditText editTextPassword;
     private TextInputEditText editTextStoreName;
-    private Button button;
-    private TextView redirect;
+    private ImageView storeLogo;
+    private Uri storeLogoUri = null;
     private activity_register_contract.Presenter presenter;
     private ProgressBar ProgressBar;
-    private RadioGroup isOwner_option;
     private int isOwnerId = 0;
 
     public int getRadioButtonRegisterOwner() { return R.id.radioButton_register_owner; }
     public int getRadioButtonRegisterCustomer() { return R.id.radioButton_register_customer; }
+    public Uri getStoreLogoUri() {
+        return storeLogoUri;
+    }
+
+    @Override
+    public void doToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
 
     // other functions
     public void progressBarVisibility (int mode) {
         ProgressBar.setVisibility(mode);
     }
+    public void setStoreLogo(Uri uri) {
+        storeLogo.setImageURI(uri);
+    }
 
-    // change activity if logged in
+    // change activity to MainActivity if logged in
     @Override
     public void loggedIn() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
-        finish();
+        MainStart.switchToMain(this);
     }
 
     @Override
@@ -57,9 +70,11 @@ public class activity_register extends AppCompatActivity implements activity_reg
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         editTextStoreName = findViewById(R.id.store_name);
-        button = findViewById(R.id.register_button);
+
+        Button button = findViewById(R.id.register_button);
+        storeLogo = findViewById(R.id.store_logo);
         ProgressBar = findViewById(R.id.progress_bar);
-        redirect = findViewById(R.id.redirect);
+        TextView redirect = findViewById(R.id.redirect);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +87,19 @@ public class activity_register extends AppCompatActivity implements activity_reg
                 ProgressBar.setVisibility(View.VISIBLE);
 
                 presenter.doRegisterEmail(email, password, storeName, isOwnerId);
+
+            }
+        });
+
+        // onClickListener for storeLogo to get storeLogo's image
+        storeLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent intent = new Intent();
+                    intent.setType("image/*");
+                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(intent, 69);
+
             }
         });
 
@@ -90,7 +118,7 @@ public class activity_register extends AppCompatActivity implements activity_reg
 
 
         // check if owner or customer
-        isOwner_option = findViewById(R.id.radioButton_register);
+        RadioGroup isOwner_option = findViewById(R.id.radioButton_register);
         isOwner_option.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -99,11 +127,31 @@ public class activity_register extends AppCompatActivity implements activity_reg
                 // change storeName visibility
                 if(isOwnerId == R.id.radioButton_register_owner) {
                     editTextStoreName.setVisibility(View.VISIBLE);
+                    editTextStoreName.setHint(getResources().getString(R.string.store_name_text));
+                    storeLogo.setVisibility(View.VISIBLE);
                 }
                 else {
                     editTextStoreName.setVisibility(View.GONE);
+                    editTextStoreName.setHint(null);
+                    storeLogo.setVisibility(View.GONE);
                 }
             }
         });
+    }
+
+
+    // put image data into storeLogoUri and change image in view
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 69 && resultCode == RESULT_OK && data.getData() != null) { //nice!
+            storeLogoUri = data.getData();
+            setStoreLogo(storeLogoUri);
+        }
+        else if(resultCode == RESULT_OK && data.getData() == null) {
+            Log.w("TAG_ACTIVITY_REGISTER", "onActivityResult: getData() is null");
+            doToast("image select error, please select image again");
+        }
     }
 }

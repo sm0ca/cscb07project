@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <!-- Image at the top -->
+
+        <!-- Layout for Name, Brand, and Description -->
+
+        <!-- Add Button at the bottom -->
+
+        <ImageView
+            android:id="@+id/isOwner_item_logo"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="8dp"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:text="@string/tap_of_the_picture_to_upload_your_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/isOwner_item_logo" />
+
+        <!-- Guideline to align buttons vertically -->
+        <LinearLayout
+            android:id="@+id/name_brand_description_layout"
+            android:layout_width="354dp"
+            android:layout_height="187dp"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.561"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView">
+
+            <EditText
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:hint="@string/item_name_placeholder" />
+
+            <EditText
+                android:id="@+id/item_brand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:hint="@string/item_brand_placeholder" />
+
+            <EditText
+                android:id="@+id/item_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:hint="@string/item_description_placeholder" />
+
+            <EditText
+                android:id="@+id/item_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:hint="@string/item_price"
+                android:inputType="number" />
+
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="241dp" />
+
+        <!-- Add Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/isOwner_add_button"
+            style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="14dp"
+            android:text="@string/add_item_to_store"
+            android:textSize="24sp"
+            app:icon="@drawable/round_add_circle_outline_36"
+            app:iconSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_brand_description_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

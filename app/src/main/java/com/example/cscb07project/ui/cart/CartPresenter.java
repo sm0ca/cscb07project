@@ -1,9 +1,5 @@
 package com.example.cscb07project.ui.cart;
 
-import com.example.cscb07project.ui.itemlist.ItemListEntry;
-
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CartPresenter {

@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_shop"
         android:icon="@drawable/round_local_mall_24"
-        android:title="@string/title_shop" />
+        android:title="@string/title_shop"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/navigation_cart"
         android:icon="@drawable/round_shopping_cart_24"
-        android:title="@string/title_cart" />
+        android:title="@string/title_cart"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/navigation_orders"
         android:icon="@drawable/round_local_shipping_24"
-        android:title="@string/title_orders" />
+        android:title="@string/title_orders"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/navigation_options"
         android:icon="@drawable/round_settings_24"
-        android:title="@string/title_options" />
+        android:title="@string/title_options"
+        app:showAsAction="always"/>
 
 </menu>

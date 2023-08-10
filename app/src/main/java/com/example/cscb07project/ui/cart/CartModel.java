@@ -1,7 +1,7 @@
 package com.example.cscb07project.ui.cart;
 
 import android.annotation.SuppressLint;
-import android.provider.ContactsContract;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,19 +9,19 @@ import androidx.annotation.Nullable;
 
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
-import com.example.cscb07project.ui.itemlist.ItemListEntry;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,18 +29,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CartModel {
-    private static String dbUrl;
     private final CartPresenter presenter;
-    private final DatabaseReference cartRef; // make static?
+    private final DatabaseReference cartRef;
     private final DatabaseReference storeRef;
     private ChildEventListener listener;
-    private List<CartEntry> cartList;
+    private final List<CartEntry> cartList;
 
     public CartModel(CartPresenter presenter, String url) {
-        this.dbUrl = url;
         this.presenter = presenter;
         cartList = new ArrayList<>();
-        FirebaseDatabase db = FirebaseDatabase.getInstance(dbUrl);
+        FirebaseDatabase db = FirebaseDatabase.getInstance(url);
         cartRef = db.getReference().child("users").child(MainActivity.currentUser).child("cart");
         storeRef = db.getReference().child("stores");
     }
@@ -70,21 +68,49 @@ public class CartModel {
                                     return;
                                 }
                                 if (itemSnapshot.child("price").getValue(Double.class) == null) {
-                                    Log.d("SLM.java", itemName + " is priceless.");
                                     return;
                                 }
-                                CartEntry newEntry = new CartEntry(itemName,
-                                        itemSnapshot.child("brand").getValue(String.class),
-                                        itemSnapshot.child("image").getValue(String.class),
-                                        itemSnapshot.child("price").getValue(Double.class),
-                                        R.drawable.round_remove_circle_36,
-                                        qty);
-                                int idx = 0;
-                                while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
-                                    idx++;
+                                String imgURL = itemSnapshot.child("image").getValue(String.class);
+                                if (imgURL == null || imgURL.isEmpty()) {
+                                    CartEntry newEntry = new CartEntry(itemName,
+                                            itemSnapshot.child("brand").getValue(String.class),
+                                            itemSnapshot.child("image").getValue(String.class),
+                                            itemSnapshot.child("price").getValue(Double.class),
+                                            R.drawable.round_remove_36,
+                                            qty);
+                                    int idx = 0;
+                                    while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
+                                        idx++;
+                                    }
+                                    cartList.add(idx + 1, newEntry);
+                                    presenter.setAdapter(cartList);
+                                    return;
                                 }
-                                cartList.add(idx + 1, newEntry);
-                                presenter.setAdapter(cartList);
+                                FirebaseStorage storage = FirebaseStorage.getInstance();
+                                StorageReference storageRef = storage.getReference();
+                                StorageReference fileRef = storageRef.child(imgURL);
+                                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        CartEntry newEntry = new CartEntry(itemName,
+                                                itemSnapshot.child("brand").getValue(String.class),
+                                                uri.toString(),
+                                                itemSnapshot.child("price").getValue(Double.class),
+                                                R.drawable.round_remove_36,
+                                                qty);
+                                        int idx = 0;
+                                        while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), store)) {
+                                            idx++;
+                                        }
+                                        cartList.add(idx + 1, newEntry);
+                                        presenter.setAdapter(cartList);
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Log.e("SLM.java", "Error getting download URL: " + e.getMessage());
+                                    }
+                                });
                             }
                         });
                     }
@@ -141,7 +167,6 @@ public class CartModel {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Log.d("SLM.java", "Big Rem.");
                 String removedStore = snapshot.getKey();
                 int idx = 0;
                 while (idx < cartList.size() - 1 && !Objects.equals(cartList.get(idx).getStoreName(), removedStore)) {idx++;}
@@ -173,7 +198,7 @@ public class CartModel {
     }
 
     public static void removeItem(String store, String item, Boolean fullRem) {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser).child("cart");
         newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -196,7 +221,7 @@ public class CartModel {
 
 
     public static void checkCart() {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser);
         newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -210,18 +235,18 @@ public class CartModel {
     }
 
     public static void placeOrder(String name, String address) {
-        DatabaseReference newRef = FirebaseDatabase.getInstance(dbUrl)
+        DatabaseReference newRef = FirebaseDatabase.getInstance()
                 .getReference("users").child(MainActivity.currentUser);
 
         newRef.child("cart").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                DatabaseReference orderRef = FirebaseDatabase.getInstance(dbUrl)
+                DatabaseReference orderRef = FirebaseDatabase.getInstance()
                         .getReference("orders");
 
                 SimpleDateFormat idFormatter = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-                SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                SimpleDateFormat timeFormatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
                 Date currTime = new Date();
                 String orderId = idFormatter.format(currTime);
 

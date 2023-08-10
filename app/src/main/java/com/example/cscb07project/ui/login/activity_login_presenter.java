@@ -1,10 +1,5 @@
 package com.example.cscb07project.ui.login;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.Toast;
-
 public class activity_login_presenter implements activity_login_contract.Presenter {
 
     activity_login_contract.View view;
@@ -18,13 +13,13 @@ public class activity_login_presenter implements activity_login_contract.Present
     @Override
     public void doLoginEmail(String email, String password) {
         // check if email or password is empty
-        if(TextUtils.isEmpty(email)) {
-            Toast.makeText((Context) view, "Enter your Email", Toast.LENGTH_SHORT).show();
+        if(email.isEmpty()) {
+            doToast("Enter your Email");
             view.progressBarVisibility(4);
             return;
         }
-        if(TextUtils.isEmpty(password)) {
-            Toast.makeText((Context) view, "Enter your Password", Toast.LENGTH_SHORT).show();
+        if(password.isEmpty()) {
+            doToast("Enter your Password");
             view.progressBarVisibility(4);
             return;
         }
@@ -34,8 +29,8 @@ public class activity_login_presenter implements activity_login_contract.Present
     }
 
     @Override
-    public void doToastView(String message) {
-        Toast.makeText((Context) view, message, Toast.LENGTH_SHORT).show();
+    public void doToast(String message) {
+        view.doToast(message);
     }
 
     @Override

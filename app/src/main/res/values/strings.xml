@@ -5,6 +5,10 @@
     <string name="title_checkout">Checkout</string>
     <string name="title_orders">Orders</string>
     <string name="title_options">Options</string>
+    <string name="checkout_button">Next</string>
+    <string name="checkout_header">Shipping &amp; Billing Info</string>
+
+    <!--  Login/Logout -->
     <string name="login_text">Login</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -13,10 +17,57 @@
     <string name="i_am_a_customer">I am a customer</string>
     <string name="i_am_an_store_owner">I am an store owner</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="store_name_text">Store name</string>
     <string name="confirm_text">Confirm</string>
     <string name="register_owner">register_owner</string>
-    <string name="checkout_button">Proceed</string>
-    <string name="checkout_header">Please fill out your shipping\nand billing information below</string>
+
+    <!--  OwnerList Add text  -->
+    <string name="add_item_to_store">Add Item to Store</string>
+    <string name="successfully_uploaded_item">Successfully uploaded item</string>
+    <string name="failed_to_upload_item">Failed to upload item</string>
+    <string name="isowneradditem">isOwnerAddItem</string>
+    <string name="item_price">[item price]</string>
+
+    <!--  Text for button to store list  -->
+    <string name="store_list_button_text">Store List</string>
+
+    <!--  Store list text  -->
+    <string name="store_icon_description">Store Icon</string>
+    <string name="store_name_placeholder">[store name]</string>
+    <string name="store_owner_placeholder">[owner name]</string>
+
+    <!--  Item list text  -->
+    <string name="item_icon_description">Item Icon</string>
+    <string name="item_name_placeholder">[item name]</string>
+    <string name="item_brand_placeholder">[item brand]</string>
+    <string name="item_price_placeholder">[item price]</string>
+    <string name="item_add">Add</string>
+    <string name="item_description_placeholder">[item description]</string>
+    <string name="title_storelist">Shop</string>
+
+    <!--  Order list text  -->
+    <string name="order_item_img_desc">Item Image</string>
+    <string name="order_item_name_placeholder">[item name]</string>
+    <string name="order_item_qty_placeholder">[item qty]</string>
+    <string name="order_store_status_placeholder">[store status]</string>
+    <string name="order_store_name">[store name]</string>
+    <string name="order_store_img_desc">Store Logo</string>
+    <string name="order_id_placeholder">[order id]</string>
+    <string name="order_incomplete">INCOMPLETE</string>
+    <string name="order_full_name">[full name]</string>
+    <string name="order_address">[address line 1]\n[line 2]\n[line 3]</string>
+    <string name="order_time">[time]</string>
+    <string name="tap_of_the_picture_to_upload_your_image">Tap above to upload your image.</string>
+
+    <!--  Spinner View  -->
+    <string-array name="quantity_options">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
 </resources>

@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_entry_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="25dp"
-    android:layout_marginRight="25dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="25dp"
     android:layout_marginBottom="25dp"
-    app:cardCornerRadius="20dp">
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/order_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
+        <TextView
+            android:id="@+id/order_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Order Number: "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="yyyy/MM/dd HH:mm"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/order_number" />
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="Complete: True"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/complete_button"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Mark As Done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_header_layout"
         android:layout_width="match_parent"
@@ -36,8 +90,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_content_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/item_entry_img"
@@ -55,12 +108,11 @@
             android:id="@+id/item_entry_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Item Name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toEndOf="@+id/item_entry_img"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -69,40 +121,38 @@
             android:id="@+id/item_entry_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="Item Brand"
             android:textSize="16sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/item_entry_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toEndOf="@+id/item_entry_img"
             app:layout_constraintTop_toBottomOf="@+id/item_entry_name"
-            app:layout_constraintVertical_bias="0.4" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/item_entry_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:text="$00.00"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.082"
             app:layout_constraintStart_toEndOf="@+id/item_entry_img" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/item_entry_modifier"
-            android:background="?android:selectableItemBackgroundBorderless"
+            style="?attr/materialIconButtonFilledTonalStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/round_add_circle_36" />
+            app:icon="@drawable/round_add_36" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

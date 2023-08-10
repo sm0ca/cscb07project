@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.example.cscb07project.R;
 import com.example.cscb07project.databinding.FragmentOptionsBinding;
@@ -24,14 +27,10 @@ public class OptionsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        OptionsViewModel optionsViewModel =
-                new ViewModelProvider(this).get(OptionsViewModel.class);
 
         binding = FragmentOptionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textOptions;
-        optionsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         // logout implementation
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
