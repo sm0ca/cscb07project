@@ -73,7 +73,6 @@ public class activity_register_model implements activity_register_contract.Model
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
-                    int idx = 0;
                     presenter.isLoggedIn();
                 }
             }
@@ -127,12 +126,10 @@ public class activity_register_model implements activity_register_contract.Model
                     .child(storeName).child("items").child("sampleItem");
             temp_db.child("brand").setValue("[item name]");
             temp_db.child("description").setValue("[item description]");
-            temp_db.child("forSale").setValue(true);
+            temp_db.child("forSale").setValue(false);
             temp_db.child("image").setValue("");
             temp_db.child("price").setValue(0);
             }
 
     }
-
-
 }
