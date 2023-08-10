@@ -4,7 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
+import com.example.cscb07project.ui.tools.MainStart;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -49,7 +51,7 @@ public class createUserEmail implements createUser{
         });
 
         // checking and uploading storeLogo
-        if(model.getStoreLogoUri() == null) {
+        if(isOwner_check == R.id.radioButton_register_owner && model.getStoreLogoUri() == null) {
             model.doToastView("Upload store logo");
             return;
         }
@@ -71,7 +73,6 @@ public class createUserEmail implements createUser{
                             if (isOwner_check == R.id.radioButton_register_owner) {
                                 dbReference.child("isOwner").setValue(true);
                                 dbReference.child("storeName").setValue(storeName);
-
                                 // setValue store's logo with image path
                                 FirebaseDatabase.getInstance().getReference("stores/" + storeName + "/" + "logo")
                                         .setValue(model.setStoreLogoData(model.getStoreLogoUri()));

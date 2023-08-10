@@ -111,7 +111,7 @@
     <fragment
         android:id="@+id/navigation_isOwner_add_button"
         android:name="com.example.cscb07project.ui.addItem.fragment_ownerAddItem"
-        android:label="@string/isonweradditem"
+        android:label="Add Item"
         tools:layout="@layout/fragment_owner_add_item" >
         <action
             android:id="@+id/action_navigation_isOwner_add_button_to_navigation_options"

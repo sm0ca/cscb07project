@@ -1,6 +1,7 @@
 package com.example.cscb07project.ui.tools;
 
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class MainStart {
                 MainActivity.currentUser = username;
                 MainActivity.isOwner = Boolean.TRUE.equals(userSnapshot.child("isOwner")
                         .getValue(Boolean.class));
+                Log.d("SLM.java", "IsOwner: " + MainActivity.isOwner);
                 MainActivity.ownerStore = userSnapshot.hasChild("storeName") ?
                         userSnapshot.child("storeName").getValue(String.class) : "";
 

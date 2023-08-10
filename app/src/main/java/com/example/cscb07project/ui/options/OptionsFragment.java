@@ -27,14 +27,10 @@ public class OptionsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        OptionsViewModel optionsViewModel =
-                new ViewModelProvider(this).get(OptionsViewModel.class);
 
         binding = FragmentOptionsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textOptions;
-        optionsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         // logout implementation
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -53,16 +49,6 @@ public class OptionsFragment extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }
-            }
-        });
-
-        // Delete this!!!!
-        Button isOwnerButton = root.findViewById(R.id.toAddOwner);
-        isOwnerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
-                navController.navigate(R.id.navigation_isOwner_add_button);
             }
         });
 

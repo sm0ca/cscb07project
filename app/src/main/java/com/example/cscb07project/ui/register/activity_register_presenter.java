@@ -42,7 +42,7 @@ public class activity_register_presenter implements activity_register_contract.P
         }
 
         // check if logo is empty
-        if(view.getStoreLogoUri() == null) {
+        if (isOwnerId == view.getRadioButtonRegisterOwner() && view.getStoreLogoUri() == null) {
             doToast("Enter your store logo");
             view.progressBarVisibility(4);
             return;

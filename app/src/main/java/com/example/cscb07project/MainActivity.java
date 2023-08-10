@@ -13,6 +13,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.cscb07project.ui.tools.MainStart;
 import com.google.android.material.navigation.NavigationBarView;
 import com.example.cscb07project.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,16 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         com.example.cscb07project.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        FirebaseAuth dbAuth = FirebaseAuth.getInstance();
-        // for shopper
-        currentUser = "user2"; //dbAuth.getCurrentUser().getUid();
-        isOwner = false;
-        ownerStore = "";
 
-//        // for owner
-//        currentUser = "person 1";
-//        isOwner = true;
-//        ownerStore = "st 1";
 
         NavigationBarView bottomNav;
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_activity_main);

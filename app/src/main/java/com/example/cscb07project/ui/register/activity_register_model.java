@@ -2,6 +2,7 @@ package com.example.cscb07project.ui.register;
 
 
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -33,6 +34,12 @@ public class activity_register_model implements activity_register_contract.Model
 
     @Override
     public void createUser(String email, String password, String storeName, int isOwnerId) {
+        if (isOwnerId == R.id.radioButton_register_customer) {
+            user = new createUserEmail(email, password, storeName, isOwnerId, mAuth,activity_register_model.this);
+            user.create();
+            return;
+        }
+
         this.storeName = storeName;
 
         DatabaseReference newRef = FirebaseDatabase.getInstance().getReference().child("stores");
@@ -66,6 +73,7 @@ public class activity_register_model implements activity_register_contract.Model
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
                 if(currentUser != null){
+                    int idx = 0;
                     presenter.isLoggedIn();
                 }
             }
