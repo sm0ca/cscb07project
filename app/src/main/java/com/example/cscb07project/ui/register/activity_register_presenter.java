@@ -64,8 +64,8 @@ public class activity_register_presenter implements activity_register_contract.P
     }
 
     @Override
-    public void doToastView(String message) {
-        Toast.makeText((Context) view, message, Toast.LENGTH_SHORT).show();
+    public void doToast(String message) {
+        view.doToast(message);
     }
 
     @Override

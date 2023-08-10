@@ -4,12 +4,13 @@ public interface activity_login_contract {
     interface View {
         void progressBarVisibility(int i);
         void loggedIn();
+        void doToast(String message);
 
     }
 
     interface Presenter {
         void doLoginEmail(String email, String password);
-        void doToastView(String message);
+        void doToast(String message);
         void doCheckLoggedIn();
         void isLoggedIn();
         void changeProgressBarVisibility(int mode);

@@ -43,6 +43,6 @@ public class activity_login_model implements activity_login_contract.Model {
 
     @Override
     public void doToastView(String message) {
-        presenter.doToastView(message);
+        presenter.doToast(message);
     }
 }

@@ -4,7 +4,6 @@ package com.example.cscb07project.ui.register;
 import android.net.Uri;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public interface activity_register_contract {
 
@@ -15,12 +14,13 @@ public interface activity_register_contract {
         int getRadioButtonRegisterCustomer();
         void loggedIn();
         Uri getStoreLogoUri();
+        void doToast(String message);
 
     }
 
     interface Presenter {
         void doRegisterEmail(String email, String password, String storeName, int isOwnerId);
-        void doToastView(String message);
+        void doToast(String message);
         void doCheckLoggedIn();
         void isLoggedIn();
         void changeProgressBarVisibility(int mode);

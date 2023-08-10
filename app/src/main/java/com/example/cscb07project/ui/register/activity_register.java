@@ -3,6 +3,7 @@ package com.example.cscb07project.ui.register;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.cscb07project.MainActivity;
 import com.example.cscb07project.R;
@@ -39,6 +41,11 @@ public class activity_register extends AppCompatActivity implements activity_reg
     public int getRadioButtonRegisterCustomer() { return R.id.radioButton_register_customer; }
     public Uri getStoreLogoUri() {
         return storeLogoUri;
+    }
+
+    @Override
+    public void doToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     // other functions

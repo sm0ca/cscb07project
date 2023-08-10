@@ -33,8 +33,8 @@ public class activity_login_presenter implements activity_login_contract.Present
     }
 
     @Override
-    public void doToastView(String message) {
-        Toast.makeText((Context) view, message, Toast.LENGTH_SHORT).show();
+    public void doToast(String message) {
+        view.doToast(message);
     }
 
     @Override

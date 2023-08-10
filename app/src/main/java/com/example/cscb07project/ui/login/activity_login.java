@@ -1,11 +1,13 @@
 package com.example.cscb07project.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,6 +35,11 @@ public class activity_login extends AppCompatActivity implements activity_login_
     @Override
     public void loggedIn() {
         MainStart.switchToMain(this);
+    }
+
+    @Override
+    public void doToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 

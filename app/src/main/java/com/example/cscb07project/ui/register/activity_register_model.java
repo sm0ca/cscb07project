@@ -2,7 +2,6 @@ package com.example.cscb07project.ui.register;
 
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -14,10 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,7 +41,7 @@ public class activity_register_model implements activity_register_contract.Model
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 DataSnapshot storesSnap = task.getResult();
                 if (storesSnap.hasChild(storeName)) {
-                    presenter.doToastView("Store name has already exist");
+                    presenter.doToast("Store name has already exist");
                     presenter.changeProgressBarVisibility(4);
 
                 } else {
@@ -96,7 +93,7 @@ public class activity_register_model implements activity_register_contract.Model
 
     @Override
     public void doToastView(String string) {
-        presenter.doToastView(string);
+        presenter.doToast(string);
     }
 
     @Override
