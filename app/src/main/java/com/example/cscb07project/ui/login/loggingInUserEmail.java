@@ -33,7 +33,7 @@ public class loggingInUserEmail implements loggingInUser{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         model.changeProgressBarVisibility(4);
                         if (task.isSuccessful()) {
-                            Log.d("TAG_LOGIN", "signInWithEmail:success");
+                            Log.i("TAG_LOGIN", "signInWithEmail:success");
                         }
                         else {
                             // If sign in fails, display a message to the user.

@@ -36,14 +36,18 @@ public class activity_register_model implements activity_register_contract.Model
         this.storeName = storeName;
 
         DatabaseReference newRef = FirebaseDatabase.getInstance().getReference().child("stores");
+
+        // checking if storeName has already existed
         newRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 DataSnapshot storesSnap = task.getResult();
+                // if exist
                 if (storesSnap.hasChild(storeName)) {
                     presenter.doToast("Store name has already exist");
                     presenter.changeProgressBarVisibility(4);
 
+                // if not
                 } else {
                     user = new createUserEmail(email, password, storeName, isOwnerId, mAuth,activity_register_model.this);
                     user.create();

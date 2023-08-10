@@ -59,7 +59,6 @@ public class activity_register extends AppCompatActivity implements activity_reg
     // change activity to MainActivity if logged in
     @Override
     public void loggedIn() {
-        Log.d("TAG_REGISTER", "Call MainStart");
         MainStart.switchToMain(this);
     }
 
@@ -146,6 +145,7 @@ public class activity_register extends AppCompatActivity implements activity_reg
     }
 
 
+    // put image data into storeLogoUri and change image in view
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

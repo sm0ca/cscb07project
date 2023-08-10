@@ -66,10 +66,12 @@ public class createUserEmail implements createUser{
                         model.changeProgressBarVisibility(4);
 
                         if (task.isSuccessful()) {
-                            Log.d("TAG_REGISTER", "createUserWithEmail:success");
+                            Log.i("TAG_REGISTER", "createUserWithEmail:success");
 
                             DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference().
                                     child("users").child(mAuth.getCurrentUser().getUid());
+
+                            // if user is owner
                             if (isOwner_check == R.id.radioButton_register_owner) {
                                 dbReference.child("isOwner").setValue(true);
                                 dbReference.child("storeName").setValue(storeName);
@@ -83,6 +85,7 @@ public class createUserEmail implements createUser{
                                         .setValue(mAuth.getUid());
 
 
+                            // if user is customer
                             } else if (isOwner_check == R.id.radioButton_register_customer) {
                                 dbReference.child("isOwner").setValue(false);
                                 dbReference.child("cart").setValue("");
