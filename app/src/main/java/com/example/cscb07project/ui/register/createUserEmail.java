@@ -65,6 +65,7 @@ public class createUserEmail implements createUser{
 
                         if (task.isSuccessful()) {
                             Log.i("TAG_REGISTER", "createUserWithEmail:success");
+                            model.checkLoggedIn();
 
                             DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference().
                                     child("users").child(mAuth.getCurrentUser().getUid());

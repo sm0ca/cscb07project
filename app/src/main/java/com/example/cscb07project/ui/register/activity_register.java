@@ -150,7 +150,7 @@ public class activity_register extends AppCompatActivity implements activity_reg
             setStoreLogo(storeLogoUri);
         }
         else if(data.getData() == null) {
-            Log.e("TAG_ACTIVITY_REGISTER", "onActivityResult: getData() is null");
+            Log.w("TAG_ACTIVITY_REGISTER", "onActivityResult: getData() is null");
             doToast("image select error, please select image again");
         }
     }
