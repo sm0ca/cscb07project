@@ -1,9 +1,5 @@
 package com.example.cscb07project.ui.login;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.widget.Toast;
-
 public class activity_login_presenter implements activity_login_contract.Presenter {
 
     activity_login_contract.View view;
@@ -14,22 +10,25 @@ public class activity_login_presenter implements activity_login_contract.Present
         model = new activity_login_model(this);
     }
 
+    public activity_login_presenter(activity_login_contract.View view, activity_login_contract.Model model) {
+        this.view = view;
+        this.model = model;
+    }
+
     @Override
     public void doLoginEmail(String email, String password) {
         // check if email or password is empty
-        if(TextUtils.isEmpty(email)) {
-            Toast.makeText((Context) view, "Enter your Email", Toast.LENGTH_SHORT).show();
+        if(email.isEmpty()) {
+            doToast("Enter your Email");
             view.progressBarVisibility(4);
             return;
         }
-        if(TextUtils.isEmpty(password)) {
-            Toast.makeText((Context) view, "Enter your Password", Toast.LENGTH_SHORT).show();
+        if(password.isEmpty()) {
+            doToast("Enter your Password");
             view.progressBarVisibility(4);
             return;
         }
-
         model.loggingInUser(email, password);
-
     }
 
     @Override
@@ -51,4 +50,13 @@ public class activity_login_presenter implements activity_login_contract.Present
     public void changeProgressBarVisibility(int mode) {
         view.progressBarVisibility(mode);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        activity_login_presenter that = (activity_login_presenter) o;
+        return view.equals(that.view);
+    }
+
 }
