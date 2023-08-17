@@ -10,6 +10,11 @@ public class activity_login_presenter implements activity_login_contract.Present
         model = new activity_login_model(this);
     }
 
+    public activity_login_presenter(activity_login_contract.View view, activity_login_contract.Model model) {
+        this.view = view;
+        this.model = model;
+    }
+
     @Override
     public void doLoginEmail(String email, String password) {
         // check if email or password is empty
@@ -23,9 +28,7 @@ public class activity_login_presenter implements activity_login_contract.Present
             view.progressBarVisibility(4);
             return;
         }
-
         model.loggingInUser(email, password);
-
     }
 
     @Override
@@ -47,4 +50,13 @@ public class activity_login_presenter implements activity_login_contract.Present
     public void changeProgressBarVisibility(int mode) {
         view.progressBarVisibility(mode);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        activity_login_presenter that = (activity_login_presenter) o;
+        return view.equals(that.view);
+    }
+
 }

@@ -1,37 +1,30 @@
 package com.example.cscb07project.ui.login;
 
-import androidx.annotation.NonNull;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class activity_login_model implements activity_login_contract.Model {
-
-    private FirebaseAuth mAuth;
-    private activity_login_contract.Presenter presenter;
-    private loggingInUser user;
+    private final activity_login_contract.Presenter presenter;
 
 
     public activity_login_model(activity_login_contract.Presenter presenter) {
         this.presenter = presenter;
-        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void loggingInUser(String email, String password) {
-        user = new loggingInUserEmail(email, password, mAuth, this);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        loggingInUser user = new loggingInUserEmail(email, password, mAuth, this);
         user.enter();
     }
 
     @Override
     public void checkLoggedIn() {
-        mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                if(currentUser != null) {
-                    presenter.isLoggedIn();
-                }
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(firebaseAuth -> {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if(currentUser != null) {
+                presenter.isLoggedIn();
             }
         });
     }
