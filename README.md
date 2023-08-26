@@ -1,13 +1,13 @@
 # Full-Stack Mall App
-A full-stack mall application for a shopping mall, implemented in Java using Firebase Realtime Database as a backend.
+A full-stack Android application for a shopping mall, implemented in Java using Firebase Realtime Database as a backend.
 
 ## Screenshots
 
 <img src="https://github.com/sm0ca/full-stack-mall-app/assets/34463529/161b635c-a05d-4e09-98f9-626b79ade0da" width="250">
 <img src="https://github.com/sm0ca/full-stack-mall-app/assets/34463529/3f79929c-34d5-405a-9fa9-e27ee546b1a8" width="250">
+<img src="https://github.com/sm0ca/full-stack-mall-app/assets/34463529/733e0a80-2c52-45a2-8e8a-c2d70dbfd72b" width="250">
 <img src="https://github.com/sm0ca/full-stack-mall-app/assets/34463529/2a93d2a1-d28a-409f-9727-0be9a9d6faa3" width="250">
 <img src="https://github.com/sm0ca/full-stack-mall-app/assets/34463529/06ca9d80-40e6-42d1-b1be-aed7ad2738aa" width="250">
-
 
 ## Features
 ### Store Owner
